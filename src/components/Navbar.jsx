@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { studioConfig } from '../data/studioConfig.js';
-import { Camera, Sparkles, Menu, X, Phone, MessageSquare, Frame, Package } from 'lucide-react';
+import { Camera, Sparkles, Menu, X, Phone, MessageSquare, Frame, Package, Award } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab, onOpenDesigner, onOpenPhotographyInquiry }) {
   const [scrolled, setScrolled] = useState(false);
@@ -16,6 +16,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenDesigner, onOpen
 
   const navLinks = [
     { id: 'home', label: 'Home' },
+    { id: 'packages', label: 'Packages', isPackage: true },
     { id: 'services', label: 'Services' },
     { id: 'gallery', label: 'Our Work' },
     { id: 'products', label: 'Products' },
@@ -65,7 +66,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenDesigner, onOpen
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
+                className={`px-3.5 py-1.5 text-xs font-semibold rounded-full transition-all duration-200 ${
                   activeTab === link.id
                     ? 'bg-studio-orange text-white shadow-glow-orange'
                     : 'text-gray-300 hover:text-white hover:bg-white/10'
@@ -134,6 +135,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenDesigner, onOpen
                 }`}
               >
                 <span>{link.label}</span>
+                {link.isPackage && <Award className="w-4 h-4 text-amber-400" />}
                 {link.isDesigner && <Sparkles className="w-4 h-4 text-studio-orange" />}
               </button>
             ))}

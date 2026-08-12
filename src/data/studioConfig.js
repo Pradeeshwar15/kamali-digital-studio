@@ -1,12 +1,12 @@
 export const studioConfig = {
   name: "Kamali Digital Studio",
-  tagline: "CAPTURE BEYOND IMAGINATION",
-  phone: "+91 98765 43210",
-  whatsappNumber: "919876543210",
+  tagline: "Capturing Moments, Creating Memories",
+  phone: "+91 78260 60289",
+  whatsappNumber: "917826060289",
   email: "kamalidigitalstudio@gmail.com",
-  address: "Main Road, Opp. Central Bus Stand, Commercial Hub, City - 600001",
+  address: "No. 65 Loganathan Street, Cheyyar",
   workingHours: "Mon - Sat: 9:00 AM - 9:00 PM | Sun: 10:00 AM - 6:00 PM",
-  googleMapsUrl: "https://maps.google.com/?q=Kamali+Digital+Studio",
+  googleMapsUrl: "https://maps.google.com/?q=No.+65+Loganathan+Street,+Cheyyar",
   
   stats: [
     { value: "12+", label: "Years Experience" },
@@ -18,6 +18,6 @@ export const studioConfig = {
   socials: {
     instagram: "https://instagram.com/kamalidigitalstudio",
     facebook: "https://facebook.com/kamalidigitalstudio",
-    whatsapp: "https://wa.me/919876543210"
+    whatsapp: "https://wa.me/917826060289"
   }
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import Occasions from './components/Occasions.jsx';
+import Packages from './components/Packages.jsx';
 import Products from './components/Products.jsx';
 import FrameShowcase from './components/FrameShowcase.jsx';
 import FrameDesigner from './components/designer/FrameDesigner.jsx';
@@ -88,6 +89,12 @@ export default function App() {
             const el = document.getElementById('gallery');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
+        />
+
+        {/* 3-Set Wedding Packages Section (Basic, Standard ₹80k, Platinum ₹1L) */}
+        <Packages
+          onOpenPhotographyInquiry={(serviceTitle) => handleOpenPhotographyInquiry(serviceTitle)}
+          overrideWhatsapp={currentWhatsapp}
         />
 
         {/* Occasions Feature Section */}
