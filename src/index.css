@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0a0a0c] text-gray-100 overflow-x-hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0c;
+}
+::-webkit-scrollbar-thumb {
+  background: #262630;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
+}
+
+/* Frame Textures & Realism Classes */
+.frame-classic-black {
+  border: 18px solid #111115;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.8);
+  border-image: linear-gradient(135deg, #1f1f26 0%, #0d0d10 50%, #1a1a22 100%) 1;
+}
+
+.frame-premium-gold {
+  border: 22px solid #c5a059;
+  border-image: linear-gradient(135deg, #fef1bf 0%, #b8860b 35%, #e6c687 70%, #996515 100%) 1;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.7), 0 15px 35px rgba(212, 175, 55, 0.25);
+}
+
+.frame-elegant-white {
+  border: 20px solid #f8fafc;
+  border-image: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #f1f5f9 100%) 1;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.frame-natural-wood {
+  border: 22px solid #8b5a2b;
+  border-image: linear-gradient(135deg, #a06e3b 0%, #5c3a1e 50%, #7c4d25 100%) 1;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.frame-luxury-brown {
+  border: 24px solid #3d2314;
+  border-image: linear-gradient(135deg, #5c351f 0%, #2b170c 50%, #4a2817 100%) 1;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.8), 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+.frame-minimal-black {
+  border: 8px solid #000000;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Glassmorphism utilities */
+.glass-panel {
+  background: rgba(18, 18, 22, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-orange {
+  background: rgba(255, 107, 0, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+}
+
+/* Room Wall Backdrops for Realistic Preview */
+.bg-room-living {
+  background-image: radial-gradient(circle at center, rgba(30, 30, 40, 0.5) 0%, rgba(10, 10, 14, 0.95) 100%),
+                    linear-gradient(to bottom, #1e2029 0%, #0f1015 100%);
+}
+
+.bg-room-gallery {
+  background-image: radial-gradient(circle at top, rgba(255, 255, 255, 0.12) 0%, rgba(10, 10, 12, 0.95) 80%),
+                    linear-gradient(to right, #141419, #1c1c24, #141419);
+}
+
+.bg-room-minimal {
+  background-image: linear-gradient(135deg, #18181c 0%, #0d0d10 100%);
+}

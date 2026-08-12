@@ -1,0 +1,110 @@
+import React from 'react';
+import { calculateFramePrice } from '../../utils/priceCalculator.js';
+import { frameStyles } from '../../data/frames.js';
+import { frameSizes, frameFinishes, mattingOptions } from '../../data/pricing.js';
+import { Calculator, MessageSquare, Plus, Minus, Info, Tag } from 'lucide-react';
+
+export default function PriceBreakdown({
+  frameId,
+  sizeId,
+  finishId,
+  mattingId,
+  quantity,
+  onQuantityChange,
+  onOpenOrderModal,
+  pricingMultiplier = 1
+}) {
+  const selectedFrame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
+  const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
+  const selectedFinish = frameFinishes.find(fn => fn.id === finishId) || frameFinishes[0];
+  const selectedMatting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
+
+  const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
+  const finalGrandTotal = Math.round(basePricing.grandTotal * pricingMultiplier);
+  const formattedGrandTotal = `₹${finalGrandTotal.toLocaleString('en-IN')}`;
+
+  return (
+    <div className="bg-studio-card p-6 rounded-2xl border border-white/10 shadow-2xl space-y-4">
+      <div className="flex items-center justify-between border-b border-white/10 pb-3">
+        <h3 className="font-serif text-lg font-bold text-white flex items-center gap-2">
+          <Calculator className="w-4 h-4 text-studio-orange" />
+          <span>Estimated Price Summary</span>
+        </h3>
+        {pricingMultiplier !== 1 ? (
+          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1">
+            <Tag className="w-3 h-3" />
+            <span>Special Rate Applied ({Math.round(pricingMultiplier * 100)}%)</span>
+          </span>
+        ) : (
+          <span className="text-[10px] font-bold text-studio-orange uppercase tracking-wider bg-studio-orange/10 px-2.5 py-1 rounded-full">
+            Transparent Quote
+          </span>
+        )}
+      </div>
+
+      <div className="space-y-2 text-xs text-gray-300">
+        <div className="flex items-center justify-between">
+          <span className="text-gray-400">Frame Moulding ({selectedFrame.name}):</span>
+          <span className="font-bold text-white">₹{basePricing.basePrice}</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-gray-400">Size Upgrade ({selectedSize.label}):</span>
+          <span className="font-bold text-white">+₹{basePricing.sizePrice}</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-gray-400">Finish Coating ({selectedFinish.label}):</span>
+          <span className="font-bold text-white">+₹{basePricing.finishPrice}</span>
+        </div>
+        {basePricing.mattingPrice > 0 && (
+          <div className="flex items-center justify-between">
+            <span className="text-gray-400">Passepartout Matting:</span>
+            <span className="font-bold text-white">+₹{basePricing.mattingPrice}</span>
+          </div>
+        )}
+      </div>
+
+      <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+        <span className="text-xs font-bold text-gray-300">Quantity</span>
+        <div className="flex items-center gap-3 bg-black/50 px-3 py-1.5 rounded-xl border border-white/10">
+          <button
+            onClick={() => onQuantityChange(Math.max(1, quantity - 1))}
+            className="p-1 text-gray-400 hover:text-white transition-colors"
+          >
+            <Minus className="w-3.5 h-3.5" />
+          </button>
+          <span className="font-bold text-sm text-white px-2">{quantity}</span>
+          <button
+            onClick={() => onQuantityChange(quantity + 1)}
+            className="p-1 text-gray-400 hover:text-white transition-colors"
+          >
+            <Plus className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+        <div>
+          <span className="text-xs text-gray-400 block font-medium">Estimated Total Price</span>
+          <span className="text-[10px] text-amber-400 flex items-center gap-1 mt-0.5">
+            <Info className="w-3 h-3" />
+            <span>Final price confirmed via WhatsApp</span>
+          </span>
+        </div>
+
+        <div className="text-right">
+          <span className="font-serif text-3xl font-extrabold text-white text-transparent bg-clip-text bg-gradient-to-r from-studio-orange to-amber-300">
+            {formattedGrandTotal}
+          </span>
+        </div>
+      </div>
+
+      <button
+        onClick={onOpenOrderModal}
+        className="w-full py-4 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition-all"
+      >
+        <MessageSquare className="w-5 h-5" />
+        <span>ORDER VIA WHATSAPP</span>
+      </button>
+    </div>
+  );
+}
