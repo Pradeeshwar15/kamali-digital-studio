@@ -1,7 +1,7 @@
 import React from 'react';
 import { weddingPackages } from '../data/packages.js';
 import { buildPhotographyInquiryMessage, generateWhatsAppLink } from '../utils/whatsappHelper.js';
-import { Sparkles, CheckCircle2, Gift, Camera, ArrowRight, ShieldCheck, Star, Video, Award } from 'lucide-react';
+import { Sparkles, CheckCircle2, Gift, Camera, ArrowRight, ShieldCheck, Star, Video, Award, Heart } from 'lucide-react';
 
 export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = null }) {
 
@@ -26,7 +26,7 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-studio-orange/10 border border-studio-orange/30 text-studio-orange text-xs font-bold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
             <Award className="w-4 h-4 text-amber-400" />
             <span>RECEPTION & WEDDING PACKAGES</span>
           </div>
@@ -44,7 +44,7 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
             <div
               key={pkg.id}
               className={`relative rounded-3xl bg-studio-card border ${pkg.borderColor} p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-2xl group ${
-                pkg.popular ? 'lg:-mt-4 lg:mb-4 bg-gradient-to-b from-[#181820] to-studio-card' : ''
+                pkg.popular ? 'lg:-mt-4 lg:mb-4 bg-gradient-to-b from-[#1c1c26] to-studio-card ring-2 ring-studio-orange' : ''
               }`}
             >
               {/* Popular / Luxury Badge */}
@@ -71,7 +71,7 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
                       ₹{pkg.price}
                     </div>
                     <span className="text-[10px] text-amber-400 font-bold uppercase tracking-widest block mt-1">
-                      ONLY • NO HIDDEN CHARGES
+                      ALL INCLUSIVE • NO HIDDEN FEES
                     </span>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
                   <div className="p-4 rounded-2xl bg-amber-950/20 border border-amber-500/25 mb-6">
                     <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wider mb-2">
                       <Gift className="w-4 h-4" />
-                      <span>Complimentary Gifts Included</span>
+                      <span>Free Complimentary Gifts</span>
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
                       {pkg.complimentary.map((gift, gIdx) => (
@@ -113,7 +113,7 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
                   onClick={() => handlePackageWhatsApp(pkg)}
                   className={`w-full py-4 rounded-2xl font-extrabold text-xs tracking-wider uppercase text-white shadow-lg flex items-center justify-center gap-2 transition-all duration-200 ${
                     pkg.popular
-                      ? 'bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange'
+                      ? 'bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange scale-105'
                       : 'bg-white/10 hover:bg-studio-orange border border-white/10 hover:border-studio-orange'
                   }`}
                 >

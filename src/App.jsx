@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
 import Packages from './components/Packages.jsx';
-import Occasions from './components/Occasions.jsx';
-import FrameDesigner from './components/designer/FrameDesigner.jsx';
-import FrameShowcase from './components/FrameShowcase.jsx';
 import Products from './components/Products.jsx';
+import FrameDesigner from './components/designer/FrameDesigner.jsx';
+import Occasions from './components/Occasions.jsx';
+import FrameShowcase from './components/FrameShowcase.jsx';
 import BeforeAfter from './components/BeforeAfter.jsx';
 import Gallery from './components/Gallery.jsx';
 import Testimonials from './components/Testimonials.jsx';
@@ -76,7 +76,7 @@ export default function App() {
         onOpenPhotographyInquiry={() => handleOpenPhotographyInquiry()}
       />
 
-      {/* Main Content Sections (User-friendly conversion order) */}
+      {/* Main Content Sections in User-Requested UX Sequence */}
       <main className="flex-1">
         
         {/* 1. Hero Section */}
@@ -90,30 +90,13 @@ export default function App() {
           }}
         />
 
-        {/* 2. Wedding & Event Packages Section (Basic ₹50k, Standard ₹80k, Platinum ₹1L) */}
+        {/* 2. Packages Section (Basic ₹50k, Standard ₹90k, Platinum ₹1.2L) */}
         <Packages
           onOpenPhotographyInquiry={(serviceTitle) => handleOpenPhotographyInquiry(serviceTitle)}
           overrideWhatsapp={currentWhatsapp}
         />
 
-        {/* 3. Occasion-Based Frame Discovery */}
-        <Occasions onSelectOccasion={handleSelectOccasion} />
-
-        {/* 4. Flagship Interactive Custom Frame Designer */}
-        <FrameDesigner
-          initialOccasion={selectedOccasion}
-          initialFrameId={selectedFrameId}
-          initialPhotoUrl={selectedPhotoUrl}
-          pricingMultiplier={pricingMultiplier}
-          overrideWhatsapp={currentWhatsapp}
-        />
-
-        {/* 5. Bestselling Frame Styles Showcase */}
-        <FrameShowcase
-          onCustomizeFrame={(frameId) => handleOpenDesigner(frameId)}
-        />
-
-        {/* 6. Products Hub (Photo Frames, Printing, Visiting Cards, LED Wall, Passport) */}
+        {/* 3. Products Section (Appears next to Packages) */}
         <Products
           onOpenDesigner={() => handleOpenDesigner()}
           onOpenProductInquiry={(product) => handleOpenProductInquiry(product)}
@@ -123,6 +106,23 @@ export default function App() {
             const el = document.getElementById('contact');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
+        />
+
+        {/* 4. Photo Frames Customizer Section */}
+        <FrameDesigner
+          initialOccasion={selectedOccasion}
+          initialFrameId={selectedFrameId}
+          initialPhotoUrl={selectedPhotoUrl}
+          pricingMultiplier={pricingMultiplier}
+          overrideWhatsapp={currentWhatsapp}
+        />
+
+        {/* 5. Occasion-Based Frame Discovery */}
+        <Occasions onSelectOccasion={handleSelectOccasion} />
+
+        {/* 6. Bestselling Frame Styles Showcase */}
+        <FrameShowcase
+          onCustomizeFrame={(frameId) => handleOpenDesigner(frameId)}
         />
 
         {/* 7. Photo Restoration Before / After Showcase */}
