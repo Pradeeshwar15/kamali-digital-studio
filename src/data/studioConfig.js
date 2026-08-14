@@ -9,7 +9,7 @@ export const studioConfig = {
   googleMapsUrl: "https://maps.app.goo.gl/WiSMjUDaBoDGE6a47",
   
   stats: [
-    { value: "12+", label: "Years Experience" },
+    { value: "7+", label: "Years Experience" },
     { value: "18,000+", label: "Happy Clients" },
     { value: "1,500+", label: "Events Covered" },
     { value: "35,000+", label: "Custom Frames Delivered" }
