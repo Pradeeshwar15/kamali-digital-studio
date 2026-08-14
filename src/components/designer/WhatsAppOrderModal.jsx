@@ -14,9 +14,7 @@ export default function WhatsAppOrderModal({
   finishId,
   mattingId,
   customText,
-  quantity,
-  overrideWhatsapp = null,
-  pricingMultiplier = 1
+  quantity
 }) {
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
@@ -32,8 +30,7 @@ export default function WhatsAppOrderModal({
   const matting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
 
   const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
-  const finalTotal = Math.round(basePricing.grandTotal * pricingMultiplier);
-  const formattedGrandTotal = `₹${finalTotal.toLocaleString('en-IN')}`;
+  const formattedGrandTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   const orderData = {
     customerName: customerName || 'Customer',
@@ -45,8 +42,7 @@ export default function WhatsAppOrderModal({
     finishId,
     mattingId,
     customText,
-    quantity,
-    pricingMultiplier
+    quantity
   };
 
   const handleSendWhatsApp = (e) => {
@@ -54,7 +50,7 @@ export default function WhatsAppOrderModal({
     confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
 
     const msg = buildWhatsAppOrderMessage(orderData);
-    const link = generateWhatsAppLink(msg, overrideWhatsapp);
+    const link = generateWhatsAppLink(msg);
     window.open(link, '_blank');
   };
 
@@ -133,7 +129,7 @@ export default function WhatsAppOrderModal({
               required
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
-              placeholder="+91 98765 43210"
+              placeholder="+91 78260 60289"
               className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-emerald-500"
             />
           </div>

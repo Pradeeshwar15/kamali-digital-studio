@@ -11,9 +11,7 @@ import { Sparkles, MessageSquare, Frame as FrameIcon, ShieldCheck } from 'lucide
 export default function FrameDesigner({
   initialOccasion,
   initialFrameId,
-  initialPhotoUrl,
-  pricingMultiplier = 1,
-  overrideWhatsapp = null
+  initialPhotoUrl
 }) {
   const [selectedFrameId, setSelectedFrameId] = useState(initialFrameId || "classic-black");
   const [photoUrl, setPhotoUrl] = useState(initialPhotoUrl || null);
@@ -35,8 +33,7 @@ export default function FrameDesigner({
     quantity
   });
 
-  const finalGrandTotal = Math.round(basePricing.grandTotal * pricingMultiplier);
-  const formattedFinalTotal = `₹${finalGrandTotal.toLocaleString('en-IN')}`;
+  const formattedFinalTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   return (
     <section id="designer" className="py-24 bg-[#0a0a0c] border-t border-white/5 relative min-h-screen">
@@ -107,7 +104,6 @@ export default function FrameDesigner({
                 quantity={quantity}
                 onQuantityChange={setQuantity}
                 onOpenOrderModal={() => setOrderModalOpen(true)}
-                pricingMultiplier={pricingMultiplier}
               />
             </div>
 
@@ -158,8 +154,6 @@ export default function FrameDesigner({
         mattingId={selectedMattingId}
         customText={customText}
         quantity={quantity}
-        overrideWhatsapp={overrideWhatsapp}
-        pricingMultiplier={pricingMultiplier}
       />
     </section>
   );

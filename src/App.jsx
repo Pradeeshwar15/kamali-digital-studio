@@ -13,14 +13,11 @@ import About from './components/About.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import FloatingWhatsApp from './components/FloatingWhatsApp.jsx';
-import StudioAdminDrawer from './components/admin/StudioAdminDrawer.jsx';
 
 // Modals
 import PhotographyInquiryModal from './components/modals/PhotographyInquiryModal.jsx';
 import ProductInquiryModal from './components/modals/ProductInquiryModal.jsx';
 import VisitingCardModal from './components/modals/VisitingCardModal.jsx';
-
-import { studioConfig } from './data/studioConfig.js';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -34,10 +31,6 @@ export default function App() {
   const [productInquiryOpen, setProductInquiryOpen] = useState(false);
   const [selectedProductForInquiry, setSelectedProductForInquiry] = useState(null);
   const [visitingCardModalOpen, setVisitingCardModalOpen] = useState(false);
-
-  // Admin Demo Live Testing State
-  const [currentWhatsapp, setCurrentWhatsapp] = useState(studioConfig.whatsappNumber);
-  const [pricingMultiplier, setPricingMultiplier] = useState(1);
 
   const handleOpenDesigner = (frameId = null, photoUrl = null) => {
     if (frameId) setSelectedFrameId(frameId);
@@ -76,7 +69,7 @@ export default function App() {
         onOpenPhotographyInquiry={() => handleOpenPhotographyInquiry()}
       />
 
-      {/* Main Content Sections in User-Requested UX Sequence */}
+      {/* Main Content Sections */}
       <main className="flex-1">
         
         {/* 1. Hero Section */}
@@ -90,13 +83,12 @@ export default function App() {
           }}
         />
 
-        {/* 2. Packages Section (Basic ₹50k, Standard ₹90k, Platinum ₹1.2L) */}
+        {/* 2. Wedding & Event Packages Section */}
         <Packages
           onOpenPhotographyInquiry={(serviceTitle) => handleOpenPhotographyInquiry(serviceTitle)}
-          overrideWhatsapp={currentWhatsapp}
         />
 
-        {/* 3. Products Section (Appears next to Packages) */}
+        {/* 3. Products Section */}
         <Products
           onOpenDesigner={() => handleOpenDesigner()}
           onOpenProductInquiry={(product) => handleOpenProductInquiry(product)}
@@ -113,8 +105,6 @@ export default function App() {
           initialOccasion={selectedOccasion}
           initialFrameId={selectedFrameId}
           initialPhotoUrl={selectedPhotoUrl}
-          pricingMultiplier={pricingMultiplier}
-          overrideWhatsapp={currentWhatsapp}
         />
 
         {/* 5. Occasion-Based Frame Discovery */}
@@ -155,20 +145,11 @@ export default function App() {
       {/* Floating WhatsApp Quick Action Button */}
       <FloatingWhatsApp />
 
-      {/* Owner Demo Admin Controls Drawer */}
-      <StudioAdminDrawer
-        currentWhatsapp={currentWhatsapp}
-        onUpdateWhatsapp={setCurrentWhatsapp}
-        pricingMultiplier={pricingMultiplier}
-        onUpdatePricingMultiplier={setPricingMultiplier}
-      />
-
       {/* JOURNEY A: Photography Booking Modal */}
       <PhotographyInquiryModal
         isOpen={photoInquiryOpen}
         onClose={() => setPhotoInquiryOpen(false)}
         initialService={selectedServiceForInquiry}
-        overrideWhatsapp={currentWhatsapp}
       />
 
       {/* JOURNEY C: Product & Printing Inquiry Modal */}
@@ -176,14 +157,12 @@ export default function App() {
         isOpen={productInquiryOpen}
         onClose={() => setProductInquiryOpen(false)}
         initialProduct={selectedProductForInquiry}
-        overrideWhatsapp={currentWhatsapp}
       />
 
       {/* JOURNEY D: Visiting Card Order & Design Request Modal */}
       <VisitingCardModal
         isOpen={visitingCardModalOpen}
         onClose={() => setVisitingCardModalOpen(false)}
-        overrideWhatsapp={currentWhatsapp}
       />
 
     </div>

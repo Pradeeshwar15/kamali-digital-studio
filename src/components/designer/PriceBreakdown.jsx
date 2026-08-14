@@ -11,8 +11,7 @@ export default function PriceBreakdown({
   mattingId,
   quantity,
   onQuantityChange,
-  onOpenOrderModal,
-  pricingMultiplier = 1
+  onOpenOrderModal
 }) {
   const selectedFrame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
   const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
@@ -20,8 +19,7 @@ export default function PriceBreakdown({
   const selectedMatting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
 
   const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
-  const finalGrandTotal = Math.round(basePricing.grandTotal * pricingMultiplier);
-  const formattedGrandTotal = `₹${finalGrandTotal.toLocaleString('en-IN')}`;
+  const formattedGrandTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   return (
     <div className="bg-studio-card p-6 rounded-2xl border border-white/10 shadow-2xl space-y-4">
@@ -30,16 +28,9 @@ export default function PriceBreakdown({
           <Calculator className="w-4 h-4 text-studio-orange" />
           <span>Estimated Price Summary</span>
         </h3>
-        {pricingMultiplier !== 1 ? (
-          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider bg-emerald-950 px-2.5 py-1 rounded-full border border-emerald-500/30 flex items-center gap-1">
-            <Tag className="w-3 h-3" />
-            <span>Special Rate Applied ({Math.round(pricingMultiplier * 100)}%)</span>
-          </span>
-        ) : (
-          <span className="text-[10px] font-bold text-studio-orange uppercase tracking-wider bg-studio-orange/10 px-2.5 py-1 rounded-full">
-            Transparent Quote
-          </span>
-        )}
+        <span className="text-[10px] font-bold text-studio-orange uppercase tracking-wider bg-studio-orange/10 px-2.5 py-1 rounded-full">
+          Transparent Quote
+        </span>
       </div>
 
       <div className="space-y-2 text-xs text-gray-300">

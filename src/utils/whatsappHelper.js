@@ -44,8 +44,7 @@ export function buildWhatsAppOrderMessage({
   finishId,
   mattingId,
   customText = "",
-  quantity = 1,
-  pricingMultiplier = 1
+  quantity = 1
 }) {
   const frame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
   const size = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
@@ -53,8 +52,7 @@ export function buildWhatsAppOrderMessage({
   const matting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
   
   const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
-  const finalTotal = Math.round(basePricing.grandTotal * pricingMultiplier);
-  const formattedTotal = `₹${finalTotal.toLocaleString('en-IN')}`;
+  const formattedTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   let text = `Hello Kamali Digital Studio,\n\n`;
   text += `I would like to order a custom photo frame!\n\n`;
@@ -140,8 +138,8 @@ export function buildVisitingCardRequestMessage({
   return text;
 }
 
-export function generateWhatsAppLink(messageText, overrideNumber = null) {
+export function generateWhatsAppLink(messageText) {
   const encodedText = encodeURIComponent(messageText);
-  const targetPhone = overrideNumber || studioConfig.whatsappNumber;
+  const targetPhone = studioConfig.whatsappNumber;
   return `https://wa.me/${targetPhone}?text=${encodedText}`;
 }
