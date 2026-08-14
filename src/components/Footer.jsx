@@ -1,6 +1,6 @@
 import React from 'react';
 import { studioConfig } from '../data/studioConfig.js';
-import { Camera, Frame, Phone, Mail, MapPin, Instagram, Facebook, MessageSquare, ArrowUp, Package } from 'lucide-react';
+import { Camera, Frame, Phone, Mail, MapPin, Instagram, Facebook, MessageSquare, ArrowUp, Package, Award } from 'lucide-react';
 
 export default function Footer({ setActiveTab, onOpenDesigner, onOpenPhotographyInquiry }) {
   const scrollToTop = () => {
@@ -29,7 +29,7 @@ export default function Footer({ setActiveTab, onOpenDesigner, onOpenPhotography
             </div>
 
             <p className="text-xs leading-relaxed text-gray-400 max-w-sm mb-6 font-serif italic">
-              "{studioConfig.tagline}" — Digital showroom, wedding photography, bespoke handcrafted frames, HD printing, and custom business products.
+              "{studioConfig.tagline}" — Complete reception & wedding packages, bespoke handcrafted frames, HD printing, visiting cards, and digital studio products.
             </p>
 
             {/* Social Links */}
@@ -74,13 +74,9 @@ export default function Footer({ setActiveTab, onOpenDesigner, onOpenPhotography
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('services')} className="hover:text-studio-orange transition-colors">
-                  Services
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setActiveTab('gallery')} className="hover:text-studio-orange transition-colors">
-                  Our Work
+                <button onClick={() => setActiveTab('packages')} className="hover:text-studio-orange transition-colors flex items-center gap-1 font-bold text-amber-400">
+                  <Award className="w-3 h-3 text-amber-400" />
+                  <span>Wedding Packages</span>
                 </button>
               </li>
               <li>
@@ -96,6 +92,11 @@ export default function Footer({ setActiveTab, onOpenDesigner, onOpenPhotography
                 </button>
               </li>
               <li>
+                <button onClick={() => setActiveTab('gallery')} className="hover:text-studio-orange transition-colors">
+                  Our Work / Portfolio
+                </button>
+              </li>
+              <li>
                 <button onClick={() => setActiveTab('about')} className="hover:text-studio-orange transition-colors">
                   About Studio
                 </button>
@@ -108,15 +109,15 @@ export default function Footer({ setActiveTab, onOpenDesigner, onOpenPhotography
             </ul>
           </div>
 
-          {/* Confirmed Offerings */}
+          {/* Confirmed Products */}
           <div>
-            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider mb-4">Core Offerings</h4>
+            <h4 className="font-serif text-sm font-bold text-white uppercase tracking-wider mb-4">Core Products</h4>
             <ul className="space-y-2.5 text-xs text-gray-400">
-              <li>Wedding Photography & Drone</li>
-              <li>Candid & Traditional Shoots</li>
+              <li>Reception & Wedding Packages</li>
               <li>Custom Photo Frames</li>
               <li>Visiting Cards (Print & Design)</li>
               <li>Photo Printing & Posters</li>
+              <li>Invitation Cards</li>
               <li>LED Wall & Backlight Lightboxes</li>
               <li>5-Min Passport Photos</li>
             </ul>

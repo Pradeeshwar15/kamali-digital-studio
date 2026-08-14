@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-import Occasions from './components/Occasions.jsx';
 import Packages from './components/Packages.jsx';
-import Products from './components/Products.jsx';
-import FrameShowcase from './components/FrameShowcase.jsx';
+import Occasions from './components/Occasions.jsx';
 import FrameDesigner from './components/designer/FrameDesigner.jsx';
-import Services from './components/Services.jsx';
+import FrameShowcase from './components/FrameShowcase.jsx';
+import Products from './components/Products.jsx';
 import BeforeAfter from './components/BeforeAfter.jsx';
 import Gallery from './components/Gallery.jsx';
 import Testimonials from './components/Testimonials.jsx';
@@ -31,7 +30,7 @@ export default function App() {
   
   // Modals Visibility
   const [photoInquiryOpen, setPhotoInquiryOpen] = useState(false);
-  const [selectedServiceForInquiry, setSelectedServiceForInquiry] = useState("Wedding Photography & Videography");
+  const [selectedServiceForInquiry, setSelectedServiceForInquiry] = useState("Wedding Package Inquiry");
   const [productInquiryOpen, setProductInquiryOpen] = useState(false);
   const [selectedProductForInquiry, setSelectedProductForInquiry] = useState(null);
   const [visitingCardModalOpen, setVisitingCardModalOpen] = useState(false);
@@ -77,30 +76,30 @@ export default function App() {
         onOpenPhotographyInquiry={() => handleOpenPhotographyInquiry()}
       />
 
-      {/* Main Content Sections */}
+      {/* Main Content Sections (User-friendly conversion order) */}
       <main className="flex-1">
         
-        {/* Hero Section */}
+        {/* 1. Hero Section */}
         <Hero
           onOpenPhotographyInquiry={() => handleOpenPhotographyInquiry()}
           onOpenDesigner={() => handleOpenDesigner()}
           onExploreWork={() => {
-            setActiveTab('gallery');
-            const el = document.getElementById('gallery');
+            setActiveTab('packages');
+            const el = document.getElementById('packages');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
         />
 
-        {/* 3-Set Wedding Packages Section (Basic, Standard ₹80k, Platinum ₹1L) */}
+        {/* 2. Wedding & Event Packages Section (Basic ₹50k, Standard ₹80k, Platinum ₹1L) */}
         <Packages
           onOpenPhotographyInquiry={(serviceTitle) => handleOpenPhotographyInquiry(serviceTitle)}
           overrideWhatsapp={currentWhatsapp}
         />
 
-        {/* Occasions Feature Section */}
+        {/* 3. Occasion-Based Frame Discovery */}
         <Occasions onSelectOccasion={handleSelectOccasion} />
 
-        {/* Primary Product Feature: Custom Frame Designer */}
+        {/* 4. Flagship Interactive Custom Frame Designer */}
         <FrameDesigner
           initialOccasion={selectedOccasion}
           initialFrameId={selectedFrameId}
@@ -109,12 +108,12 @@ export default function App() {
           overrideWhatsapp={currentWhatsapp}
         />
 
-        {/* Bestselling Frame Styles Showcase */}
+        {/* 5. Bestselling Frame Styles Showcase */}
         <FrameShowcase
           onCustomizeFrame={(frameId) => handleOpenDesigner(frameId)}
         />
 
-        {/* Products Section (Photo Frames, Printing, Visiting Cards, LED Wall, Passport) */}
+        {/* 6. Products Hub (Photo Frames, Printing, Visiting Cards, LED Wall, Passport) */}
         <Products
           onOpenDesigner={() => handleOpenDesigner()}
           onOpenProductInquiry={(product) => handleOpenProductInquiry(product)}
@@ -126,28 +125,22 @@ export default function App() {
           }}
         />
 
-        {/* Services Section */}
-        <Services
-          onOpenPhotographyInquiry={(serviceTitle) => handleOpenPhotographyInquiry(serviceTitle)}
-          onOpenProductInquiry={(product) => handleOpenProductInquiry(product)}
-        />
-
-        {/* Before / After Restoration Showcase */}
+        {/* 7. Photo Restoration Before / After Showcase */}
         <BeforeAfter />
 
-        {/* Portfolio Gallery & Lightbox */}
+        {/* 8. Portfolio Gallery & Lightbox */}
         <Gallery
           onFrameThisPhoto={(photoUrl) => handleOpenDesigner(null, photoUrl)}
           onBookPhotography={(serviceCategory) => handleOpenPhotographyInquiry(serviceCategory)}
         />
 
-        {/* Client Testimonials */}
+        {/* 9. Client Testimonials */}
         <Testimonials />
 
-        {/* About Studio */}
+        {/* 10. About Studio */}
         <About />
 
-        {/* Contact & Store Map */}
+        {/* 11. Contact & Store Location */}
         <Contact />
 
       </main>
