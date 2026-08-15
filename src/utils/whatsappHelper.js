@@ -69,6 +69,7 @@ export function buildWhatsAppOrderMessage({
   if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
   text += `• *Fulfillment:* ${deliveryOption}\n`;
   if (notes.trim()) text += `• *Note:* ${notes.trim()}\n`;
+  text += `\n📌 *IMPORTANT: Please attach/upload your photo for this frame directly in this chat!* 📸\n`;
   text += `\nPlease confirm order availability and final price. Thank you!`;
 
   return text;
@@ -95,6 +96,7 @@ export function buildProductInquiryMessage({
   text += `\n👤 *CUSTOMER INFO*\n`;
   text += `• *Name:* ${customerName}\n`;
   if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
+  text += `\n📌 *IMPORTANT: Please attach/upload your design files or reference images directly in this chat!* 📎\n`;
   text += `\nPlease provide price estimate and printing timeline. Thank you!`;
 
   return text;
@@ -133,6 +135,13 @@ export function buildVisitingCardRequestMessage({
   text += `• *Name:* ${customerName}\n`;
   if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
   if (email.trim()) text += `• *Email:* ${email.trim()}\n`;
+  
+  if (mode === "has-design") {
+    text += `\n📌 *IMPORTANT: Please attach/upload your ready design file directly in this chat!* 📎\n`;
+  } else {
+    text += `\n📌 *IMPORTANT: Please attach/upload your business logo and reference images directly in this chat!* 📎\n`;
+  }
+  
   text += `\nPlease guide me on the next steps. Thank you!`;
 
   return text;

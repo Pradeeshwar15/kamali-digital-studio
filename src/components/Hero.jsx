@@ -1,75 +1,116 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { studioConfig } from '../data/studioConfig.js';
-import { Sparkles, ArrowRight, Frame, Camera, Image as ImageIcon } from 'lucide-react';
+import { Sparkles, ArrowRight, Camera, Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const HERO_IMAGES = [
+  'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop', // Wedding
+  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1920&auto=format&fit=crop', // Traditional
+  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop', // Pre-wedding
+  'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1920&auto=format&fit=crop', // Post-wedding
+  'https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1920&auto=format&fit=crop'  // Drone
+];
 
 export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExploreWork }) {
-  return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden">
-      
-      {/* Background Cinematic Atmosphere */}
-      <div className="absolute inset-0 bg-[#0a0a0c]">
-        {/* Dark Photography Background Image Overlay */}
-        <div 
-          className="absolute inset-0 opacity-25 bg-cover bg-center filter grayscale contrast-125"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop')`
-          }}
-        />
-        {/* Radial Vignette & Lens Glow */}
-        <div className="absolute inset-0 bg-radial-vignette from-transparent via-[#0a0a0c]/80 to-[#0a0a0c]" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/15 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
-      </div>
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+  // Autoplay functionality
+  useEffect(() => {
+    if (isHovered) return;
+    
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === HERO_IMAGES.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === HERO_IMAGES.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? HERO_IMAGES.length - 1 : prev - 1));
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  return (
+    <section 
+      id="home" 
+      className="relative min-h-screen flex items-center justify-center overflow-hidden group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      
+      {/* Slideshow Backgrounds */}
+      {HERO_IMAGES.map((img, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            idx === currentSlide ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+          }`}
+        >
+          {/* Subtle cinematic zoom effect for active slide */}
+          <div 
+            className={`absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear ${
+              idx === currentSlide ? 'scale-100' : 'scale-110'
+            }`}
+            style={{ backgroundImage: `url('${img}')` }}
+            loading="lazy"
+          />
+        </div>
+      ))}
+
+      {/* Dark Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/60 z-10" />
+      
+      {/* Radial Vignette & Lens Glow */}
+      <div className="absolute inset-0 bg-radial-vignette from-transparent via-[#0a0a0c]/50 to-[#0a0a0c]/90 z-10 pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/15 rounded-full blur-[140px] pointer-events-none z-10" />
+
+      {/* Main Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20 pt-20">
         
         {/* Brand Tagline Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-studio-orange/30 text-studio-orange backdrop-blur-md mb-8 animate-float">
           <Sparkles className="w-4 h-4 text-amber-400 animate-spin-slow" />
           <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase">
-            {studioConfig.tagline}
+            {studioConfig.tagline || 'Capture Beyond Imagination'}
           </span>
         </div>
 
         {/* Main Title */}
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-6">
-          KAMALI <span className="text-transparent bg-clip-text bg-gradient-to-r from-studio-orange via-amber-400 to-amber-200">DIGITAL STUDIO</span>
+        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-4 drop-shadow-2xl">
+          KAMALI <br className="sm:hidden" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-studio-orange via-amber-400 to-amber-200">
+            DIGITAL STUDIO
+          </span>
         </h1>
 
-        <p className="text-xl sm:text-2xl font-light text-gray-300 max-w-3xl mx-auto mb-4 font-serif italic">
-          "Your memories deserve more than a photograph."
-        </p>
-
-        {/* Subhead Badges */}
-        <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed font-sans">
-          Professional Photography • Custom Photo Frames • Printing • Creative Products
+        <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-200 max-w-3xl mx-auto mb-10 font-serif italic drop-shadow-md">
+          Capture Beyond Imagination
         </p>
 
         {/* Hero CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
           <button
-            onClick={onOpenPhotographyInquiry}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group"
-          >
-            <Camera className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-            <span>ENQUIRE NOW</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-
-          <button
-            onClick={onOpenDesigner}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-base font-bold text-gray-200 bg-white/5 hover:bg-white/10 border border-white/15 backdrop-blur-md hover:border-white/30 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-3"
-          >
-            <Frame className="w-5 h-5 text-studio-orange" />
-            <span>DESIGN YOUR FRAME</span>
-          </button>
-
-          <button
             onClick={onExploreWork}
-            className="w-full sm:w-auto px-6 py-4 rounded-full text-sm font-semibold text-gray-400 hover:text-white transition-colors flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-8 py-4 rounded-full text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3"
           >
-            <ImageIcon className="w-4 h-4 text-studio-orange" />
-            <span>VIEW OUR WORK</span>
+            <ImageIcon className="w-5 h-5 text-gray-300" />
+            <span>View Our Work</span>
+          </button>
+
+          <button
+            onClick={onOpenPhotographyInquiry}
+            className="w-full sm:w-auto px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group/btn"
+          >
+            <Camera className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+            <span>Book a Photography Service</span>
+            <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
           </button>
         </div>
 
@@ -88,6 +129,40 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
         </div>
 
       </div>
+
+      {/* Navigation Arrows */}
+      <button 
+        onClick={prevSlide}
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-studio-orange/80 border border-white/10 text-white backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 hidden sm:flex items-center justify-center"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+
+      <button 
+        onClick={nextSlide}
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-studio-orange/80 border border-white/10 text-white backdrop-blur-sm transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 hidden sm:flex items-center justify-center"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* Pagination Dots */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+        {HERO_IMAGES.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goToSlide(idx)}
+            className={`transition-all duration-300 rounded-full ${
+              idx === currentSlide 
+                ? 'w-8 h-2.5 bg-studio-orange shadow-[0_0_10px_rgba(249,115,22,0.8)]' 
+                : 'w-2.5 h-2.5 bg-white/40 hover:bg-white/80'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+
     </section>
   );
 }

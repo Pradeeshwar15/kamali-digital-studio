@@ -36,16 +36,20 @@ export default function App() {
     if (frameId) setSelectedFrameId(frameId);
     if (photoUrl) setSelectedPhotoUrl(photoUrl);
     setActiveTab('designer');
-    const el = document.getElementById('designer');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const el = document.getElementById('designer');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
   };
 
   const handleSelectOccasion = (occ) => {
     setSelectedOccasion(occ);
     if (occ.suggestedFrame) setSelectedFrameId(occ.suggestedFrame);
     setActiveTab('designer');
-    const el = document.getElementById('designer');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const el = document.getElementById('designer');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 50);
   };
 
   const handleOpenPhotographyInquiry = (serviceTitle = null) => {
@@ -105,6 +109,7 @@ export default function App() {
           initialOccasion={selectedOccasion}
           initialFrameId={selectedFrameId}
           initialPhotoUrl={selectedPhotoUrl}
+          isVisibleMobile={activeTab === 'designer'}
         />
 
         {/* 5. Occasion-Based Frame Discovery */}

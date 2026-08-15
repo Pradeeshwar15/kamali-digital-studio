@@ -11,7 +11,8 @@ import { Sparkles, MessageSquare, Frame as FrameIcon, ShieldCheck } from 'lucide
 export default function FrameDesigner({
   initialOccasion,
   initialFrameId,
-  initialPhotoUrl
+  initialPhotoUrl,
+  isVisibleMobile = false
 }) {
   const [selectedFrameId, setSelectedFrameId] = useState(initialFrameId || "classic-black");
   const [photoUrl, setPhotoUrl] = useState(initialPhotoUrl || null);
@@ -36,9 +37,12 @@ export default function FrameDesigner({
   const formattedFinalTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   return (
-    <section id="designer" className="py-24 bg-[#0a0a0c] border-t border-white/5 relative min-h-screen">
+    <section 
+      id="designer" 
+      className={`py-24 bg-[#0a0a0c] border-t border-white/5 relative min-h-screen ${isVisibleMobile ? 'block' : 'hidden sm:block'}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-studio-orange/10 border border-studio-orange/30 text-studio-orange text-xs font-bold uppercase tracking-widest mb-3">
@@ -55,10 +59,10 @@ export default function FrameDesigner({
 
         {/* Dual Pane Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* LEFT PANE: Step-by-Step Designer Controls (Lg: col-span-6) */}
           <div className="lg:col-span-6 space-y-8 bg-studio-card p-6 sm:p-8 rounded-2xl border border-white/10 shadow-2xl">
-            
+
             {/* Step 1: Select Frame */}
             <StepFrameSelect
               selectedFrameId={selectedFrameId}
@@ -124,7 +128,7 @@ export default function FrameDesigner({
             />
 
             {/* Mobile Sticky Order Bar */}
-            <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0a0a0c]/95 border-t border-white/15 p-4 backdrop-blur-xl flex items-center justify-between shadow-2xl">
+            {/* <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0a0a0c]/95 border-t border-white/15 p-4 backdrop-blur-xl flex items-center justify-between shadow-2xl">
               <div>
                 <span className="text-[10px] text-gray-400 block font-semibold">Estimated Total</span>
                 <span className="font-serif text-xl font-bold text-studio-orange">{formattedFinalTotal}</span>
@@ -136,7 +140,7 @@ export default function FrameDesigner({
                 <MessageSquare className="w-4 h-4" />
                 <span>ORDER WHATSAPP</span>
               </button>
-            </div>
+            </div> */}
 
           </div>
 
