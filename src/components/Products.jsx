@@ -51,6 +51,11 @@ export default function Products({ onOpenDesigner, onOpenProductInquiry, onOpenV
                   alt={product.title}
                   draggable="false"
                   onContextMenu={(e) => e.preventDefault()}
+                  onError={(e) => {
+                    if (product.fallbackImage && e.target.src !== product.fallbackImage) {
+                      e.target.src = product.fallbackImage;
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 pointer-events-none select-none"
                   loading="lazy"
                 />

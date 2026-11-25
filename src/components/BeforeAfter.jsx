@@ -19,8 +19,13 @@ export default function BeforeAfter() {
     setSliderPos(Math.round(percent));
   };
 
-  const beforeImg = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&sat=-100&con=80";
-  const afterImg = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop";
+  // Drop your restoration comparison photos into:
+  // public/images/restoration/before.webp
+  // public/images/restoration/after.webp
+  const beforeImg = "/images/restoration/before.webp";
+  const afterImg = "/images/restoration/after.webp";
+  const fallbackBefore = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&sat=-100&con=80";
+  const fallbackAfter = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop";
 
   return (
     <section className="py-20 bg-[#0c0c0f] border-t border-white/5 relative overflow-hidden">
@@ -55,6 +60,11 @@ export default function BeforeAfter() {
                 alt="After Studio Retouching"
                 draggable="false"
                 onContextMenu={(e) => e.preventDefault()}
+                onError={(e) => {
+                  if (e.target.src !== fallbackAfter) {
+                    e.target.src = fallbackAfter;
+                  }
+                }}
                 className="w-full h-full object-cover pointer-events-none select-none"
               />
               <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-studio-orange text-white text-[10px] sm:text-xs font-bold tracking-widest shadow-lg">
@@ -72,6 +82,11 @@ export default function BeforeAfter() {
                 alt="Before Restoration"
                 draggable="false"
                 onContextMenu={(e) => e.preventDefault()}
+                onError={(e) => {
+                  if (e.target.src !== fallbackBefore) {
+                    e.target.src = fallbackBefore;
+                  }
+                }}
                 className="w-full h-full object-cover pointer-events-none select-none"
               />
               <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/80 backdrop-blur-md text-gray-300 text-[10px] sm:text-xs font-bold tracking-widest border border-white/10 shadow-lg">

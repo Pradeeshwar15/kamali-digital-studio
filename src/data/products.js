@@ -7,7 +7,9 @@ export const productsData = [
     badge: "Bestseller",
     ctaText: "DESIGN YOUR FRAME",
     actionType: "designer",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=Custom+Photo+Frames"
+    // Link your photo here (drop file into: public/images/products/custom-frames.webp)
+    image: "/images/products/custom-frames.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=Custom+Photo+Frames"
   },
   {
     id: "visiting-cards",
@@ -17,7 +19,9 @@ export const productsData = [
     badge: "Business Favorite",
     ctaText: "ORDER / REQUEST DESIGN",
     actionType: "visiting-card",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=Visiting+Cards"
+    // Link your photo here (drop file into: public/images/products/visiting-cards.webp)
+    image: "/images/products/visiting-cards.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=Visiting+Cards"
   },
   {
     id: "photo-printing",
@@ -27,7 +31,9 @@ export const productsData = [
     badge: "HD Archival",
     ctaText: "ENQUIRE PRINTING",
     actionType: "product-inquiry",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=HD+Photo+Printing"
+    // Link your photo here (drop file into: public/images/products/photo-printing.webp)
+    image: "/images/products/photo-printing.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=HD+Photo+Printing"
   },
   {
     id: "posters-invitations",
@@ -37,7 +43,9 @@ export const productsData = [
     badge: "Custom Print",
     ctaText: "ENQUIRE INVITATIONS",
     actionType: "product-inquiry",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=Posters+%26+Invitations"
+    // Link your photo here (drop file into: public/images/products/invitation-cards.webp)
+    image: "/images/products/invitation-cards.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=Posters+%26+Invitations"
   },
   {
     id: "led-wall",
@@ -47,7 +55,9 @@ export const productsData = [
     badge: "Grand Events",
     ctaText: "GET LED ESTIMATE",
     actionType: "product-inquiry",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=LED+Wall+Displays"
+    // Link your photo here (drop file into: public/images/products/led-wall.webp)
+    image: "/images/products/led-wall.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=LED+Wall+Displays"
   },
   {
     id: "backlight-frames",
@@ -57,7 +67,9 @@ export const productsData = [
     badge: "Glowing Decor",
     ctaText: "ENQUIRE BACKLIGHT",
     actionType: "product-inquiry",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=Backlight+Frames"
+    // Link your photo here (drop file into: public/images/products/backlight-frames.webp)
+    image: "/images/products/backlight-frames.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=Backlight+Frames"
   },
   {
     id: "passport-photos",
@@ -67,6 +79,8 @@ export const productsData = [
     badge: "5 Min Express",
     ctaText: "VISIT STUDIO",
     actionType: "contact",
-    image: "https://placehold.co/800x600/181820/FF6B00?text=Passport+Photos"
+    // Link your photo here (drop file into: public/images/products/passport-photos.webp)
+    image: "/images/products/passport-photos.webp",
+    fallbackImage: "https://placehold.co/800x600/181820/FF6B00?text=Passport+Photos"
   }
 ];

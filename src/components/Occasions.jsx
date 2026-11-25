@@ -29,10 +29,10 @@ export default function Occasions({ onSelectOccasion }) {
               onClick={() => onSelectOccasion && onSelectOccasion(occ)}
               className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-studio-card border border-white/10 hover:border-studio-orange/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-glow-orange hover:-translate-y-1 flex flex-col justify-between min-h-[230px] sm:min-h-[320px]"
             >
-              {/* Background Image */}
+              {/* Background Image with Fallback Support */}
               <div 
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 filter brightness-75 group-hover:brightness-90"
-                style={{ backgroundImage: `url('${occ.image}')` }}
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 filter brightness-75 group-hover:brightness-90 select-none"
+                style={{ backgroundImage: `url('${occ.image}'), url('${occ.fallbackImage || occ.image}')` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-[#0a0a0c]/60 to-transparent" />
 
