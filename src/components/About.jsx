@@ -13,7 +13,7 @@ export default function About() {
           <div className="relative">
             <div className="relative z-10 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
               <img
-                src="/images/gallery/candid/candit13.webp"
+                src="/images/gallery/candid/candid-06.webp"
                 alt="Kamali Studio Craftsmanship"
                 className="w-full h-auto object-cover"
               />

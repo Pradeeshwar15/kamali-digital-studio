@@ -15,7 +15,7 @@ export default function FrameDesigner({
   isVisibleMobile = false
 }) {
   const [selectedFrameId, setSelectedFrameId] = useState(initialFrameId || "classic-wood");
-  const [photoUrl, setPhotoUrl] = useState(initialPhotoUrl || "/images/gallery/Portraits/baby1.webp");
+  const [photoUrl, setPhotoUrl] = useState(initialPhotoUrl || "/images/gallery/portraits/baby-01.webp");
   const [selectedSizeId, setSelectedSizeId] = useState(initialOccasion?.suggestedSize || "12x15");
   const [selectedMattingId, setSelectedMattingId] = useState("none");
   const [customText, setCustomText] = useState(initialOccasion?.sampleText || "");
@@ -77,8 +77,8 @@ export default function FrameDesigner({
         {/* Dual Pane Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-          {/* LEFT PANE: Step-by-Step Designer Controls (Lg: col-span-6) */}
-          <div className="lg:col-span-6 space-y-8 bg-studio-card p-5 sm:p-8 rounded-2xl border border-white/10 shadow-2xl">
+          {/* LEFT PANE: Step-by-Step Designer Controls (Desktop Left, Mobile Below Preview) */}
+          <div className="lg:col-span-6 space-y-8 bg-studio-card p-5 sm:p-8 rounded-2xl border border-white/10 shadow-2xl order-2 lg:order-1">
 
             {/* Step 1: Select Frame */}
             <StepFrameSelect
@@ -127,8 +127,8 @@ export default function FrameDesigner({
 
           </div>
 
-          {/* RIGHT PANE: Sticky Live Visualizer (Lg: col-span-6) */}
-          <div className="lg:col-span-6 lg:sticky lg:top-24 space-y-4">
+          {/* RIGHT PANE: Live Visualizer (Mobile Top, Desktop Sticky Right) */}
+          <div className="lg:col-span-6 lg:sticky lg:top-24 space-y-4 order-1 lg:order-2">
             <LiveFramePreview
               frameId={selectedFrameId}
               photoUrl={photoUrl}

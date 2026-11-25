@@ -3,10 +3,10 @@ import { frameStyles } from '../data/frames.js';
 import { Frame, Sparkles, ArrowRight } from 'lucide-react';
 
 const showcasePreviewImages = {
-  "classic-wood": "/images/gallery/Portraits/portrait1.webp",
-  "royal-gold": "/images/gallery/Wedding/wedding1.webp",
-  "premium-textured": "/images/gallery/Events/event1.webp",
-  "modern-matte": "/images/gallery/Portraits/baby1.webp"
+  "classic-wood": "/images/gallery/portraits/portrait-01.webp",
+  "royal-gold": "/images/gallery/wedding/wedding-01.webp",
+  "premium-textured": "/images/gallery/events/event-01.webp",
+  "modern-matte": "/images/gallery/portraits/baby-01.webp"
 };
 
 export default function FrameShowcase({ onCustomizeFrame }) {
@@ -43,7 +43,7 @@ export default function FrameShowcase({ onCustomizeFrame }) {
                 <div 
                   className={`w-4/5 h-4/5 rounded bg-cover bg-center transition-transform duration-500 group-hover:scale-105 ${frame.borderClass}`}
                   style={{
-                    backgroundImage: `url('${showcasePreviewImages[frame.id] || "/images/gallery/Portraits/baby1.webp"}')`
+                    backgroundImage: `url('${showcasePreviewImages[frame.id] || "/images/gallery/portraits/baby-01.webp"}')`
                   }}
                 />
 

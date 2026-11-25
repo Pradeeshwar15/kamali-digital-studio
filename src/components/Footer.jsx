@@ -14,18 +14,12 @@ export default function Footer({ setActiveTab, onOpenDesigner, onOpenPhotography
           
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-studio-orange to-amber-600 p-0.5 shadow-glow-orange flex items-center justify-center">
-                <Camera className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="font-serif text-xl font-bold tracking-wider text-white block">
-                  KAMALI
-                </span>
-                <span className="text-[9px] tracking-[0.25em] text-studio-orange font-semibold uppercase block">
-                  DIGITAL STUDIO
-                </span>
-              </div>
+            <div className="mb-4">
+              <img 
+                src="/images/branding/logo-transparent.png" 
+                alt="Kamali Studio & Digital Lab" 
+                className="h-11 sm:h-12 w-auto object-contain drop-shadow-md" 
+              />
             </div>
 
             <p className="text-xs leading-relaxed text-gray-400 max-w-sm mb-6 font-serif italic">

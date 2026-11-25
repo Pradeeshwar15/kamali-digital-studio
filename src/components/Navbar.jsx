@@ -38,25 +38,16 @@ export default function Navbar({ activeTab, setActiveTab, onOpenDesigner, onOpen
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo Identity */}
+          {/* Official Client Logo Identity */}
           <button 
             onClick={() => handleNavClick('home')} 
-            className="flex items-center gap-3 group text-left focus:outline-none"
+            className="flex items-center gap-2 group text-left focus:outline-none"
           >
-            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-studio-orange to-amber-600 p-0.5 shadow-glow-orange group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-[#0a0a0c] rounded-[10px] flex items-center justify-center relative overflow-hidden">
-                <Camera className="w-6 h-6 text-studio-orange group-hover:rotate-12 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-studio-orange/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            </div>
-            <div>
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white block leading-none">
-                KAMALI
-              </span>
-              <span className="text-[10px] tracking-[0.25em] text-studio-orange font-semibold uppercase block mt-1">
-                DIGITAL STUDIO
-              </span>
-            </div>
+            <img 
+              src="/images/branding/logo-transparent.png" 
+              alt="Kamali Studio & Digital Lab" 
+              className="h-9 sm:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md" 
+            />
           </button>
 
           {/* Desktop Navigation Links */}

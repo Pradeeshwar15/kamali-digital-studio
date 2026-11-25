@@ -27,7 +27,7 @@ export default function Occasions({ onSelectOccasion }) {
             <div
               key={occ.id}
               onClick={() => onSelectOccasion && onSelectOccasion(occ)}
-              className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-studio-card border border-white/10 hover:border-studio-orange/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-glow-orange hover:-translate-y-1 flex flex-col h-56 sm:h-80"
+              className="group relative rounded-xl sm:rounded-2xl overflow-hidden bg-studio-card border border-white/10 hover:border-studio-orange/50 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-glow-orange hover:-translate-y-1 flex flex-col justify-between min-h-[230px] sm:min-h-[320px]"
             >
               {/* Background Image */}
               <div 

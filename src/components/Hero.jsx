@@ -82,12 +82,18 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
           </span>
         </div>
 
-        {/* Main Title */}
-        <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-[1.1] mb-4 drop-shadow-2xl">
-          KAMALI <br className="sm:hidden" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-studio-orange via-amber-400 to-amber-200">
-            DIGITAL STUDIO
-          </span>
+        {/* Official Client Logo Emblem in Hero */}
+        <div className="mb-4 flex justify-center">
+          <img 
+            src="/images/branding/logo-transparent.png" 
+            alt="Kamali Studio & Digital Lab" 
+            className="h-20 sm:h-28 md:h-36 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)] filter brightness-105" 
+          />
+        </div>
+
+        {/* Main Title Typography (Mobile Optimized) */}
+        <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight mb-3 drop-shadow-2xl">
+          KAMALI <span className="text-transparent bg-clip-text bg-gradient-to-r from-studio-orange via-amber-400 to-amber-200">STUDIO & DIGITAL LAB</span>
         </h1>
 
         <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-200 max-w-3xl mx-auto mb-10 font-serif italic drop-shadow-md">

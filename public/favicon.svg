@@ -1,18 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <defs>
     <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FF6B00" />
-      <stop offset="100%" stop-color="#D4AF37" />
+      <stop offset="0%" stop-color="#FF6B00"/>
+      <stop offset="100%" stop-color="#FFB300"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="16" fill="#0A0A0C" />
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="url(#grad)" stroke-width="2" />
+  <rect width="64" height="64" rx="16" fill="#0A0A0C"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="url(#grad)" stroke-width="2" stroke-opacity="0.4"/>
   <!-- Camera Body -->
-  <path d="M16 26 C16 23.5, 17.5 22, 20 22 L24 22 L26.5 18 L37.5 18 L40 22 L44 22 C46.5 22, 48 23.5, 48 26 L48 42 C48 44.5, 46.5 46, 44 46 L20 46 C17.5 46, 16 44.5, 16 42 Z" fill="#121216" stroke="url(#grad)" stroke-width="2.5" stroke-linejoin="round" />
-  <!-- Lens -->
-  <circle cx="32" cy="34" r="8.5" fill="#0A0A0C" stroke="url(#grad)" stroke-width="2.5" />
-  <circle cx="32" cy="34" r="4.5" fill="#FF6B00" />
+  <path d="M16 26 C16 23, 18 21, 21 21 L26 21 L28 17 C29 15, 31 15, 33 15 L39 15 C41 15, 43 15, 44 17 L46 21 L51 21 C54 21, 56 23, 56 26 L56 47 C56 50, 54 52, 51 52 L21 52 C18 52, 16 50, 16 47 Z" fill="none" stroke="url(#grad)" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Camera Lens -->
+  <circle cx="36" cy="37" r="9" fill="none" stroke="url(#grad)" stroke-width="3"/>
+  <circle cx="36" cy="37" r="4" fill="url(#grad)"/>
   <!-- Flash Dot -->
-  <circle cx="42" cy="27" r="1.5" fill="#D4AF37" />
+  <circle cx="48" cy="27" r="2" fill="#FFB300"/>
 </svg>
-

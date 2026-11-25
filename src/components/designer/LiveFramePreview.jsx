@@ -33,7 +33,7 @@ export default function LiveFramePreview({
   const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[4];
   const filterCss = photoFilters.find(f => f.id === activeFilter)?.cssFilter || "none";
 
-  const defaultPhoto = "/images/gallery/Portraits/baby1.webp";
+  const defaultPhoto = "/images/gallery/portraits/baby-01.webp";
   const displayPhoto = photoUrl || defaultPhoto;
 
   const bgClasses = {
@@ -43,7 +43,7 @@ export default function LiveFramePreview({
   };
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col justify-between p-6 min-h-[440px] sm:min-h-[580px] transition-all">
+    <div className="relative w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex flex-col justify-between p-3 sm:p-6 min-h-[320px] sm:min-h-[580px] transition-all">
       
       {/* Dynamic Environment Wall Backdrop */}
       <div 
@@ -118,7 +118,7 @@ export default function LiveFramePreview({
           >
             {/* The Photo Container with Dynamic Aspect Ratio */}
             <div 
-              className="relative overflow-hidden shadow-inner max-w-full max-h-[380px] sm:max-h-[460px] flex items-center justify-center"
+              className="relative overflow-hidden shadow-inner max-w-full max-h-[280px] sm:max-h-[460px] flex items-center justify-center"
               style={{
                 aspectRatio: selectedSize.aspectRatio || '4/5'
               }}

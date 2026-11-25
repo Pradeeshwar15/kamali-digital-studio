@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Sparkles, SlidersHorizontal, ArrowLeftRight } from 'lucide-react';
 
 export default function BeforeAfter() {
   const [sliderPos, setSliderPos] = useState(50);
+  const containerRef = useRef(null);
 
   const handleSliderChange = (e) => {
     setSliderPos(Number(e.target.value));
+  };
+
+  const handleTouchMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const touch = e.touches[0];
+    if (!touch) return;
+    const x = touch.clientX - rect.left;
+    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPos(Math.round(percent));
   };
 
   const beforeImg = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop&sat=-100&con=80";
@@ -31,16 +42,20 @@ export default function BeforeAfter() {
 
         {/* Interactive Comparison Slider Container */}
         <div className="max-w-4xl mx-auto">
-          <div className="relative h-[380px] sm:h-[500px] rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl select-none group">
+          <div 
+            ref={containerRef}
+            onTouchMove={handleTouchMove}
+            className="relative h-[320px] sm:h-[500px] rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl select-none group touch-pan-y"
+          >
             
             {/* AFTER IMAGE (Bottom Layer) */}
             <div className="absolute inset-0 w-full h-full">
               <img
                 src={afterImg}
                 alt="After Studio Retouching"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover pointer-events-none"
               />
-              <div className="absolute bottom-4 right-4 px-4 py-1.5 rounded-full bg-studio-orange text-white text-xs font-bold tracking-widest shadow-lg">
+              <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-studio-orange text-white text-[10px] sm:text-xs font-bold tracking-widest shadow-lg">
                 AFTER (KAMALI STUDIO RETOUCH)
               </div>
             </div>
@@ -53,9 +68,9 @@ export default function BeforeAfter() {
               <img
                 src={beforeImg}
                 alt="Before Restoration"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover pointer-events-none"
               />
-              <div className="absolute bottom-4 left-4 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-gray-300 text-xs font-bold tracking-widest border border-white/10 shadow-lg">
+              <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/80 backdrop-blur-md text-gray-300 text-[10px] sm:text-xs font-bold tracking-widest border border-white/10 shadow-lg">
                 BEFORE (RAW / ORIGINAL)
               </div>
             </div>
@@ -65,8 +80,8 @@ export default function BeforeAfter() {
               className="absolute top-0 bottom-0 w-1 bg-white shadow-2xl pointer-events-none"
               style={{ left: `${sliderPos}%` }}
             >
-              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-studio-orange text-white flex items-center justify-center shadow-glow-orange border-2 border-white">
-                <ArrowLeftRight className="w-5 h-5" />
+              <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-studio-orange text-white flex items-center justify-center shadow-glow-orange border-2 border-white">
+                <ArrowLeftRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
             </div>
 

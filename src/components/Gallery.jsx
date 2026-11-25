@@ -6,18 +6,27 @@ import { Camera, Eye, Frame, Sparkles, MapPin, ArrowRight, Loader2, ChevronDown 
 // Reusable Image component with Skeleton Loader for performance
 const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      setLoaded(true);
+    }
+  }, [src]);
 
   return (
-    <div className={`relative w-full ${aspectRatio} bg-white/5 overflow-hidden`}>
+    <div className={`relative w-full ${aspectRatio || 'aspect-[3/4]'} bg-white/5 overflow-hidden`}>
       {!loaded && (
         <div className="absolute inset-0 bg-white/10 animate-pulse" />
       )}
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         loading="lazy"
         onLoad={() => setLoaded(true)}
-        className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} absolute inset-0 w-full h-full object-cover transition-opacity duration-700`}
+        onError={() => setLoaded(true)}
+        className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} absolute inset-0 w-full h-full object-cover transition-opacity duration-500`}
       />
     </div>
   );

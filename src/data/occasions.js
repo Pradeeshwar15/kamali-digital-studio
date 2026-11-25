@@ -44,7 +44,7 @@ export const occasionsData = [
     title: "Baby & Newborn",
     subtitle: "Tiny feet and golden initial years",
     badge: "Cute & Cozy",
-    image: "/images/gallery/Portraits/baby1.webp",
+    image: "/images/gallery/portraits/baby-01.webp",
     suggestedFrame: "modern-matte",
     suggestedSize: "10x15",
     sampleText: "Welcome Baby • Blessings"

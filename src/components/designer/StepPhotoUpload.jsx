@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Upload, Image as ImageIcon, Trash2, RefreshCw, Sparkles, CheckCircle2, Contrast } from 'lucide-react';
 
-const sampleBabyPhoto = "/images/gallery/Portraits/baby1.webp";
+const sampleBabyPhoto = "/images/gallery/portraits/baby-01.webp";
 
 export const photoFilters = [
   { id: "none", label: "Original", cssFilter: "none" },
