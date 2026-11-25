@@ -68,23 +68,26 @@ export default function Contact() {
               </div>
             </a>
 
-            <div className="p-6 rounded-2xl bg-studio-card border border-white/10 flex items-start gap-5 shadow-lg">
-              <div className="w-14 h-14 rounded-xl bg-white/5 text-gray-300 flex items-center justify-center shrink-0">
-                <MapPin className="w-6 h-6 text-studio-orange" />
+            <a
+              href={studioConfig.googleMapsUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="p-6 rounded-2xl bg-studio-card border border-white/10 hover:border-studio-orange/40 transition-all flex items-start gap-5 shadow-lg group block"
+              title="Open Kamali Studio in Google Maps"
+            >
+              <div className="w-14 h-14 rounded-xl bg-white/5 text-gray-300 flex items-center justify-center shrink-0 group-hover:bg-studio-orange group-hover:text-white transition-colors">
+                <MapPin className="w-6 h-6 text-studio-orange group-hover:text-white transition-colors" />
               </div>
               <div>
                 <span className="text-xs font-bold text-gray-400 uppercase tracking-wider block">Studio Location</span>
-                <p className="text-sm text-gray-200 mt-1 font-medium leading-relaxed">{studioConfig.address}</p>
-                <a
-                  href={studioConfig.googleMapsUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-block mt-3 text-xs font-bold text-studio-orange hover:underline"
-                >
+                <p className="text-sm text-gray-200 mt-1 font-medium leading-relaxed group-hover:text-studio-orange transition-colors">
+                  {studioConfig.address}
+                </p>
+                <span className="inline-block mt-3 text-xs font-bold text-studio-orange group-hover:underline">
                   GET DIRECTIONS ON GOOGLE MAPS →
-                </a>
+                </span>
               </div>
-            </div>
+            </a>
 
             <div className="p-6 rounded-2xl bg-studio-card border border-white/10 flex items-center gap-5 shadow-lg">
               <div className="w-14 h-14 rounded-xl bg-white/5 text-gray-300 flex items-center justify-center shrink-0">
