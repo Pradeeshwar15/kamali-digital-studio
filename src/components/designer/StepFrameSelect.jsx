@@ -1,6 +1,6 @@
 import React from 'react';
 import { frameStyles } from '../../data/frames.js';
-import { Check, Sparkles, ShieldCheck } from 'lucide-react';
+import { Check, Sparkles } from 'lucide-react';
 
 export default function StepFrameSelect({ selectedFrameId, onSelectFrame }) {
   return (
@@ -8,12 +8,12 @@ export default function StepFrameSelect({ selectedFrameId, onSelectFrame }) {
       <div className="flex items-center justify-between">
         <h3 className="font-serif text-xl font-bold text-white flex items-center gap-2">
           <span className="w-6 h-6 rounded-full bg-studio-orange text-white text-xs flex items-center justify-center font-bold">1</span>
-          <span>Choose Frame Style</span>
+          <span>Our Frame Collections</span>
         </h3>
-        <span className="text-xs text-gray-400 font-medium">Select Moulding</span>
+        <span className="text-xs text-amber-400 font-semibold">4 Signature Mouldings</span>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-2 gap-3">
         {frameStyles.map((frame) => {
           const isSelected = selectedFrameId === frame.id;
           return (
@@ -33,7 +33,7 @@ export default function StepFrameSelect({ selectedFrameId, onSelectFrame }) {
               )}
 
               <div 
-                className="w-full h-12 rounded-lg mb-2 shadow-inner border border-white/10"
+                className={`w-full h-12 rounded-lg mb-2 shadow-inner border border-white/10 ${frame.borderClass}`}
                 style={{ backgroundColor: frame.previewColor }}
               />
 
@@ -41,8 +41,8 @@ export default function StepFrameSelect({ selectedFrameId, onSelectFrame }) {
                 <span className="font-serif text-sm font-bold text-white block truncate">
                   {frame.name}
                 </span>
-                <span className="text-[11px] text-studio-orange font-semibold block mt-0.5">
-                  Base: ₹{frame.basePrice}
+                <span className="text-[10px] text-gray-400 block mt-0.5">
+                  {frame.badge}
                 </span>
               </div>
             </button>

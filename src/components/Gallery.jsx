@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { galleryCategories, galleryItems } from '../data/gallery.js';
 import Lightbox from './Lightbox.jsx';
-import { Camera, Eye, Frame, Sparkles, MapPin, ArrowRight, Loader2 } from 'lucide-react';
+import { Camera, Eye, Frame, Sparkles, MapPin, ArrowRight, Loader2, ChevronDown } from 'lucide-react';
 
 // Reusable Image component with Skeleton Loader for performance
 const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
@@ -9,11 +9,9 @@ const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
 
   return (
     <div className={`relative w-full ${aspectRatio} bg-white/5 overflow-hidden`}>
-      {/* Skeleton Pulse */}
       {!loaded && (
         <div className="absolute inset-0 bg-white/10 animate-pulse" />
       )}
-      
       <img
         src={src}
         alt={alt}
@@ -25,11 +23,16 @@ const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
   );
 };
 
-export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
+export default function Gallery({ onFrameThisPhoto, onBookPhotography, isFullPortfolio = false }) {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [activeItemIndex, setActiveItemIndex] = useState(null);
   
-  // Pagination State
+  // Dashboard Compact vs Full Portfolio Mode
+  // If isFullPortfolio is true (e.g. user clicked "Our Work" in menu), open full portfolio directly
+  const [showAll, setShowAll] = useState(false);
+  const isExpanded = isFullPortfolio || showAll;
+
+  // Pagination State for Full Portfolio View
   const [visibleCount, setVisibleCount] = useState(12);
   const loaderRef = useRef(null);
 
@@ -37,25 +40,35 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
     ? galleryItems
     : galleryItems.filter(item => item.category === selectedCategory);
 
+  // Curated 6-photo spotlight for compact homepage dashboard
+  const spotlightItems = [
+    galleryItems[0] || galleryItems[1], // Wedding highlight
+    galleryItems.find(i => i.category === "Portraits") || galleryItems[2],
+    galleryItems.find(i => i.category === "Candid") || galleryItems[3],
+    galleryItems.find(i => i.category === "Events") || galleryItems[4],
+    galleryItems.find(i => i.category === "Traditional") || galleryItems[5],
+    galleryItems.find(i => i.category === "Outdoor" || i.category === "Pre-wedding") || galleryItems[6]
+  ].filter(Boolean);
+
   // Reset pagination when changing categories
   useEffect(() => {
     setVisibleCount(12);
   }, [selectedCategory]);
 
-  // Infinite Scroll Observer
+  // Infinite Scroll Observer for Full Portfolio View
   useEffect(() => {
+    if (!isExpanded) return;
     if (visibleCount >= filteredItems.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          // Load 12 more items
           setTimeout(() => {
             setVisibleCount((prev) => Math.min(prev + 12, filteredItems.length));
           }, 300);
         }
       },
-      { rootMargin: "600px" } // Trigger 600px before reaching the bottom for smooth scrolling
+      { rootMargin: "600px" }
     );
 
     if (loaderRef.current) {
@@ -65,20 +78,23 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
     return () => {
       if (loaderRef.current) observer.unobserve(loaderRef.current);
     };
-  }, [visibleCount, filteredItems.length]);
+  }, [visibleCount, filteredItems.length, isExpanded]);
 
-  const visibleItems = filteredItems.slice(0, visibleCount);
-  const heroFeaturedItem = galleryItems[0];
+  const visibleItems = isExpanded
+    ? filteredItems.slice(0, visibleCount)
+    : spotlightItems;
 
   const handlePrevItem = () => {
     if (activeItemIndex !== null) {
-      setActiveItemIndex(activeItemIndex === 0 ? filteredItems.length - 1 : activeItemIndex - 1);
+      const items = isExpanded ? filteredItems : spotlightItems;
+      setActiveItemIndex(activeItemIndex === 0 ? items.length - 1 : activeItemIndex - 1);
     }
   };
 
   const handleNextItem = () => {
     if (activeItemIndex !== null) {
-      setActiveItemIndex(activeItemIndex === filteredItems.length - 1 ? 0 : activeItemIndex + 1);
+      const items = isExpanded ? filteredItems : spotlightItems;
+      setActiveItemIndex(activeItemIndex === items.length - 1 ? 0 : activeItemIndex + 1);
     }
   };
 
@@ -88,7 +104,7 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
       {/* Background Decorative Glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-studio-orange/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
@@ -102,102 +118,58 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
           <p className="text-gray-400 text-xs sm:text-lg mt-2 font-serif italic">
             "Every frame tells a story of love, emotion, and timeless memories."
           </p>
+
+          {/* Mode Pill Indicator */}
+          {!isExpanded ? (
+            <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-amber-300 font-medium">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span>Viewing Curated Studio Highlights (6 Selected Photos)</span>
+            </div>
+          ) : (
+            <div className="mt-4 flex items-center justify-center gap-3">
+              <span className="text-xs text-emerald-400 font-semibold">
+                ● Full Portfolio Active ({filteredItems.length} photos)
+              </span>
+              {!isFullPortfolio && (
+                <button
+                  onClick={() => setShowAll(false)}
+                  className="text-xs text-gray-400 hover:text-white underline underline-offset-4"
+                >
+                  Collapse to Highlights
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* HERO FEATURED PORTFOLIO SPOTLIGHT BANNER */}
-        {heroFeaturedItem && (
-          <div className="mb-8 sm:mb-14 relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl group cursor-pointer"
-               onClick={() => {
-                 const idx = filteredItems.findIndex(i => i.id === heroFeaturedItem.id);
-                 setActiveItemIndex(idx !== -1 ? idx : 0);
-               }}>
-            
-            <div className="relative h-[260px] sm:h-[420px] w-full overflow-hidden bg-black">
-              <ImageWithSkeleton
-                src={heroFeaturedItem.image}
-                alt={heroFeaturedItem.title}
-                aspectRatio="h-full"
-                className="group-hover:scale-105 transition-transform duration-1000 ease-out filter brightness-90 group-hover:brightness-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-
-              {/* Top Spotlight Badge */}
-              <div className="absolute top-3 left-3 sm:top-6 sm:left-6 flex items-center gap-2">
-                <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-xs font-extrabold uppercase tracking-widest text-white bg-studio-orange shadow-glow-orange flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                  <span>FEATURED PORTFOLIO STORY</span>
-                </span>
-              </div>
-
-              {/* Bottom Spotlight Content */}
-              <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
-                <div>
-                  <span className="text-[10px] sm:text-xs font-bold text-studio-orange uppercase tracking-wider block mb-0.5 sm:mb-1">
-                    {heroFeaturedItem.category} • {heroFeaturedItem.location}
+        {/* CATEGORY FILTER BAR (Shown in Full Portfolio Mode) */}
+        {isExpanded && (
+          <div className="flex items-center justify-start sm:justify-center flex-nowrap sm:flex-wrap gap-2 overflow-x-auto sm:overflow-visible pb-3 sm:pb-2 mb-6 sm:mb-10 no-scrollbar bg-white/5 p-1.5 rounded-xl sm:rounded-2xl border border-white/10 backdrop-blur-md">
+            {galleryCategories.map((cat) => {
+              const count = cat === "ALL" ? galleryItems.length : galleryItems.filter(i => i.category === cat).length;
+              const isSelected = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center gap-1 sm:gap-2 ${
+                    isSelected
+                      ? 'bg-studio-orange text-white shadow-glow-orange scale-105'
+                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  <span>{cat}</span>
+                  <span className={`px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold ${isSelected ? 'bg-black/30 text-white' : 'bg-white/10 text-gray-400'}`}>
+                    {count}
                   </span>
-                  <h3 className="font-serif text-lg sm:text-4xl font-extrabold text-white leading-tight">
-                    {heroFeaturedItem.title}
-                  </h3>
-                  <p className="hidden sm:block text-xs sm:text-sm text-gray-300 max-w-xl mt-1 line-clamp-2">
-                    {heroFeaturedItem.caption}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onFrameThisPhoto && onFrameThisPhoto(heroFeaturedItem.image);
-                    }}
-                    className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs text-white bg-white/10 hover:bg-studio-orange border border-white/15 backdrop-blur-md transition-all flex items-center gap-1.5"
-                  >
-                    <Frame className="w-3.5 h-3.5 text-studio-orange group-hover:text-white" />
-                    <span>FRAME THIS</span>
-                  </button>
-
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onBookPhotography && onBookPhotography(heroFeaturedItem.category);
-                    }}
-                    className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs text-white bg-studio-orange hover:bg-studio-orangeHover shadow-glow-orange transition-all flex items-center gap-1.5"
-                  >
-                    <Camera className="w-3.5 h-3.5" />
-                    <span>BOOK SHOOT</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
+                </button>
+              );
+            })}
           </div>
         )}
 
-        {/* CATEGORY FILTER BAR */}
-        <div className="flex items-center justify-start sm:justify-center flex-nowrap sm:flex-wrap gap-2 overflow-x-auto sm:overflow-visible pb-3 sm:pb-2 mb-6 sm:mb-12 no-scrollbar bg-white/5 p-1.5 rounded-xl sm:rounded-2xl border border-white/10 backdrop-blur-md">
-          {galleryCategories.map((cat) => {
-            const count = cat === "ALL" ? galleryItems.length : galleryItems.filter(i => i.category === cat).length;
-            const isSelected = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center gap-1 sm:gap-2 ${
-                  isSelected
-                    ? 'bg-studio-orange text-white shadow-glow-orange scale-105'
-                    : 'text-gray-300 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                <span>{cat}</span>
-                <span className={`px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold ${isSelected ? 'bg-black/30 text-white' : 'bg-white/10 text-gray-400'}`}>
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* DYNAMIC MASONRY WALL GRID */}
-        <div className="columns-2 lg:columns-3 gap-3 space-y-3 sm:gap-5 sm:space-y-5">
+        {/* PHOTO GRID — Compact 6 Spotlight on Dashboard OR Full Masonry on Demand */}
+        <div className={`columns-2 ${isExpanded ? 'lg:columns-3' : 'lg:columns-3'} gap-3 space-y-3 sm:gap-5 sm:space-y-5`}>
           {visibleItems.map((item, index) => (
             <div
               key={`${item.id}-${index}`}
@@ -270,7 +242,7 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
                       <span className="truncate">{item.tag}</span>
                     </span>
                     <span className="hidden sm:flex group-hover:translate-x-1 transition-transform items-center gap-1 text-white">
-                      <span>EXPLORE</span>
+                      <span>VIEW PHOTO</span>
                       <ArrowRight className="w-3.5 h-3.5 text-studio-orange" />
                     </span>
                   </div>
@@ -280,8 +252,30 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
           ))}
         </div>
 
-        {/* Infinite Scroll Loader Trigger */}
-        {visibleCount < filteredItems.length && (
+        {/* COMPACT DASHBOARD CALL TO ACTION BANNER (Shown when viewing highlights) */}
+        {!isExpanded && (
+          <div className="mt-10 sm:mt-14 text-center bg-gradient-to-r from-white/[0.03] via-studio-orange/[0.08] to-white/[0.03] border border-white/10 rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-2xl">
+            <span className="text-xs font-bold uppercase tracking-widest text-amber-400 block mb-2">
+              Authentic Studio Archive • 46+ Real Client Moments
+            </span>
+            <h3 className="font-serif text-xl sm:text-3xl font-extrabold text-white mb-2">
+              Want to see our full wedding, portrait, and event albums?
+            </h3>
+            <p className="text-gray-300 text-xs sm:text-sm max-w-xl mx-auto mb-6 leading-relaxed">
+              Browse our complete portfolio categorized by Weddings, Candid, Traditional Ceremonies, Pre-wedding, Events, and Baby Milestones.
+            </p>
+            <button
+              onClick={() => setShowAll(true)}
+              className="inline-flex items-center gap-2.5 px-6 sm:px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange transform hover:-translate-y-0.5 transition-all"
+            >
+              <span>EXPLORE FULL PORTFOLIO (46+ PHOTOS)</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* Infinite Scroll Loader Trigger (Shown in Full Portfolio Mode) */}
+        {isExpanded && visibleCount < filteredItems.length && (
           <div ref={loaderRef} className="w-full py-16 flex justify-center items-center">
             <div className="flex flex-col items-center gap-3">
               <Loader2 className="w-8 h-8 text-studio-orange animate-spin" />
@@ -293,11 +287,11 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
       </div>
 
       {/* Lightbox Modal */}
-      {activeItemIndex !== null && filteredItems[activeItemIndex] && (
+      {activeItemIndex !== null && (isExpanded ? filteredItems : spotlightItems)[activeItemIndex] && (
         <Lightbox
-          item={filteredItems[activeItemIndex]}
+          item={(isExpanded ? filteredItems : spotlightItems)[activeItemIndex]}
           currentIndex={activeItemIndex}
-          totalItems={filteredItems.length}
+          totalItems={(isExpanded ? filteredItems : spotlightItems).length}
           onClose={() => setActiveItemIndex(null)}
           onPrev={handlePrevItem}
           onNext={handleNextItem}

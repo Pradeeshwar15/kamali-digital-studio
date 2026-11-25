@@ -1,12 +1,7 @@
 import React, { useRef } from 'react';
 import { Upload, Image as ImageIcon, Trash2, RefreshCw, Sparkles, CheckCircle2, Contrast } from 'lucide-react';
 
-const samplePhotos = [
-  { label: "Wedding Couple", url: "/images/gallery/wedding/wedding1.webp" },
-  { label: "Family Portrait", url: "/images/gallery/events/event1.webp" },
-  { label: "Studio Model", url: "/images/gallery/portraits/portrait1.webp" },
-  { label: "Baby Smile", url: "/images/gallery/portraits/baby1.webp" }
-];
+const sampleBabyPhoto = "/images/gallery/Portraits/baby1.webp";
 
 export const photoFilters = [
   { id: "none", label: "Original", cssFilter: "none" },
@@ -157,29 +152,16 @@ export default function StepPhotoUpload({
         className="hidden"
       />
 
-      <div>
-        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-2">
-          Or test with sample studio photos:
-        </span>
-        <div className="grid grid-cols-4 gap-2">
-          {samplePhotos.map((sample, idx) => (
-            <button
-              key={idx}
-              onClick={() => onPhotoChange(sample.url)}
-              className="group relative rounded-lg overflow-hidden border border-white/10 hover:border-studio-orange transition-all aspect-square"
-              title={sample.label}
-            >
-              <img
-                src={sample.url}
-                alt={sample.label}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform"
-              />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-studio-orange" />
-              </div>
-            </button>
-          ))}
-        </div>
+      {/* Clean Sample Baby Photo Option */}
+      <div className="pt-2 flex items-center justify-between border-t border-white/5">
+        <span className="text-xs text-gray-400">Want to test how it looks first?</span>
+        <button
+          onClick={() => onPhotoChange(sampleBabyPhoto)}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-semibold transition-all"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span>Load Sample Baby Photo</span>
+        </button>
       </div>
     </div>
   );

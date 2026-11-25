@@ -115,19 +115,19 @@ export default function App() {
         {/* 5. Occasion-Based Frame Discovery */}
         <Occasions onSelectOccasion={handleSelectOccasion} />
 
-        {/* 6. Bestselling Frame Styles Showcase */}
+        {/* 6. Bestselling Frame Styles Showcase (Desktop Only, Hidden on Mobile) */}
         <FrameShowcase
           onCustomizeFrame={(frameId) => handleOpenDesigner(frameId)}
-          isVisibleMobile={activeTab === 'designer'}
         />
 
         {/* 7. Photo Restoration Before / After Showcase */}
         <BeforeAfter />
 
-        {/* 8. Portfolio Gallery & Lightbox */}
+        {/* 8. Portfolio Gallery & Lightbox (Spotlight Preview on Dashboard, Full Portfolio on Menu Click) */}
         <Gallery
           onFrameThisPhoto={(photoUrl) => handleOpenDesigner(null, photoUrl)}
           onBookPhotography={(serviceCategory) => handleOpenPhotographyInquiry(serviceCategory)}
+          isFullPortfolio={activeTab === 'gallery'}
         />
 
         {/* 9. Client Testimonials */}

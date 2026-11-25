@@ -176,36 +176,58 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
           <div className="mt-8 inline-flex p-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl max-w-full overflow-x-auto">
             <button
               onClick={() => setActiveCategory('small-events')}
-              className={`px-5 sm:px-7 py-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
                 activeCategory === 'small-events'
                   ? 'bg-gradient-to-r from-studio-orange to-amber-600 text-white shadow-glow-orange scale-[1.02]'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'
               }`}
             >
               <PartyPopper className="w-4 h-4" />
-              <span>Small Event Packages (₹10k – ₹25k)</span>
+              <span>Small Events (4 Packages)</span>
               <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] bg-black/30 text-amber-200 uppercase font-extrabold ml-1">
-                New
+                ₹10k–₹25k
               </span>
             </button>
 
             <button
               onClick={() => setActiveCategory('wedding')}
-              className={`px-5 sm:px-7 py-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
                 activeCategory === 'wedding'
                   ? 'bg-gradient-to-r from-studio-orange to-amber-600 text-white shadow-glow-orange scale-[1.02]'
                   : 'text-gray-400 hover:text-white hover:bg-white/5'
               }`}
             >
               <Award className="w-4 h-4" />
-              <span>Grand Wedding Packages (₹50k – ₹1.2L)</span>
+              <span>Grand Wedding (3 Packages)</span>
+              <span className="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] bg-black/30 text-amber-200 uppercase font-extrabold ml-1">
+                ₹50k–₹1.2L
+              </span>
+            </button>
+
+            <button
+              onClick={() => setActiveCategory('all')}
+              className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm tracking-wide transition-all duration-300 flex items-center gap-2 whitespace-nowrap ${
+                activeCategory === 'all'
+                  ? 'bg-gradient-to-r from-studio-orange to-amber-600 text-white shadow-glow-orange scale-[1.02]'
+                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>All 7 Packages</span>
             </button>
           </div>
         </div>
 
         {/* Small Event Packages View */}
-        {activeCategory === 'small-events' && (
-          <div className="space-y-8 animate-fadeIn">
+        {(activeCategory === 'small-events' || activeCategory === 'all') && (
+          <div className="space-y-8 animate-fadeIn mb-12">
+            {activeCategory === 'all' && (
+              <div className="flex items-center gap-3 border-b border-white/10 pb-3">
+                <PartyPopper className="w-5 h-5 text-studio-orange" />
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">Small Event Packages (₹10,000 – ₹25,000)</h3>
+              </div>
+            )}
+
             {/* Occasion Tags Banner */}
             <div className="bg-[#121216] border border-white/10 rounded-2xl p-4 sm:p-5 text-center max-w-4xl mx-auto shadow-lg">
               <span className="text-[11px] sm:text-xs font-bold text-amber-400 uppercase tracking-widest block mb-2.5">
@@ -239,8 +261,15 @@ export default function Packages({ onOpenPhotographyInquiry, overrideWhatsapp = 
         )}
 
         {/* Grand Wedding Packages View */}
-        {activeCategory === 'wedding' && (
+        {(activeCategory === 'wedding' || activeCategory === 'all') && (
           <div className="space-y-8 animate-fadeIn">
+            {activeCategory === 'all' && (
+              <div className="flex items-center gap-3 border-b border-white/10 pb-3 pt-6">
+                <Award className="w-5 h-5 text-studio-orange" />
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">Grand Wedding Packages (₹50,000 – ₹1,20,000)</h3>
+              </div>
+            )}
+
             <div className="text-center text-xs text-gray-400 max-w-2xl mx-auto font-medium">
               Complete reception & wedding coverage with dual candid photographers, cinematic highlight videos, 4K drone cinematography, and reception stage LED displays.
             </div>

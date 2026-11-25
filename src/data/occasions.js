@@ -5,9 +5,9 @@ export const occasionsData = [
     subtitle: "From 1st smiles to 50th silver jubilees",
     badge: "Most Gifted",
     image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=600&auto=format&fit=crop",
-    suggestedFrame: "classic-black",
-    suggestedSize: "12x18",
-    sampleText: "Happy Birthday Alex ❤️"
+    suggestedFrame: "modern-matte",
+    suggestedSize: "12x15",
+    sampleText: "Happy Birthday Little One ❤️"
   },
   {
     id: "wedding",
@@ -15,9 +15,9 @@ export const occasionsData = [
     subtitle: "Turn sacred vows into wall masterpieces",
     badge: "Premium Favorite",
     image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop",
-    suggestedFrame: "gold",
-    suggestedSize: "18x24",
-    sampleText: "Vikram & Ananya • 24.12.2025"
+    suggestedFrame: "royal-gold",
+    suggestedSize: "16x24",
+    sampleText: "Vikram & Ananya • Sacred Union"
   },
   {
     id: "anniversary",
@@ -25,9 +25,9 @@ export const occasionsData = [
     subtitle: "Honor years of shared love & laughter",
     badge: "Romantic",
     image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop",
-    suggestedFrame: "brown",
-    suggestedSize: "16x24",
-    sampleText: "25 Years of togetherness"
+    suggestedFrame: "classic-wood",
+    suggestedSize: "16x20",
+    sampleText: "25 Years of Togetherness"
   },
   {
     id: "family",
@@ -35,19 +35,19 @@ export const occasionsData = [
     subtitle: "Generations gathered in one timeless frame",
     badge: "Heritage",
     image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop",
-    suggestedFrame: "wooden",
-    suggestedSize: "18x24",
-    sampleText: "The Sharma Family • Est. 1998"
+    suggestedFrame: "classic-wood",
+    suggestedSize: "20x30",
+    sampleText: "The Family • Cherished Moments"
   },
   {
     id: "baby",
-    title: "Baby & New Born",
+    title: "Baby & Newborn",
     subtitle: "Tiny feet and golden initial years",
     badge: "Cute & Cozy",
-    image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=600&auto=format&fit=crop",
-    suggestedFrame: "silver",
-    suggestedSize: "8x10",
-    sampleText: "Welcome Baby Aarav ✨"
+    image: "/images/gallery/Portraits/baby1.webp",
+    suggestedFrame: "modern-matte",
+    suggestedSize: "10x15",
+    sampleText: "Welcome Baby • Blessings"
   },
   {
     id: "graduation",
@@ -55,8 +55,8 @@ export const occasionsData = [
     subtitle: "Commemorate hard work, degrees & honours",
     badge: "Pride & Joy",
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop",
-    suggestedFrame: "classic-black",
-    suggestedSize: "12x18",
-    sampleText: "Class of 2025 • B.Tech Honors"
+    suggestedFrame: "premium-textured",
+    suggestedSize: "12x15",
+    sampleText: "Class of 2026 • Congratulations"
   }
 ];

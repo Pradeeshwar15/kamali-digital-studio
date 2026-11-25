@@ -3,7 +3,7 @@ import confetti from 'canvas-confetti';
 import { generateWhatsAppLink, buildWhatsAppOrderMessage } from '../../utils/whatsappHelper.js';
 import { calculateFramePrice } from '../../utils/priceCalculator.js';
 import { frameStyles } from '../../data/frames.js';
-import { frameSizes, frameFinishes, mattingOptions } from '../../data/pricing.js';
+import { frameSizes, mattingOptions } from '../../data/pricing.js';
 import { X, MessageSquare, Copy, Check, Sparkles, Send, MapPin, Phone, User, Paperclip } from 'lucide-react';
 
 export default function WhatsAppOrderModal({
@@ -11,7 +11,6 @@ export default function WhatsAppOrderModal({
   onClose,
   frameId,
   sizeId,
-  finishId,
   mattingId,
   customText,
   quantity
@@ -25,11 +24,10 @@ export default function WhatsAppOrderModal({
   if (!isOpen) return null;
 
   const frame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
-  const size = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
-  const finish = frameFinishes.find(fn => fn.id === finishId) || frameFinishes[0];
+  const size = frameSizes.find(s => s.id === sizeId) || frameSizes[4];
   const matting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
 
-  const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
+  const basePricing = calculateFramePrice({ frameId, sizeId, mattingId, quantity });
   const formattedGrandTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   const orderData = {
@@ -39,7 +37,6 @@ export default function WhatsAppOrderModal({
     notes,
     frameId,
     sizeId,
-    finishId,
     mattingId,
     customText,
     quantity
@@ -85,107 +82,123 @@ export default function WhatsAppOrderModal({
           </p>
         </div>
 
+        {/* Order Configuration Preview */}
         <div className="bg-black/60 p-4 rounded-xl border border-white/10 space-y-2 text-xs text-gray-300">
           <div className="flex justify-between font-bold text-white text-sm border-b border-white/10 pb-2">
             <span>{frame.name}</span>
             <span className="text-studio-orange">{formattedGrandTotal}</span>
           </div>
           <div className="grid grid-cols-2 gap-2 pt-1 text-[11px]">
-            <div>• <strong className="text-gray-200">Size:</strong> {size.label}</div>
-            <div>• <strong className="text-gray-200">Finish:</strong> {finish.label}</div>
+            <div>• <strong className="text-gray-200">Size:</strong> {size.label} ({size.dimensions})</div>
             <div>• <strong className="text-gray-200">Matting:</strong> {matting.label}</div>
             <div>• <strong className="text-gray-200">Quantity:</strong> {quantity}</div>
+            <div>• <strong className="text-gray-200">Unit Price:</strong> ₹{size.price}</div>
           </div>
           {customText.trim() && (
             <div className="text-[11px] text-amber-300 pt-1">
-              • <strong>Custom Text:</strong> "{customText.trim()}"
+              • <strong className="text-gray-200">Custom Text:</strong> "{customText}"
             </div>
           )}
         </div>
 
-        {/* Option A: Photo Delivery Guidance Box */}
-        <div className="p-3.5 rounded-xl bg-studio-orange/10 border border-studio-orange/30 text-xs text-gray-200 space-y-1.5">
-          <div className="flex items-center gap-1.5 text-studio-orange font-bold text-xs uppercase tracking-wider">
-            <Paperclip className="w-4 h-4 shrink-0 text-studio-orange" />
-            <span>How to Send Your Photo For HD Printing</span>
+        {/* Option A: Guided Photo Upload Instruction Banner */}
+        <div className="p-4 rounded-xl bg-gradient-to-r from-amber-950/40 to-studio-orange/20 border border-amber-500/40 text-xs text-amber-200 flex items-start gap-3 shadow-lg">
+          <div className="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 mt-0.5">
+            <Paperclip className="w-4 h-4 text-studio-orange" />
           </div>
-          <p className="text-[11px] text-gray-300 leading-relaxed">
-            When WhatsApp opens, tap the <strong className="text-white">Paperclip (📎) icon</strong> and choose <strong className="text-white">'Document'</strong> to attach your original camera photo with zero quality loss!
-          </p>
+          <div className="space-y-1">
+            <span className="font-bold text-white block">
+              How to send your high-resolution photo:
+            </span>
+            <p className="text-[11px] text-amber-100/90 leading-relaxed">
+              When WhatsApp opens, tap the <strong>Attachment icon (📎)</strong> and select <strong>"Document"</strong> (not Gallery). This ensures your photo prints in 100% lossless HD studio quality without compression!
+            </p>
+          </div>
         </div>
 
         <form onSubmit={handleSendWhatsApp} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-gray-300 uppercase mb-1 flex items-center gap-1">
+            <label className="block text-xs font-bold text-gray-300 uppercase mb-1 flex items-center gap-1.5">
               <User className="w-3.5 h-3.5 text-studio-orange" />
               <span>Your Name *</span>
             </label>
             <input
               type="text"
               required
+              placeholder="e.g. Anand Kumar"
               value={customerName}
               onChange={(e) => setCustomerName(e.target.value)}
-              placeholder="e.g. Pradeesh Kumar"
-              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-studio-orange text-sm transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-gray-300 uppercase mb-1 flex items-center gap-1">
+            <label className="block text-xs font-bold text-gray-300 uppercase mb-1 flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-studio-orange" />
-              <span>Mobile Phone Number *</span>
+              <span>Contact / WhatsApp Phone Number *</span>
             </label>
             <input
               type="tel"
               required
+              placeholder="e.g. 9876543210"
               value={customerPhone}
               onChange={(e) => setCustomerPhone(e.target.value)}
-              placeholder="+91 78260 60289"
-              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-white/15 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-emerald-500"
+              className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-studio-orange text-sm transition-colors"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Fulfillment Option</label>
-              <select
-                value={deliveryOption}
-                onChange={(e) => setDeliveryOption(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white text-xs"
-              >
-                <option value="Studio Pickup">Studio Store Pickup</option>
-                <option value="Home Delivery">Doorstep Home Delivery</option>
-              </select>
+          <div>
+            <label className="block text-xs font-bold text-gray-300 uppercase mb-1 flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-studio-orange" />
+              <span>Fulfillment Option</span>
+            </label>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              {['Studio Pickup (Cheyyar)', 'Home Delivery (+Courier)'].map((opt) => (
+                <button
+                  type="button"
+                  key={opt}
+                  onClick={() => setDeliveryOption(opt)}
+                  className={`p-2.5 rounded-xl border font-semibold transition-all ${
+                    deliveryOption === opt
+                      ? 'bg-studio-orange/20 border-studio-orange text-white'
+                      : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'
+                  }`}
+                >
+                  {opt}
+                </button>
+              ))}
             </div>
-            <div>
-              <label className="block text-xs font-bold text-gray-300 uppercase mb-1">Special Notes (Optional)</label>
-              <input
-                type="text"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="e.g. Gift wrap needed"
-                className="w-full px-3 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white text-xs placeholder-gray-500"
-              />
-            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-gray-300 uppercase mb-1">
+              Special Instructions / Notes (Optional)
+            </label>
+            <textarea
+              rows={2}
+              placeholder="Any specific delivery instructions, cropping notes, or urgent timeline..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-studio-orange text-xs transition-colors"
+            />
           </div>
 
           <div className="pt-2 flex flex-col sm:flex-row gap-3">
             <button
               type="submit"
-              className="flex-1 py-4 rounded-xl font-bold text-sm text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2"
+              className="flex-1 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-950/50 flex items-center justify-center gap-2 transform hover:-translate-y-0.5 transition-all"
             >
-              <MessageSquare className="w-5 h-5" />
-              <span>SEND ORDER TO WHATSAPP</span>
+              <Send className="w-4 h-4" />
+              <span>SEND ORDER ON WHATSAPP</span>
             </button>
 
             <button
               type="button"
               onClick={handleCopyMessage}
-              className="py-4 px-4 rounded-xl font-semibold text-xs text-gray-300 bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center gap-2"
-              title="Copy text summary to clipboard"
+              className="px-4 py-3.5 rounded-xl font-semibold text-xs text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center gap-2 transition-colors"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? 'COPIED!' : 'COPY SUMMARY'}</span>
+              <span>{copied ? 'Copied!' : 'Copy Summary'}</span>
             </button>
           </div>
         </form>

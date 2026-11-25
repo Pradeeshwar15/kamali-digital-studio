@@ -1,24 +1,22 @@
 import React from 'react';
 import { calculateFramePrice } from '../../utils/priceCalculator.js';
 import { frameStyles } from '../../data/frames.js';
-import { frameSizes, frameFinishes, mattingOptions } from '../../data/pricing.js';
-import { Calculator, MessageSquare, Plus, Minus, Info, Tag } from 'lucide-react';
+import { frameSizes, mattingOptions } from '../../data/pricing.js';
+import { Calculator, MessageSquare, Plus, Minus, Info } from 'lucide-react';
 
 export default function PriceBreakdown({
   frameId,
   sizeId,
-  finishId,
   mattingId,
   quantity,
   onQuantityChange,
   onOpenOrderModal
 }) {
   const selectedFrame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
-  const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
-  const selectedFinish = frameFinishes.find(fn => fn.id === finishId) || frameFinishes[0];
+  const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[4];
   const selectedMatting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
 
-  const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
+  const basePricing = calculateFramePrice({ frameId, sizeId, mattingId, quantity });
   const formattedGrandTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   return (
@@ -35,21 +33,17 @@ export default function PriceBreakdown({
 
       <div className="space-y-2 text-xs text-gray-300">
         <div className="flex items-center justify-between">
-          <span className="text-gray-400">Frame Moulding ({selectedFrame.name}):</span>
-          <span className="font-bold text-white">₹{basePricing.basePrice}</span>
+          <span className="text-gray-400">Selected Frame Moulding:</span>
+          <span className="font-bold text-white">{selectedFrame.name}</span>
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-gray-400">Size Upgrade ({selectedSize.label}):</span>
-          <span className="font-bold text-white">+₹{basePricing.sizePrice}</span>
+          <span className="text-gray-400">Size & Base Amount ({selectedSize.label}):</span>
+          <span className="font-bold text-white">₹{selectedSize.price.toLocaleString('en-IN')}</span>
         </div>
-        <div className="flex items-center justify-between">
-          <span className="text-gray-400">Finish Coating ({selectedFinish.label}):</span>
-          <span className="font-bold text-white">+₹{basePricing.finishPrice}</span>
-        </div>
-        {basePricing.mattingPrice > 0 && (
+        {selectedMatting.id !== 'none' && (
           <div className="flex items-center justify-between">
-            <span className="text-gray-400">Passepartout Matting:</span>
-            <span className="font-bold text-white">+₹{basePricing.mattingPrice}</span>
+            <span className="text-gray-400">Mat Board ({selectedMatting.label}):</span>
+            <span className="font-bold text-white">Included</span>
           </div>
         )}
       </div>

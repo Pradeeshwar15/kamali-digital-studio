@@ -23,17 +23,33 @@
   background: #FF6B00;
 }
 
-/* Frame Textures & Realism Classes */
+/* Frame Textures & Realism Classes (Based on Kamali Digital Studio Frame Poster) */
+.frame-classic-wood,
+.frame-natural-wood,
+.frame-luxury-brown {
+  border: 22px solid #4a2912;
+  border-image: linear-gradient(135deg, #6a3c1a 0%, #341c0c 50%, #522e14 100%) 1;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.8), 0 15px 35px rgba(0, 0, 0, 0.7);
+}
+
+.frame-royal-gold,
+.frame-premium-gold {
+  border: 22px solid #c5a059;
+  border-image: linear-gradient(135deg, #fef1bf 0%, #b8860b 35%, #e6c687 70%, #996515 100%) 1;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.75), 0 15px 35px rgba(212, 175, 55, 0.35);
+}
+
+.frame-premium-textured {
+  border: 22px solid #1c1c22;
+  border-image: repeating-linear-gradient(45deg, #2b2b36, #2b2b36 4px, #16161c 4px, #16161c 8px) 1;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.9), 0 14px 35px rgba(0, 0, 0, 0.85);
+}
+
+.frame-modern-matte,
 .frame-classic-black {
   border: 18px solid #111115;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.8);
   border-image: linear-gradient(135deg, #1f1f26 0%, #0d0d10 50%, #1a1a22 100%) 1;
-}
-
-.frame-premium-gold {
-  border: 22px solid #c5a059;
-  border-image: linear-gradient(135deg, #fef1bf 0%, #b8860b 35%, #e6c687 70%, #996515 100%) 1;
-  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.7), 0 15px 35px rgba(212, 175, 55, 0.25);
 }
 
 .frame-elegant-white {
@@ -46,18 +62,6 @@
   border: 20px solid #c0c0c0;
   border-image: linear-gradient(135deg, #f8fafc 0%, #94a3b8 35%, #e2e8f0 70%, #64748b 100%) 1;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), 0 12px 30px rgba(148, 163, 184, 0.3);
-}
-
-.frame-natural-wood {
-  border: 22px solid #8b5a2b;
-  border-image: linear-gradient(135deg, #a06e3b 0%, #5c3a1e 50%, #7c4d25 100%) 1;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 12px 30px rgba(0, 0, 0, 0.6);
-}
-
-.frame-luxury-brown {
-  border: 24px solid #3d2314;
-  border-image: linear-gradient(135deg, #5c351f 0%, #2b170c 50%, #4a2817 100%) 1;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.8), 0 15px 35px rgba(0, 0, 0, 0.7);
 }
 
 .frame-minimal-black {

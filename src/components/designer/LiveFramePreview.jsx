@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { frameStyles } from '../../data/frames.js';
 import { mattingOptions, frameSizes } from '../../data/pricing.js';
 import { photoFilters } from './StepPhotoUpload.jsx';
-import { Eye, Sun, Layers, Sparkles, Palette, Users } from 'lucide-react';
+import { Eye, Palette, Users } from 'lucide-react';
 
 const wallPaintColors = [
   { id: "default", label: "Default Dark", hex: "transparent" },
@@ -17,7 +17,6 @@ export default function LiveFramePreview({
   frameId,
   photoUrl,
   sizeId,
-  finishId,
   mattingId,
   customText,
   textFont,
@@ -31,10 +30,10 @@ export default function LiveFramePreview({
 
   const selectedFrame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
   const selectedMatting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
-  const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
+  const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[4];
   const filterCss = photoFilters.find(f => f.id === activeFilter)?.cssFilter || "none";
 
-  const defaultPhoto = "/images/gallery/wedding/wedding1.webp";
+  const defaultPhoto = "/images/gallery/Portraits/baby1.webp";
   const displayPhoto = photoUrl || defaultPhoto;
 
   const bgClasses = {
@@ -88,7 +87,7 @@ export default function LiveFramePreview({
           ))}
         </div>
 
-        {/* Scale & Glare Toggles */}
+        {/* Scale Toggle */}
         <div className="flex items-center gap-1">
           <button
             onClick={() => setShowScaleRef(!showScaleRef)}
@@ -98,71 +97,88 @@ export default function LiveFramePreview({
             <Users className="w-3.5 h-3.5" />
             <span className="hidden lg:inline">Scale Ref</span>
           </button>
-
-          <button
-            onClick={() => setShowGlare(!showGlare)}
-            className={`p-1.5 rounded-lg border transition-colors flex items-center gap-1 font-semibold ${showGlare ? 'bg-amber-500/20 text-amber-300 border-amber-500/40' : 'bg-white/5 text-gray-400 border-white/10'}`}
-            title="Toggle Anti-Glare Glass Simulation"
-          >
-            <Sun className="w-3.5 h-3.5" />
-            <span className="hidden lg:inline">Glass Glare</span>
-          </button>
         </div>
 
       </div>
 
-      {/* CENTERPIECE: REALISTIC PHYSICAL FRAME VISUALIZER */}
-      <div className="relative z-10 flex-1 flex items-center justify-center py-8">
+      {/* Main Centered 3D Realistic Frame Visualizer */}
+      <div className="relative z-10 my-auto py-6 sm:py-10 flex flex-col items-center justify-center">
         
+        {/* Frame Outer Structure */}
+        <div 
+          className={`relative transition-all duration-500 ${selectedFrame.borderClass} max-w-full shadow-2xl flex items-center justify-center`}
+          style={{
+            maxWidth: selectedSize.id === '24x36' ? '92%' : selectedSize.id === '6x8' ? '65%' : '80%'
+          }}
+        >
+          {/* Optional Passepartout Matting */}
+          <div 
+            className="w-full h-full p-2 sm:p-5 transition-all duration-300 flex items-center justify-center overflow-hidden"
+            style={{ backgroundColor: selectedMatting.color }}
+          >
+            {/* The Photo Container with Dynamic Aspect Ratio */}
+            <div 
+              className="relative overflow-hidden shadow-inner max-w-full max-h-[380px] sm:max-h-[460px] flex items-center justify-center"
+              style={{
+                aspectRatio: selectedSize.aspectRatio || '4/5'
+              }}
+            >
+              <img
+                src={displayPhoto}
+                alt="Framed Photograph"
+                className="w-full h-full object-cover transition-all duration-300"
+                style={{ filter: filterCss }}
+              />
+
+              {/* Anti-Reflective Subtle Glass Glare */}
+              {showGlare && (
+                <div 
+                  className="absolute inset-0 pointer-events-none opacity-25 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
+                />
+              )}
+
+              {/* Custom Text Inscription Overlay */}
+              {customText && customText.trim() && (
+                <div 
+                  className={`absolute bottom-3 left-0 right-0 px-4 text-center font-bold tracking-wider drop-shadow-md ${textFont}`}
+                  style={{ color: textColor }}
+                >
+                  <span className="text-xs sm:text-sm bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 inline-block">
+                    {customText}
+                  </span>
+                </div>
+              )}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Realistic Wall Shadow under frame */}
+        <div className="w-2/3 h-4 bg-black/60 rounded-full blur-xl mt-4" />
+
+        {/* Furniture Scale Reference Graphic */}
         {showScaleRef && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-72 h-16 bg-white/10 rounded-t-2xl border-t border-x border-white/20 backdrop-blur-sm pointer-events-none flex items-center justify-center text-[11px] font-bold text-gray-300">
-            🛋️ Living Room Sofa Silhouette Scale Reference
+          <div className="mt-4 pt-3 border-t border-white/10 w-full flex items-center justify-between text-[11px] text-gray-400">
+            <span>Wall Width: ~3.2m</span>
+            <span className="text-studio-orange font-bold">Standard 3-Seater Sofa Height Reference</span>
+            <span>Eye Level: ~1.5m</span>
           </div>
         )}
 
-        <div 
-          className={`relative max-w-full max-h-[380px] sm:max-h-[460px] transition-all duration-300 transform hover:scale-[1.02] ${selectedFrame.borderClass}`}
-          style={{
-            aspectRatio: selectedSize.aspectRatio || "3/4",
-            padding: selectedMatting.id !== 'none' ? '20px' : '0px',
-            backgroundColor: selectedMatting.color !== 'transparent' ? selectedMatting.color : undefined
-          }}
-        >
-          {showGlare && (
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-20" />
-          )}
-
-          <div className="relative w-full h-full overflow-hidden bg-black flex items-center justify-center shadow-inner">
-            <img
-              src={displayPhoto}
-              alt="Live Custom Frame Preview"
-              className="w-full h-full object-cover transition-transform duration-300"
-              style={{ filter: filterCss }}
-            />
-
-            {customText.trim() && (
-              <div className="absolute bottom-3 left-0 right-0 text-center px-4 z-30 pointer-events-none drop-shadow-md">
-                <span 
-                  className={`text-sm sm:text-base font-bold tracking-wide ${textFont}`}
-                  style={{ color: textColor }}
-                >
-                  {customText.trim()}
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-
       </div>
 
-      {/* Bottom Live Info Badge */}
-      <div className="relative z-10 flex items-center justify-between text-xs text-gray-300 bg-black/70 backdrop-blur-md p-3 rounded-xl border border-white/10">
+      {/* Frame Dimensions & Specs Bottom Bar */}
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 bg-black/75 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/10 text-xs">
         <div className="flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-studio-orange animate-pulse" />
           <span className="font-serif font-bold text-white">{selectedFrame.name}</span>
-          <span className="text-gray-400">• {selectedSize.label} ({selectedSize.dimensions})</span>
+          <span className="text-gray-400">•</span>
+          <span className="text-studio-orange font-semibold">{selectedSize.label} ({selectedSize.dimensions})</span>
         </div>
-        <span className="text-studio-orange font-bold uppercase tracking-wider text-[10px]">Real-Time 3D Visualizer</span>
+        <div className="flex items-center gap-2">
+          <span className="text-amber-400 font-extrabold">₹{selectedSize.price.toLocaleString('en-IN')}</span>
+          <span className="text-gray-400">•</span>
+          <span className="text-emerald-400 font-bold">100% HD Print Guarantee</span>
+        </div>
       </div>
 
     </div>

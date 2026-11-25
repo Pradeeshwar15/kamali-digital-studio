@@ -1,6 +1,6 @@
 import { studioConfig } from '../data/studioConfig.js';
 import { frameStyles } from '../data/frames.js';
-import { frameSizes, frameFinishes, mattingOptions } from '../data/pricing.js';
+import { frameSizes, mattingOptions } from '../data/pricing.js';
 import { calculateFramePrice } from './priceCalculator.js';
 
 // JOURNEY A: PHOTOGRAPHY INQUIRY MESSAGE
@@ -19,21 +19,21 @@ export function buildPhotographyInquiryMessage({
   text += `I would like to enquire about your Photography & Videography Services.\n\n`;
   text += `📸 *PHOTOGRAPHY INQUIRY DETAILS*\n`;
   text += `• *Service:* ${serviceName}\n`;
-  if (eventType.trim()) text += `• *Event Type:* ${eventType.trim()}\n`;
-  if (eventDate.trim()) text += `• *Event Date:* ${eventDate.trim()}\n`;
-  if (eventLocation.trim()) text += `• *Location:* ${eventLocation.trim()}\n`;
+  if (eventType && eventType.trim()) text += `• *Event Type:* ${eventType.trim()}\n`;
+  if (eventDate && eventDate.trim()) text += `• *Event Date:* ${eventDate.trim()}\n`;
+  if (eventLocation && eventLocation.trim()) text += `• *Location:* ${eventLocation.trim()}\n`;
   text += `• *Duration:* ${numberOfDays} Day(s)\n`;
-  if (budget.trim()) text += `• *Estimated Budget:* ${budget.trim()}\n`;
-  if (requirements.trim()) text += `• *Special Requirements:* ${requirements.trim()}\n`;
+  if (budget && budget.trim()) text += `• *Estimated Budget:* ${budget.trim()}\n`;
+  if (requirements && requirements.trim()) text += `• *Special Requirements:* ${requirements.trim()}\n`;
   text += `\n👤 *CUSTOMER INFO*\n`;
   text += `• *Name:* ${customerName}\n`;
-  if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
+  if (customerPhone && customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
   text += `\nPlease check your calendar availability and provide package quotes. Thank you!`;
 
   return text;
 }
 
-// JOURNEY B: FRAME ORDER MESSAGE
+// JOURNEY B: FRAME ORDER MESSAGE (Based on Frame Price Menu Poster)
 export function buildWhatsAppOrderMessage({
   customerName = "Customer",
   customerPhone = "",
@@ -41,17 +41,15 @@ export function buildWhatsAppOrderMessage({
   notes = "",
   frameId,
   sizeId,
-  finishId,
   mattingId,
   customText = "",
   quantity = 1
 }) {
   const frame = frameStyles.find(f => f.id === frameId) || frameStyles[0];
-  const size = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
-  const finish = frameFinishes.find(fn => fn.id === finishId) || frameFinishes[0];
+  const size = frameSizes.find(s => s.id === sizeId) || frameSizes[4];
   const matting = mattingOptions.find(m => m.id === mattingId) || mattingOptions[0];
   
-  const basePricing = calculateFramePrice({ frameId, sizeId, finishId, mattingId, quantity });
+  const basePricing = calculateFramePrice({ frameId, sizeId, mattingId, quantity });
   const formattedTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   let text = `Hello Kamali Digital Studio,\n\n`;
@@ -59,16 +57,15 @@ export function buildWhatsAppOrderMessage({
   text += `🖼️ *FRAME ORDER DETAILS*\n`;
   text += `• *Frame Style:* ${frame.name}\n`;
   text += `• *Size:* ${size.label} (${size.dimensions})\n`;
-  text += `• *Finish:* ${finish.label}\n`;
   text += `• *Matting:* ${matting.label}\n`;
-  if (customText.trim()) text += `• *Custom Text:* "${customText.trim()}"\n`;
+  if (customText && customText.trim()) text += `• *Custom Text:* "${customText.trim()}"\n`;
   text += `• *Quantity:* ${quantity}\n`;
   text += `• *Estimated Total:* ${formattedTotal}\n\n`;
   text += `👤 *CUSTOMER INFO*\n`;
   text += `• *Name:* ${customerName}\n`;
-  if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
+  if (customerPhone && customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
   text += `• *Fulfillment:* ${deliveryOption}\n`;
-  if (notes.trim()) text += `• *Note:* ${notes.trim()}\n`;
+  if (notes && notes.trim()) text += `• *Note:* ${notes.trim()}\n`;
   text += `\n📌 *PHOTO ATTACHMENT: Please attach your photo as a DOCUMENT (📎 ➔ Document) in this chat for 100% full-resolution HD print quality!* 📸\n`;
   text += `\nPlease confirm order availability and final price. Thank you!`;
 
@@ -79,75 +76,60 @@ export function buildWhatsAppOrderMessage({
 export function buildProductInquiryMessage({
   customerName = "Customer",
   customerPhone = "",
-  productTitle = "Photo Printing",
-  hasDesign = "Yes",
-  quantity = "100",
-  specifications = "",
+  productTitle = "Custom Photo Gift",
+  productCategory = "Product",
+  quantity = 1,
   notes = ""
 }) {
   let text = `Hello Kamali Digital Studio,\n\n`;
-  text += `I would like to enquire about your Printing & Digital Products.\n\n`;
-  text += `🖨️ *PRODUCT INQUIRY DETAILS*\n`;
+  text += `I am interested in ordering your customized studio products:\n\n`;
+  text += `🎁 *PRODUCT ORDER DETAILS*\n`;
   text += `• *Product:* ${productTitle}\n`;
-  text += `• *Have Own Design:* ${hasDesign}\n`;
+  text += `• *Category:* ${productCategory}\n`;
   text += `• *Quantity:* ${quantity}\n`;
-  if (specifications.trim()) text += `• *Specifications:* ${specifications.trim()}\n`;
-  if (notes.trim()) text += `• *Note:* ${notes.trim()}\n`;
+  if (notes && notes.trim()) text += `• *Customization Notes:* ${notes.trim()}\n`;
   text += `\n👤 *CUSTOMER INFO*\n`;
   text += `• *Name:* ${customerName}\n`;
-  if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
-  text += `\n📌 *IMPORTANT: Please attach/upload your design files or reference images directly in this chat!* 📎\n`;
-  text += `\nPlease provide price estimate and printing timeline. Thank you!`;
+  if (customerPhone && customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
+  text += `\nPlease provide final pricing, printing time, and delivery timeline. Thank you!`;
 
   return text;
 }
 
-// JOURNEY D: VISITING CARD & DESIGN REQUEST MESSAGE
+// JOURNEY D: VISITING CARD ORDER / DESIGN REQUEST MESSAGE
 export function buildVisitingCardRequestMessage({
-  mode = "has-design", // "has-design" vs "request-design"
+  mode = "has-design",
   customerName = "Customer",
   businessName = "",
   customerPhone = "",
   email = "",
-  paperFinish = "Matte",
+  paperFinish = "Matte 350 GSM",
   quantity = "250",
   address = "",
   designNotes = ""
 }) {
   let text = `Hello Kamali Digital Studio,\n\n`;
-  if (mode === "has-design") {
-    text += `I have a Visiting Card design ready to print!\n\n`;
-    text += `💳 *VISITING CARD PRINT ORDER*\n`;
-    text += `• *Quantity:* ${quantity} Cards\n`;
-    text += `• *Paper Finish:* ${paperFinish}\n`;
-    if (designNotes.trim()) text += `• *Note:* ${designNotes.trim()}\n`;
-  } else {
-    text += `I would like Kamali Digital Studio to design my Visiting Card!\n\n`;
-    text += `🎨 *VISITING CARD DESIGN REQUEST*\n`;
-    if (businessName.trim()) text += `• *Business Name:* ${businessName.trim()}\n`;
-    text += `• *Quantity Needed:* ${quantity} Cards\n`;
-    text += `• *Preferred Finish:* ${paperFinish}\n`;
-    if (address.trim()) text += `• *Business Address:* ${address.trim()}\n`;
-    if (designNotes.trim()) text += `• *Design Brief:* ${designNotes.trim()}\n`;
-  }
-
-  text += `\n👤 *CONTACT DETAILS*\n`;
+  text += `I would like to order Visiting Cards with ${mode === 'has-design' ? 'my existing design' : 'custom design assistance'}.\n\n`;
+  text += `📇 *VISITING CARD ORDER DETAILS*\n`;
+  text += `• *Order Mode:* ${mode === 'has-design' ? 'I Have My Own File/Design' : 'Request Studio Custom Design'}\n`;
+  if (businessName && businessName.trim()) text += `• *Business / Brand:* ${businessName.trim()}\n`;
+  text += `• *Paper Finish:* ${paperFinish}\n`;
+  text += `• *Quantity:* ${quantity} Cards\n`;
+  if (address && address.trim()) text += `• *Delivery Address:* ${address.trim()}\n`;
+  if (designNotes && designNotes.trim()) text += `• *Design Notes:* ${designNotes.trim()}\n`;
+  text += `\n👤 *CONTACT INFO*\n`;
   text += `• *Name:* ${customerName}\n`;
-  if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
-  if (email.trim()) text += `• *Email:* ${email.trim()}\n`;
-  
-  if (mode === "has-design") {
-    text += `\n📌 *IMPORTANT: Please attach/upload your ready design file directly in this chat!* 📎\n`;
-  } else {
-    text += `\n📌 *IMPORTANT: Please attach/upload your business logo and reference images directly in this chat!* 📎\n`;
+  if (customerPhone && customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
+  if (email && email.trim()) text += `• *Email:* ${email}\n`;
+  if (mode === 'has-design') {
+    text += `\n📎 *FILE ATTACHMENT: I will attach my CDR / PDF / PSD / AI / JPG file as a Document in this chat.*\n`;
   }
-  
-  text += `\nPlease guide me on the next steps. Thank you!`;
+  text += `\nPlease confirm pricing quote and turnaround time. Thank you!`;
 
   return text;
 }
 
-// JOURNEY E: GENERAL / CONTACT INQUIRY MESSAGE
+// JOURNEY E: GENERAL CONTACT FORM INQUIRY MESSAGE
 export function buildGeneralInquiryMessage({
   name = "Customer",
   phone = "",
@@ -155,19 +137,19 @@ export function buildGeneralInquiryMessage({
   message = ""
 }) {
   let text = `Hello Kamali Digital Studio,\n\n`;
-  text += `I have sent an inquiry from your website.\n\n`;
-  text += `💬 *CUSTOMER CONTACT INQUIRY*\n`;
+  text += `I have a general inquiry from your website contact form:\n\n`;
+  text += `💬 *INQUIRY DETAILS*\n`;
   text += `• *Name:* ${name}\n`;
-  if (phone.trim()) text += `• *Phone:* ${phone}\n`;
-  if (email.trim()) text += `• *Email:* ${email}\n`;
-  if (message.trim()) text += `• *Query / Requirements:* ${message.trim()}\n\n`;
-  text += `Please get in touch with me. Thank you!`;
+  if (phone && phone.trim()) text += `• *Phone:* ${phone.trim()}\n`;
+  if (email && email.trim()) text += `• *Email:* ${email.trim()}\n`;
+  if (message && message.trim()) text += `• *Message:* ${message.trim()}\n`;
+  text += `\nPlease get in touch with me at your earliest convenience. Thank you!`;
 
   return text;
 }
 
 export function generateWhatsAppLink(messageText) {
+  const phone = studioConfig.contact.whatsappPhone;
   const encodedText = encodeURIComponent(messageText);
-  const targetPhone = studioConfig.whatsappNumber;
-  return `https://wa.me/${targetPhone}?text=${encodedText}`;
+  return `https://wa.me/${phone}?text=${encodedText}`;
 }
