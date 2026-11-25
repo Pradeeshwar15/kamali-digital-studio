@@ -4,7 +4,7 @@ import { generateWhatsAppLink, buildWhatsAppOrderMessage } from '../../utils/wha
 import { calculateFramePrice } from '../../utils/priceCalculator.js';
 import { frameStyles } from '../../data/frames.js';
 import { frameSizes, frameFinishes, mattingOptions } from '../../data/pricing.js';
-import { X, MessageSquare, Copy, Check, Sparkles, Send, MapPin, Phone, User } from 'lucide-react';
+import { X, MessageSquare, Copy, Check, Sparkles, Send, MapPin, Phone, User, Paperclip } from 'lucide-react';
 
 export default function WhatsAppOrderModal({
   isOpen,
@@ -101,6 +101,17 @@ export default function WhatsAppOrderModal({
               • <strong>Custom Text:</strong> "{customText.trim()}"
             </div>
           )}
+        </div>
+
+        {/* Option A: Photo Delivery Guidance Box */}
+        <div className="p-3.5 rounded-xl bg-studio-orange/10 border border-studio-orange/30 text-xs text-gray-200 space-y-1.5">
+          <div className="flex items-center gap-1.5 text-studio-orange font-bold text-xs uppercase tracking-wider">
+            <Paperclip className="w-4 h-4 shrink-0 text-studio-orange" />
+            <span>How to Send Your Photo For HD Printing</span>
+          </div>
+          <p className="text-[11px] text-gray-300 leading-relaxed">
+            When WhatsApp opens, tap the <strong className="text-white">Paperclip (📎) icon</strong> and choose <strong className="text-white">'Document'</strong> to attach your original camera photo with zero quality loss!
+          </p>
         </div>
 
         <form onSubmit={handleSendWhatsApp} className="space-y-4">

@@ -155,6 +155,7 @@ export default function Navbar({ activeTab, setActiveTab, onOpenDesigner, onOpen
               onClick={() => {
                 setActiveTab('designer');
                 setMobileMenuOpen(false);
+                onOpenDesigner && onOpenDesigner();
               }}
               className="w-full py-3 rounded-xl font-bold text-gray-200 bg-white/5 border border-white/10 flex items-center justify-center gap-2 text-center"
             >

@@ -23,6 +23,7 @@ export default {
       fontFamily: {
         serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        script: ['"Great Vibes"', 'cursive'],
       },
       boxShadow: {
         'glow-orange': '0 0 25px rgba(255, 107, 0, 0.4)',

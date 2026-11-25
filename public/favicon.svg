@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B00" />
+      <stop offset="100%" stop-color="#D4AF37" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0A0A0C" />
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="url(#grad)" stroke-width="2" />
+  <!-- Camera Body -->
+  <path d="M16 26 C16 23.5, 17.5 22, 20 22 L24 22 L26.5 18 L37.5 18 L40 22 L44 22 C46.5 22, 48 23.5, 48 26 L48 42 C48 44.5, 46.5 46, 44 46 L20 46 C17.5 46, 16 44.5, 16 42 Z" fill="#121216" stroke="url(#grad)" stroke-width="2.5" stroke-linejoin="round" />
+  <!-- Lens -->
+  <circle cx="32" cy="34" r="8.5" fill="#0A0A0C" stroke="url(#grad)" stroke-width="2.5" />
+  <circle cx="32" cy="34" r="4.5" fill="#FF6B00" />
+  <!-- Flash Dot -->
+  <circle cx="42" cy="27" r="1.5" fill="#D4AF37" />
+</svg>
+

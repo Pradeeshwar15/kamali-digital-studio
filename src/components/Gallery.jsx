@@ -1,16 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { galleryCategories, galleryItems } from '../data/gallery.js';
 import Lightbox from './Lightbox.jsx';
-import { Camera, Eye, Frame, Sparkles, MapPin, ArrowRight, Layers, Heart } from 'lucide-react';
+import { Camera, Eye, Frame, Sparkles, MapPin, ArrowRight, Loader2 } from 'lucide-react';
+
+// Reusable Image component with Skeleton Loader for performance
+const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className={`relative w-full ${aspectRatio} bg-white/5 overflow-hidden`}>
+      {/* Skeleton Pulse */}
+      {!loaded && (
+        <div className="absolute inset-0 bg-white/10 animate-pulse" />
+      )}
+      
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} absolute inset-0 w-full h-full object-cover transition-opacity duration-700`}
+      />
+    </div>
+  );
+};
 
 export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [activeItemIndex, setActiveItemIndex] = useState(null);
+  
+  // Pagination State
+  const [visibleCount, setVisibleCount] = useState(12);
+  const loaderRef = useRef(null);
 
   const filteredItems = selectedCategory === "ALL"
     ? galleryItems
     : galleryItems.filter(item => item.category === selectedCategory);
 
+  // Reset pagination when changing categories
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [selectedCategory]);
+
+  // Infinite Scroll Observer
+  useEffect(() => {
+    if (visibleCount >= filteredItems.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // Load 12 more items
+          setTimeout(() => {
+            setVisibleCount((prev) => Math.min(prev + 12, filteredItems.length));
+          }, 300);
+        }
+      },
+      { rootMargin: "600px" } // Trigger 600px before reaching the bottom for smooth scrolling
+    );
+
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
+    }
+    
+    return () => {
+      if (loaderRef.current) observer.unobserve(loaderRef.current);
+    };
+  }, [visibleCount, filteredItems.length]);
+
+  const visibleItems = filteredItems.slice(0, visibleCount);
   const heroFeaturedItem = galleryItems[0];
 
   const handlePrevItem = () => {
@@ -56,10 +113,11 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
                }}>
             
             <div className="relative h-[260px] sm:h-[420px] w-full overflow-hidden bg-black">
-              <img
+              <ImageWithSkeleton
                 src={heroFeaturedItem.image}
                 alt={heroFeaturedItem.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out filter brightness-90 group-hover:brightness-100"
+                aspectRatio="h-full"
+                className="group-hover:scale-105 transition-transform duration-1000 ease-out filter brightness-90 group-hover:brightness-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
@@ -114,8 +172,8 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
           </div>
         )}
 
-        {/* CATEGORY FILTER BAR (Mobile Scrollable) */}
-        <div className="flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto pb-3 mb-6 sm:mb-12 no-scrollbar bg-white/5 p-1.5 rounded-xl sm:rounded-2xl border border-white/10 backdrop-blur-md">
+        {/* CATEGORY FILTER BAR */}
+        <div className="flex items-center justify-start sm:justify-center flex-nowrap sm:flex-wrap gap-2 overflow-x-auto sm:overflow-visible pb-3 sm:pb-2 mb-6 sm:mb-12 no-scrollbar bg-white/5 p-1.5 rounded-xl sm:rounded-2xl border border-white/10 backdrop-blur-md">
           {galleryCategories.map((cat) => {
             const count = cat === "ALL" ? galleryItems.length : galleryItems.filter(i => i.category === cat).length;
             const isSelected = selectedCategory === cat;
@@ -123,7 +181,7 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 whitespace-nowrap flex items-center gap-1 sm:gap-2 ${
+                className={`shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-all duration-200 flex items-center gap-1 sm:gap-2 ${
                   isSelected
                     ? 'bg-studio-orange text-white shadow-glow-orange scale-105'
                     : 'text-gray-300 hover:text-white hover:bg-white/10'
@@ -138,20 +196,20 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
           })}
         </div>
 
-        {/* DYNAMIC MASONRY WALL GRID — 2 COLUMNS ON MOBILE (columns-2 lg:columns-3) */}
+        {/* DYNAMIC MASONRY WALL GRID */}
         <div className="columns-2 lg:columns-3 gap-3 space-y-3 sm:gap-5 sm:space-y-5">
-          {filteredItems.map((item, index) => (
+          {visibleItems.map((item, index) => (
             <div
-              key={item.id}
+              key={`${item.id}-${index}`}
               onClick={() => setActiveItemIndex(index)}
               className="break-inside-avoid relative rounded-xl sm:rounded-2xl overflow-hidden bg-studio-card border border-white/10 group cursor-pointer shadow-lg hover:shadow-glow-orange transition-all duration-500 hover:-translate-y-1"
             >
-              {/* Natural Aspect Image */}
-              <img
+              {/* Natural Aspect Image with Skeleton Loader */}
+              <ImageWithSkeleton
                 src={item.image}
                 alt={item.title}
-                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                loading="lazy"
+                aspectRatio={item.aspectRatio}
+                className="group-hover:scale-105 transition-transform duration-700 ease-out"
               />
 
               {/* Category Pill Tag */}
@@ -217,11 +275,20 @@ export default function Gallery({ onFrameThisPhoto, onBookPhotography }) {
                     </span>
                   </div>
                 </div>
-
               </div>
             </div>
           ))}
         </div>
+
+        {/* Infinite Scroll Loader Trigger */}
+        {visibleCount < filteredItems.length && (
+          <div ref={loaderRef} className="w-full py-16 flex justify-center items-center">
+            <div className="flex flex-col items-center gap-3">
+              <Loader2 className="w-8 h-8 text-studio-orange animate-spin" />
+              <span className="text-xs font-bold uppercase tracking-widest text-gray-400">Loading More Photos...</span>
+            </div>
+          </div>
+        )}
 
       </div>
 

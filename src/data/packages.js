@@ -63,8 +63,8 @@ export const weddingPackages = [
     price: "1,20,000",
     numericPrice: 120000,
     popular: false,
-    highlightColor: "from-purple-900 via-amber-600 to-yellow-600",
-    borderColor: "border-amber-400 shadow-glow-gold",
+    highlightColor: "from-studio-orange to-amber-700",
+    borderColor: "border-amber-600 shadow-glow-gold",
     features: [
       "Traditional Photography & Videography",
       "Candid Photography & Candid Videography",
@@ -91,5 +91,118 @@ export const weddingPackages = [
       "Pendrive - 2"
     ],
     terms: "Album delivery within 45 days. High quality results & on-time delivery guaranteed."
+  }
+];
+
+export const smallEventPackages = [
+  {
+    id: "small-10k",
+    name: "Essential Small Event",
+    tagline: "Perfect for Birthday, Ear Piercings & Intimate Gatherings",
+    badge: "Budget Friendly",
+    price: "10,000",
+    numericPrice: 10000,
+    popular: false,
+    highlightColor: "from-slate-700 to-slate-900",
+    borderColor: "border-white/20",
+    occasions: ["Engagement", "Birthday", "Puberty", "House Warming", "Ear Piercings"],
+    features: [
+      "Photo - 1 Coverage",
+      "Unlimited Photos Taken",
+      "Selected 160 Photos in Lux Album",
+      "Lux Album + Pad + Bag Included",
+      "Premium Wall Frame - 1",
+      "Studio Desk Calendar - 1"
+    ],
+    complimentary: [
+      "Lux Album Pad & Bag",
+      "Premium Frame - 1",
+      "Desk Calendar - 1"
+    ],
+    terms: "Album delivery within 30 days after client photo selection. Professional photography guaranteed."
+  },
+  {
+    id: "small-14k",
+    name: "Classic Small Event",
+    tagline: "Candid Poses + 2 Frames for Milestone Moments",
+    badge: "Classic Choice",
+    price: "14,000",
+    numericPrice: 14000,
+    popular: false,
+    highlightColor: "from-amber-800 to-amber-950",
+    borderColor: "border-amber-600/40",
+    occasions: ["Engagement", "Birthday", "Puberty", "House Warming", "Ear Piercings"],
+    features: [
+      "Photo - 1 (Candid Pose Coverage)",
+      "Unlimited Photos Taken",
+      "Selected 220 Photos in Deluxe Album",
+      "Lux Album Box + Pad + Bag",
+      "Premium Wall Frames - 2",
+      "Studio Desk Calendar - 1"
+    ],
+    complimentary: [
+      "Lux Album Box + Pad + Bag",
+      "Premium Frames - 2",
+      "Desk Calendar - 1"
+    ],
+    terms: "Album delivery within 30 days after client selection."
+  },
+  {
+    id: "small-17k",
+    name: "Deluxe Small Event",
+    tagline: "Includes Complimentary Outdoor Shoot & Baby Portraits",
+    badge: "Most Popular",
+    price: "17,000",
+    numericPrice: 17000,
+    popular: true,
+    highlightColor: "from-studio-orange to-amber-700",
+    borderColor: "border-studio-orange shadow-glow-orange",
+    occasions: ["Engagement", "Birthday", "Puberty", "House Warming", "Ear Piercings"],
+    features: [
+      "Photo - 1 (Candid Pose Coverage)",
+      "Complimentary Outdoor Shoot / Baby Portraits",
+      "Unlimited Photos Taken",
+      "Selected 250 Photos in Deluxe Album",
+      "Lux Album Box + Pad + Bag",
+      "Premium Wall Frames - 2",
+      "Studio Desk Calendar - 1"
+    ],
+    complimentary: [
+      "Outdoor Shoot / Baby Portraits",
+      "Lux Album Box + Pad + Bag",
+      "Premium Frames - 2",
+      "Desk Calendar - 1"
+    ],
+    terms: "Album delivery within 30 days. Perfect for celebrations requiring outdoor portraiture."
+  },
+  {
+    id: "small-25k",
+    name: "Grand Small Event + 4K Video",
+    tagline: "Complete Photo + 4K Ultra HD Traditional Video Coverage",
+    badge: "Full Photo + 4K Video",
+    price: "25,000",
+    numericPrice: 25000,
+    popular: false,
+    highlightColor: "from-studio-orange to-amber-700",
+    borderColor: "border-amber-500 shadow-glow-gold",
+    occasions: ["Engagement", "Birthday", "Puberty", "House Warming", "Ear Piercings"],
+    features: [
+      "Photo - 1 (Candid Pose Coverage)",
+      "Traditional Video - 1 (4K Ultra HD)",
+      "Complimentary Outdoor Shoot / Baby Portraits",
+      "Unlimited Photos Taken",
+      "Selected 230 Photos in Deluxe Album",
+      "Lux Album Box + Pad + Bag",
+      "Premium Wall Frames - 2",
+      "Studio Desk Calendar - 1"
+    ],
+    complimentary: [
+      "4K Video Recording",
+      "Outdoor Shoot / Baby Portraits",
+      "Lux Album Box + Pad + Bag",
+      "Premium Frames - 2",
+      "Desk Calendar - 1"
+    ],
+    terms: "Complete photo & 4K video coverage for grand housewarmings, puberty functions & engagements."
   }
 ];

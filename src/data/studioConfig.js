@@ -3,7 +3,7 @@ export const studioConfig = {
   tagline: "Capturing Moments, Creating Memories",
   phone: "+91 78260 60289",
   whatsappNumber: "917826060289",
-  email: "[EMAIL_ADDRESS]",
+  email: "kamalidigitalstudio@gmail.com",
   address: "Kamali Studio, No. 65 Loganathan Street, Cheyyar",
   workingHours: "Mon - Sat: 9:00 AM - 9:00 PM | Sun: 10:00 AM - 6:00 PM",
   googleMapsUrl: "https://maps.app.goo.gl/WiSMjUDaBoDGE6a47",

@@ -19,7 +19,7 @@ export default function Products({ onOpenDesigner, onOpenProductInquiry, onOpenV
         if (selectedCategory === "FRAMES") return p.id === "photo-frames";
         if (selectedCategory === "CARDS") return p.id === "visiting-cards";
         if (selectedCategory === "PRINTING") return p.id === "photo-printing" || p.id === "posters-invitations" || p.id === "passport-photos";
-        if (selectedCategory === "DISPLAYS") return p.id === "led-wall-display" || p.id === "backlight-lightbox";
+        if (selectedCategory === "DISPLAYS") return p.id === "led-wall" || p.id === "backlight-frames";
         return true;
       });
 
@@ -28,6 +28,8 @@ export default function Products({ onOpenDesigner, onOpenProductInquiry, onOpenV
       onOpenDesigner && onOpenDesigner();
     } else if (product.actionType === "visiting-card") {
       onOpenVisitingCardModal && onOpenVisitingCardModal();
+    } else if (product.actionType === "contact") {
+      onOpenContact && onOpenContact();
     } else {
       onOpenProductInquiry && onOpenProductInquiry(product);
     }

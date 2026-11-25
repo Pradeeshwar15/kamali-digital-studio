@@ -69,7 +69,7 @@ export function buildWhatsAppOrderMessage({
   if (customerPhone.trim()) text += `• *Phone:* ${customerPhone}\n`;
   text += `• *Fulfillment:* ${deliveryOption}\n`;
   if (notes.trim()) text += `• *Note:* ${notes.trim()}\n`;
-  text += `\n📌 *IMPORTANT: Please attach/upload your photo for this frame directly in this chat!* 📸\n`;
+  text += `\n📌 *PHOTO ATTACHMENT: Please attach your photo as a DOCUMENT (📎 ➔ Document) in this chat for 100% full-resolution HD print quality!* 📸\n`;
   text += `\nPlease confirm order availability and final price. Thank you!`;
 
   return text;
@@ -143,6 +143,25 @@ export function buildVisitingCardRequestMessage({
   }
   
   text += `\nPlease guide me on the next steps. Thank you!`;
+
+  return text;
+}
+
+// JOURNEY E: GENERAL / CONTACT INQUIRY MESSAGE
+export function buildGeneralInquiryMessage({
+  name = "Customer",
+  phone = "",
+  email = "",
+  message = ""
+}) {
+  let text = `Hello Kamali Digital Studio,\n\n`;
+  text += `I have sent an inquiry from your website.\n\n`;
+  text += `💬 *CUSTOMER CONTACT INQUIRY*\n`;
+  text += `• *Name:* ${name}\n`;
+  if (phone.trim()) text += `• *Phone:* ${phone}\n`;
+  if (email.trim()) text += `• *Email:* ${email}\n`;
+  if (message.trim()) text += `• *Query / Requirements:* ${message.trim()}\n\n`;
+  text += `Please get in touch with me. Thank you!`;
 
   return text;
 }

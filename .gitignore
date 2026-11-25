@@ -16,6 +16,10 @@ dist-ssr
 # Local env files
 *.local
 
+# Local raw photos (for manual reference)
+photos/
+public/images/raw_incoming/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

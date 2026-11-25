@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StepFrameSelect from './StepFrameSelect.jsx';
 import StepPhotoUpload from './StepPhotoUpload.jsx';
 import StepCustomization from './StepCustomization.jsx';
@@ -25,6 +25,27 @@ export default function FrameDesigner({
   const [activeFilter, setActiveFilter] = useState("none");
   const [quantity, setQuantity] = useState(1);
   const [orderModalOpen, setOrderModalOpen] = useState(false);
+
+  // Sync state if props change when user interacts with other sections (Occasions, FrameShowcase, Gallery)
+  useEffect(() => {
+    if (initialFrameId) {
+      setSelectedFrameId(initialFrameId);
+    }
+  }, [initialFrameId]);
+
+  useEffect(() => {
+    if (initialPhotoUrl) {
+      setPhotoUrl(initialPhotoUrl);
+    }
+  }, [initialPhotoUrl]);
+
+  useEffect(() => {
+    if (initialOccasion) {
+      if (initialOccasion.suggestedFrame) setSelectedFrameId(initialOccasion.suggestedFrame);
+      if (initialOccasion.suggestedSize) setSelectedSizeId(initialOccasion.suggestedSize);
+      if (initialOccasion.sampleText) setCustomText(initialOccasion.sampleText);
+    }
+  }, [initialOccasion]);
 
   const basePricing = calculateFramePrice({
     frameId: selectedFrameId,

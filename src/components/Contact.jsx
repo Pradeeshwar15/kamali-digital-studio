@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { studioConfig } from '../data/studioConfig.js';
+import { generateWhatsAppLink, buildGeneralInquiryMessage } from '../utils/whatsappHelper.js';
 import { Phone, MessageSquare, Mail, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
@@ -8,8 +9,12 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const msg = buildGeneralInquiryMessage(formData);
+    const link = generateWhatsAppLink(msg);
+    window.open(link, '_blank');
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setFormData({ name: '', phone: '', email: '', message: '' });
+    setTimeout(() => setSubmitted(false), 8000);
   };
 
   return (

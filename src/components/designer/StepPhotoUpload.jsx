@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { Upload, Image as ImageIcon, Trash2, RefreshCw, Sparkles, CheckCircle2, Contrast } from 'lucide-react';
 
 const samplePhotos = [
-  { label: "Wedding Couple", url: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=800&auto=format&fit=crop" },
-  { label: "Family Portrait", url: "https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=800&auto=format&fit=crop" },
-  { label: "Studio Model", url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop" },
-  { label: "Baby Smile", url: "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=800&auto=format&fit=crop" }
+  { label: "Wedding Couple", url: "/images/gallery/wedding/wedding1.webp" },
+  { label: "Family Portrait", url: "/images/gallery/events/event1.webp" },
+  { label: "Studio Model", url: "/images/gallery/portraits/portrait1.webp" },
+  { label: "Baby Smile", url: "/images/gallery/portraits/baby1.webp" }
 ];
 
 export const photoFilters = [
@@ -28,15 +28,12 @@ export default function StepPhotoUpload({
   const handleFileSelect = (e) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 25 * 1024 * 1024) {
-        alert("File size exceeds 25MB limits. Please upload a smaller image.");
+      if (file.size > 50 * 1024 * 1024) {
+        alert("File size exceeds 50MB limit. Please upload a smaller image.");
         return;
       }
-      const reader = new FileReader();
-      reader.onload = (evt) => {
-        onPhotoChange(evt.target.result);
-      };
-      reader.readAsDataURL(file);
+      const objectUrl = URL.createObjectURL(file);
+      onPhotoChange(objectUrl);
     }
   };
 
@@ -44,11 +41,12 @@ export default function StepPhotoUpload({
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (evt) => {
-        onPhotoChange(evt.target.result);
-      };
-      reader.readAsDataURL(file);
+      if (file.size > 50 * 1024 * 1024) {
+        alert("File size exceeds 50MB limit. Please upload a smaller image.");
+        return;
+      }
+      const objectUrl = URL.createObjectURL(file);
+      onPhotoChange(objectUrl);
     }
   };
 

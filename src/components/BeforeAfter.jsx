@@ -47,14 +47,13 @@ export default function BeforeAfter() {
 
             {/* BEFORE IMAGE (Clipped Overlay Layer) */}
             <div 
-              className="absolute inset-y-0 left-0 overflow-hidden border-r-2 border-white"
-              style={{ width: `${sliderPos}%` }}
+              className="absolute inset-0 w-full h-full"
+              style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
             >
               <img
                 src={beforeImg}
                 alt="Before Restoration"
-                className="absolute inset-y-0 left-0 h-full max-w-none object-cover"
-                style={{ width: '100%', minWidth: '800px', height: '100%' }}
+                className="w-full h-full object-cover"
               />
               <div className="absolute bottom-4 left-4 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-gray-300 text-xs font-bold tracking-widest border border-white/10 shadow-lg">
                 BEFORE (RAW / ORIGINAL)

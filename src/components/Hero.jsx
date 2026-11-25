@@ -3,11 +3,11 @@ import { studioConfig } from '../data/studioConfig.js';
 import { Sparkles, ArrowRight, Camera, Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1920&auto=format&fit=crop', // Wedding
-  'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1920&auto=format&fit=crop', // Traditional
-  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1920&auto=format&fit=crop', // Pre-wedding
-  'https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=1920&auto=format&fit=crop', // Post-wedding
-  'https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1920&auto=format&fit=crop'  // Drone
+  '/images/hero/hero-1.webp',
+  '/images/hero/hero-2.webp',
+  '/images/hero/hero-3.webp',
+  '/images/hero/hero-4.webp',
+  '/images/hero/hero-5.webp'
 ];
 
 export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExploreWork }) {

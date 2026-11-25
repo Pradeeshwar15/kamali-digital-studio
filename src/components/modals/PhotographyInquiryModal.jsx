@@ -17,6 +17,13 @@ export default function PhotographyInquiryModal({
   const [budget, setBudget] = useState('');
   const [requirements, setRequirements] = useState('');
 
+  // Update state if the initialService prop changes (e.g. clicking different gallery categories)
+  React.useEffect(() => {
+    if (initialService) {
+      setServiceName(initialService);
+    }
+  }, [initialService]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e) => {
@@ -36,6 +43,26 @@ export default function PhotographyInquiryModal({
     const link = generateWhatsAppLink(msg);
     window.open(link, '_blank');
     onClose();
+  };
+
+  const standardServiceOptions = [
+    "Wedding Package Inquiry",
+    "Wedding Photography & Videography",
+    "Event Photography",
+    "Portrait Photography",
+    "Outdoor Shoot",
+    "4K Drone Aerial Coverage"
+  ];
+
+  // Ensure the passed serviceName exists in the options list so the select dropdown works correctly
+  const renderServiceOptions = () => {
+    const options = [...standardServiceOptions];
+    if (serviceName && !options.includes(serviceName)) {
+      options.unshift(serviceName);
+    }
+    return options.map(opt => (
+      <option key={opt} value={opt}>{opt}</option>
+    ));
   };
 
   return (
@@ -105,12 +132,7 @@ export default function PhotographyInquiryModal({
               onChange={(e) => setServiceName(e.target.value)}
               className="w-full px-3.5 py-2.5 rounded-xl bg-black/60 border border-white/15 text-white text-xs"
             >
-              <option value="Wedding Package Inquiry">Wedding Package Inquiry</option>
-              <option value="Wedding Photography & Videography">Wedding Photography & Videography</option>
-              <option value="Event Photography">Event / Birthday Photography</option>
-              <option value="Portrait Photography">Portrait & Model Shoot</option>
-              <option value="Outdoor Shoot">Outdoor Pre-Wedding / Couple Shoot</option>
-              <option value="4K Drone Aerial Coverage">4K Drone Aerial Coverage</option>
+              {renderServiceOptions()}
             </select>
           </div>
 

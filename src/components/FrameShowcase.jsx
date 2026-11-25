@@ -2,9 +2,9 @@ import React from 'react';
 import { frameStyles } from '../data/frames.js';
 import { Frame, Check, ArrowRight, Sparkles } from 'lucide-react';
 
-export default function FrameShowcase({ onCustomizeFrame }) {
+export default function FrameShowcase({ onCustomizeFrame, isVisibleMobile = true }) {
   return (
-    <section className="py-16 sm:py-20 bg-[#0a0a0c] relative border-t border-white/5">
+    <section className={`py-16 sm:py-20 bg-[#0a0a0c] relative border-t border-white/5 ${!isVisibleMobile ? 'hidden sm:block' : ''}`}>
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Section Title */}
@@ -35,7 +35,7 @@ export default function FrameShowcase({ onCustomizeFrame }) {
                 <div 
                   className={`w-4/5 h-4/5 rounded bg-cover bg-center transition-transform duration-500 group-hover:scale-105 ${frame.borderClass}`}
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop')`
+                    backgroundImage: `url('/images/gallery/wedding/wedding1.webp')`
                   }}
                 />
 

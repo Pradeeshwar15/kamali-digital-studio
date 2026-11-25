@@ -42,6 +42,12 @@
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15), 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
+.frame-brushed-silver {
+  border: 20px solid #c0c0c0;
+  border-image: linear-gradient(135deg, #f8fafc 0%, #94a3b8 35%, #e2e8f0 70%, #64748b 100%) 1;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4), 0 12px 30px rgba(148, 163, 184, 0.3);
+}
+
 .frame-natural-wood {
   border: 22px solid #8b5a2b;
   border-image: linear-gradient(135deg, #a06e3b 0%, #5c3a1e 50%, #7c4d25 100%) 1;

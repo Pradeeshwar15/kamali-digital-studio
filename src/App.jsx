@@ -81,8 +81,8 @@ export default function App() {
           onOpenPhotographyInquiry={() => handleOpenPhotographyInquiry()}
           onOpenDesigner={() => handleOpenDesigner()}
           onExploreWork={() => {
-            setActiveTab('packages');
-            const el = document.getElementById('packages');
+            setActiveTab('gallery');
+            const el = document.getElementById('gallery');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
         />
@@ -118,6 +118,7 @@ export default function App() {
         {/* 6. Bestselling Frame Styles Showcase */}
         <FrameShowcase
           onCustomizeFrame={(frameId) => handleOpenDesigner(frameId)}
+          isVisibleMobile={activeTab === 'designer'}
         />
 
         {/* 7. Photo Restoration Before / After Showcase */}

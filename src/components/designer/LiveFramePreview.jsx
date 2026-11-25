@@ -34,7 +34,7 @@ export default function LiveFramePreview({
   const selectedSize = frameSizes.find(s => s.id === sizeId) || frameSizes[1];
   const filterCss = photoFilters.find(f => f.id === activeFilter)?.cssFilter || "none";
 
-  const defaultPhoto = "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000&auto=format&fit=crop";
+  const defaultPhoto = "/images/gallery/wedding/wedding1.webp";
   const displayPhoto = photoUrl || defaultPhoto;
 
   const bgClasses = {

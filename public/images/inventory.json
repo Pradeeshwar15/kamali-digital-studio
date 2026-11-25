@@ -1,0 +1,425 @@
+[
+  {
+    "original": "baby1.jpg",
+    "category": "portraits",
+    "webpName": "baby1.webp",
+    "relativePath": "/images/gallery/portraits/baby1.webp",
+    "width": 900,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "baby2.jpg",
+    "category": "portraits",
+    "webpName": "baby2.webp",
+    "relativePath": "/images/gallery/portraits/baby2.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "baby4.jpg",
+    "category": "portraits",
+    "webpName": "baby4.webp",
+    "relativePath": "/images/gallery/portraits/baby4.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "baby5.jpg",
+    "category": "portraits",
+    "webpName": "baby5.webp",
+    "relativePath": "/images/gallery/portraits/baby5.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "baby6.jpg",
+    "category": "portraits",
+    "webpName": "baby6.webp",
+    "relativePath": "/images/gallery/portraits/baby6.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "candit.jpg",
+    "category": "candid",
+    "webpName": "candit.webp",
+    "relativePath": "/images/gallery/candid/candit.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "candit1.jpg",
+    "category": "candid",
+    "webpName": "candit1.webp",
+    "relativePath": "/images/gallery/candid/candit1.webp",
+    "width": 1279,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "candit10.jpg",
+    "category": "candid",
+    "webpName": "candit10.webp",
+    "relativePath": "/images/gallery/candid/candit10.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "candit13.jpg",
+    "category": "candid",
+    "webpName": "candit13.webp",
+    "relativePath": "/images/gallery/candid/candit13.webp",
+    "width": 6720,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "candit4.jpg",
+    "category": "candid",
+    "webpName": "candit4.webp",
+    "relativePath": "/images/gallery/candid/candit4.webp",
+    "width": 6720,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "candit8.jpg",
+    "category": "candid",
+    "webpName": "candit8.webp",
+    "relativePath": "/images/gallery/candid/candit8.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "event1.jpg",
+    "category": "events",
+    "webpName": "event1.webp",
+    "relativePath": "/images/gallery/events/event1.webp",
+    "width": 6720,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "event2.jpg",
+    "category": "events",
+    "webpName": "event2.webp",
+    "relativePath": "/images/gallery/events/event2.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "event3.jpg",
+    "category": "events",
+    "webpName": "event3.webp",
+    "relativePath": "/images/gallery/events/event3.webp",
+    "width": 4672,
+    "height": 5840,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "event6.jpg",
+    "category": "events",
+    "webpName": "event6.webp",
+    "relativePath": "/images/gallery/events/event6.webp",
+    "width": 6720,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "IMG-20261125-WA0006.jpg",
+    "category": "events",
+    "webpName": "IMG-20261125-WA0006.webp",
+    "relativePath": "/images/gallery/events/IMG-20261125-WA0006.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "IMG-20261125-WA0008.jpg",
+    "category": "events",
+    "webpName": "IMG-20261125-WA0008.webp",
+    "relativePath": "/images/gallery/events/IMG-20261125-WA0008.webp",
+    "width": 1600,
+    "height": 1066,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "IMG-20261125-WA0012.jpg",
+    "category": "events",
+    "webpName": "IMG-20261125-WA0012.webp",
+    "relativePath": "/images/gallery/events/IMG-20261125-WA0012.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "IMG-20261125-WA0013.jpg",
+    "category": "events",
+    "webpName": "IMG-20261125-WA0013.webp",
+    "relativePath": "/images/gallery/events/IMG-20261125-WA0013.webp",
+    "width": 1600,
+    "height": 1066,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "logo.jpg",
+    "category": "branding",
+    "webpName": "logo.webp",
+    "relativePath": "/images/gallery/branding/logo.webp",
+    "width": 853,
+    "height": 1280,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor11.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor11.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor11.webp",
+    "width": 5600,
+    "height": 7000,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor12.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor12.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor12.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor14.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor14.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor14.webp",
+    "width": 4672,
+    "height": 5840,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor2.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor2.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor2.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor3.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor3.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor3.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "outdoor6.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor6.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor6.webp",
+    "width": 6717,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "outdoor7.jpg",
+    "category": "outdoor",
+    "webpName": "outdoor7.webp",
+    "relativePath": "/images/gallery/outdoor/outdoor7.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "portrait1.jpg",
+    "category": "portraits",
+    "webpName": "portrait1.webp",
+    "relativePath": "/images/gallery/portraits/portrait1.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "portrait2.jpg",
+    "category": "portraits",
+    "webpName": "portrait2.webp",
+    "relativePath": "/images/gallery/portraits/portrait2.webp",
+    "width": 1280,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "portrait3.jpg",
+    "category": "portraits",
+    "webpName": "portrait3.webp",
+    "relativePath": "/images/gallery/portraits/portrait3.webp",
+    "width": 1280,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "portrait4.jpg",
+    "category": "portraits",
+    "webpName": "portrait4.webp",
+    "relativePath": "/images/gallery/portraits/portrait4.webp",
+    "width": 1280,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "prewedding1.jpg",
+    "category": "prewedding",
+    "webpName": "prewedding1.webp",
+    "relativePath": "/images/gallery/prewedding/prewedding1.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "prewedding3.jpg",
+    "category": "prewedding",
+    "webpName": "prewedding3.webp",
+    "relativePath": "/images/gallery/prewedding/prewedding3.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "traditional1.jpg",
+    "category": "traditional",
+    "webpName": "traditional1.webp",
+    "relativePath": "/images/gallery/traditional/traditional1.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "weddig5.jpg",
+    "category": "wedding",
+    "webpName": "weddig5.webp",
+    "relativePath": "/images/gallery/wedding/weddig5.webp",
+    "width": 5244,
+    "height": 6554,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding.jpg",
+    "category": "wedding",
+    "webpName": "wedding.webp",
+    "relativePath": "/images/gallery/wedding/wedding.webp",
+    "width": 1280,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding1.jpg",
+    "category": "wedding",
+    "webpName": "wedding1.webp",
+    "relativePath": "/images/gallery/wedding/wedding1.webp",
+    "width": 1280,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding10.jpg",
+    "category": "wedding",
+    "webpName": "wedding10.webp",
+    "relativePath": "/images/gallery/wedding/wedding10.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding12.jpg",
+    "category": "wedding",
+    "webpName": "wedding12.webp",
+    "relativePath": "/images/gallery/wedding/wedding12.webp",
+    "width": 6720,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "wedding13.jpg",
+    "category": "wedding",
+    "webpName": "wedding13.webp",
+    "relativePath": "/images/gallery/wedding/wedding13.webp",
+    "width": 5464,
+    "height": 6830,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding2.jpg",
+    "category": "wedding",
+    "webpName": "wedding2.webp",
+    "relativePath": "/images/gallery/wedding/wedding2.webp",
+    "width": 1066,
+    "height": 1600,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding5.jpg",
+    "category": "wedding",
+    "webpName": "wedding5.webp",
+    "relativePath": "/images/gallery/wedding/wedding5.webp",
+    "width": 6720,
+    "height": 4480,
+    "aspectRatio": "landscape"
+  },
+  {
+    "original": "wedding6.jpg",
+    "category": "wedding",
+    "webpName": "wedding6.webp",
+    "relativePath": "/images/gallery/wedding/wedding6.webp",
+    "width": 4480,
+    "height": 6720,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding7.jpg",
+    "category": "wedding",
+    "webpName": "wedding7.webp",
+    "relativePath": "/images/gallery/wedding/wedding7.webp",
+    "width": 7787,
+    "height": 9733,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding8.jpg",
+    "category": "wedding",
+    "webpName": "wedding8.webp",
+    "relativePath": "/images/gallery/wedding/wedding8.webp",
+    "width": 3600,
+    "height": 4500,
+    "aspectRatio": "portrait"
+  },
+  {
+    "original": "wedding9.jpg",
+    "category": "wedding",
+    "webpName": "wedding9.webp",
+    "relativePath": "/images/gallery/wedding/wedding9.webp",
+    "width": 7787,
+    "height": 9733,
+    "aspectRatio": "portrait"
+  }
+]

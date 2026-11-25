@@ -48,7 +48,7 @@ export const frameStyles = [
     name: "Silver Frame",
     category: "Modern",
     basePrice: 480,
-    borderClass: "frame-elegant-white",
+    borderClass: "frame-brushed-silver",
     badge: "Sleek Metallic",
     description: "Brushed silver alloy moulding offering a crisp modern gallery finish for contemporary spaces.",
     previewColor: "#c0c0c0",
