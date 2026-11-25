@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { generateWhatsAppLink, buildWhatsAppOrderMessage } from '../../utils/whatsappHelper.js';
+import { sanitizeText, sanitizePhone, checkSubmissionRateLimit } from '../../utils/security.js';
 import { calculateFramePrice } from '../../utils/priceCalculator.js';
 import { frameStyles } from '../../data/frames.js';
 import { frameSizes, mattingOptions } from '../../data/pricing.js';
@@ -31,19 +32,23 @@ export default function WhatsAppOrderModal({
   const formattedGrandTotal = `₹${basePricing.grandTotal.toLocaleString('en-IN')}`;
 
   const orderData = {
-    customerName: customerName || 'Customer',
-    customerPhone,
-    deliveryOption,
-    notes,
+    customerName: sanitizeText(customerName) || 'Customer',
+    customerPhone: sanitizePhone(customerPhone),
+    deliveryOption: sanitizeText(deliveryOption),
+    notes: sanitizeText(notes, 500),
     frameId,
     sizeId,
     mattingId,
-    customText,
+    customText: sanitizeText(customText, 100),
     quantity
   };
 
   const handleSendWhatsApp = (e) => {
     e.preventDefault();
+    if (!checkSubmissionRateLimit('frame-order', 2500)) {
+      alert("Please wait a moment before sending another order request.");
+      return;
+    }
     confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } });
 
     const msg = buildWhatsAppOrderMessage(orderData);

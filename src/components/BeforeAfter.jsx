@@ -53,7 +53,9 @@ export default function BeforeAfter() {
               <img
                 src={afterImg}
                 alt="After Studio Retouching"
-                className="w-full h-full object-cover pointer-events-none"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+                className="w-full h-full object-cover pointer-events-none select-none"
               />
               <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-studio-orange text-white text-[10px] sm:text-xs font-bold tracking-widest shadow-lg">
                 AFTER (KAMALI STUDIO RETOUCH)
@@ -68,7 +70,9 @@ export default function BeforeAfter() {
               <img
                 src={beforeImg}
                 alt="Before Restoration"
-                className="w-full h-full object-cover pointer-events-none"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+                className="w-full h-full object-cover pointer-events-none select-none"
               />
               <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/80 backdrop-blur-md text-gray-300 text-[10px] sm:text-xs font-bold tracking-widest border border-white/10 shadow-lg">
                 BEFORE (RAW / ORIGINAL)

@@ -13,6 +13,7 @@ import About from './components/About.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import FloatingWhatsApp from './components/FloatingWhatsApp.jsx';
+import SecurityShield from './components/SecurityShield.jsx';
 
 // Modals
 import PhotographyInquiryModal from './components/modals/PhotographyInquiryModal.jsx';
@@ -150,6 +151,9 @@ export default function App() {
 
       {/* Floating WhatsApp Quick Action Button */}
       <FloatingWhatsApp />
+
+      {/* Security & Image Protection Shield */}
+      <SecurityShield />
 
       {/* JOURNEY A: Photography Booking Modal */}
       <PhotographyInquiryModal

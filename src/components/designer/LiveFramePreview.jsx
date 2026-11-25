@@ -126,7 +126,9 @@ export default function LiveFramePreview({
               <img
                 src={displayPhoto}
                 alt="Framed Photograph"
-                className="w-full h-full object-cover transition-all duration-300"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+                className="w-full h-full object-cover transition-all duration-300 pointer-events-none select-none"
                 style={{ filter: filterCss }}
               />
 

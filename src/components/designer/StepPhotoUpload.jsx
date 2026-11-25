@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
-import { Upload, Image as ImageIcon, Trash2, RefreshCw, Sparkles, CheckCircle2, Contrast } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Upload, Image as ImageIcon, Trash2, RefreshCw, Sparkles, CheckCircle2, Contrast, AlertCircle } from 'lucide-react';
+import { validateImageUpload } from '../../utils/security.js';
 
 const sampleBabyPhoto = "/images/gallery/portraits/baby-01.webp";
 
@@ -19,30 +20,30 @@ export default function StepPhotoUpload({
   onSelectFilter
 }) {
   const fileInputRef = useRef(null);
+  const [uploadError, setUploadError] = useState(null);
+
+  const processFile = (file) => {
+    if (!file) return;
+    setUploadError(null);
+    const validation = validateImageUpload(file);
+    if (!validation.valid) {
+      setUploadError(validation.error);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(file);
+    onPhotoChange(objectUrl);
+  };
 
   const handleFileSelect = (e) => {
     const file = e.target.files?.[0];
-    if (file) {
-      if (file.size > 50 * 1024 * 1024) {
-        alert("File size exceeds 50MB limit. Please upload a smaller image.");
-        return;
-      }
-      const objectUrl = URL.createObjectURL(file);
-      onPhotoChange(objectUrl);
-    }
+    processFile(file);
+    if (e.target) e.target.value = '';
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
-    if (file) {
-      if (file.size > 50 * 1024 * 1024) {
-        alert("File size exceeds 50MB limit. Please upload a smaller image.");
-        return;
-      }
-      const objectUrl = URL.createObjectURL(file);
-      onPhotoChange(objectUrl);
-    }
+    processFile(file);
   };
 
   return (
@@ -54,6 +55,14 @@ export default function StepPhotoUpload({
         </h3>
         <span className="text-xs text-gray-400 font-medium">JPG, PNG, WebP</span>
       </div>
+
+      {/* Security File Validation Alert */}
+      {uploadError && (
+        <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs flex items-center gap-2 animate-fadeIn">
+          <AlertCircle className="w-4 h-4 shrink-0 text-rose-400" />
+          <span>{uploadError}</span>
+        </div>
+      )}
 
       {photoUrl ? (
         <div className="space-y-3">

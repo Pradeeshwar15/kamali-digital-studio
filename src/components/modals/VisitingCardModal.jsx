@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { generateWhatsAppLink, buildVisitingCardRequestMessage } from '../../utils/whatsappHelper.js';
+import { sanitizeText, sanitizePhone, checkSubmissionRateLimit } from '../../utils/security.js';
 import { X, CreditCard, MessageSquare, Upload, Paintbrush, CheckCircle, FileText } from 'lucide-react';
 
 export default function VisitingCardModal({
@@ -20,16 +21,20 @@ export default function VisitingCardModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!checkSubmissionRateLimit('visiting-card', 2500)) {
+      alert("Please wait a moment before sending another request.");
+      return;
+    }
     const msg = buildVisitingCardRequestMessage({
       mode: activeTab,
-      customerName: customerName || 'Customer',
-      businessName,
-      customerPhone,
-      email,
-      paperFinish,
-      quantity,
-      address,
-      designNotes
+      customerName: sanitizeText(customerName) || 'Customer',
+      businessName: sanitizeText(businessName),
+      customerPhone: sanitizePhone(customerPhone),
+      email: sanitizeText(email),
+      paperFinish: sanitizeText(paperFinish),
+      quantity: sanitizeText(quantity),
+      address: sanitizeText(address),
+      designNotes: sanitizeText(designNotes, 500)
     });
 
     const link = generateWhatsAppLink(msg);

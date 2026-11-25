@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { generateWhatsAppLink, buildPhotographyInquiryMessage } from '../../utils/whatsappHelper.js';
+import { sanitizeText, sanitizePhone, checkSubmissionRateLimit } from '../../utils/security.js';
 import { X, Camera, MessageSquare, Sparkles, User, Phone, MapPin, Calendar, Clock, Tag } from 'lucide-react';
 
 export default function PhotographyInquiryModal({
@@ -28,16 +29,20 @@ export default function PhotographyInquiryModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!checkSubmissionRateLimit('photography-inquiry', 2500)) {
+      alert("Please wait a moment before submitting another booking inquiry.");
+      return;
+    }
     const msg = buildPhotographyInquiryMessage({
-      customerName: customerName || 'Customer',
-      customerPhone,
-      serviceName,
-      eventType,
-      eventDate,
-      eventLocation,
-      numberOfDays,
-      budget,
-      requirements
+      customerName: sanitizeText(customerName) || 'Customer',
+      customerPhone: sanitizePhone(customerPhone),
+      serviceName: sanitizeText(serviceName),
+      eventType: sanitizeText(eventType),
+      eventDate: sanitizeText(eventDate),
+      eventLocation: sanitizeText(eventLocation),
+      numberOfDays: sanitizeText(numberOfDays),
+      budget: sanitizeText(budget),
+      requirements: sanitizeText(requirements, 500)
     });
 
     const link = generateWhatsAppLink(msg);

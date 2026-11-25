@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { generateWhatsAppLink, buildProductInquiryMessage } from '../../utils/whatsappHelper.js';
+import { sanitizeText, sanitizePhone, checkSubmissionRateLimit } from '../../utils/security.js';
 import { X, Package, MessageSquare, Sparkles, User, Phone } from 'lucide-react';
 
 export default function ProductInquiryModal({
@@ -20,14 +21,18 @@ export default function ProductInquiryModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!checkSubmissionRateLimit('product-inquiry', 2500)) {
+      alert("Please wait a moment before sending another product inquiry.");
+      return;
+    }
     const msg = buildProductInquiryMessage({
-      customerName: customerName || 'Customer',
-      customerPhone,
-      productTitle,
-      hasDesign,
-      quantity,
-      specifications,
-      notes
+      customerName: sanitizeText(customerName) || 'Customer',
+      customerPhone: sanitizePhone(customerPhone),
+      productTitle: sanitizeText(productTitle),
+      hasDesign: sanitizeText(hasDesign),
+      quantity: sanitizeText(quantity),
+      specifications: sanitizeText(specifications),
+      notes: sanitizeText(notes, 500)
     });
 
     const link = generateWhatsAppLink(msg);

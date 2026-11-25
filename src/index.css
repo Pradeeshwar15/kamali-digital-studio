@@ -97,3 +97,41 @@
 .bg-room-minimal {
   background-image: linear-gradient(135deg, #18181c 0%, #0d0d10 100%);
 }
+
+/* ==========================================================================
+   IMAGE PROTECTION & DIGITAL ASSET SECURITY DIRECTIVES
+   ========================================================================== */
+
+/* Prevent image dragging, text selection, and mobile long-press download popups */
+img, picture, canvas, [data-protect="image"], .protected-asset {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none !important; /* Disables iOS Safari & Android long-press "Save Image" popup */
+}
+
+/* Print-to-PDF Protection: Blank all photographs if user attempts Ctrl+P / Print to PDF */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  img, picture, canvas, svg, .gallery-item, .lightbox-image, #designer {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  body::before {
+    content: "© Kamali Studio & Digital Lab. Digital artwork and photographs are protected by copyright. Unauthorized reproduction or physical printing from this website is strictly prohibited.";
+    display: block;
+    padding: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: 2px dashed #333;
+    margin: 40px auto;
+    max-width: 600px;
+  }
+}

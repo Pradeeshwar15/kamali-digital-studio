@@ -3,7 +3,7 @@ import { galleryCategories, galleryItems } from '../data/gallery.js';
 import Lightbox from './Lightbox.jsx';
 import { Camera, Eye, Frame, Sparkles, MapPin, ArrowRight, Loader2, ChevronDown } from 'lucide-react';
 
-// Reusable Image component with Skeleton Loader for performance
+// Reusable Image component with Skeleton Loader & Anti-Theft Shield
 const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef(null);
@@ -15,7 +15,7 @@ const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
   }, [src]);
 
   return (
-    <div className={`relative w-full ${aspectRatio || 'aspect-[3/4]'} bg-white/5 overflow-hidden`}>
+    <div className={`relative w-full ${aspectRatio || 'aspect-[3/4]'} bg-white/5 overflow-hidden select-none`}>
       {!loaded && (
         <div className="absolute inset-0 bg-white/10 animate-pulse" />
       )}
@@ -24,9 +24,17 @@ const ImageWithSkeleton = ({ src, alt, aspectRatio, className }) => {
         src={src}
         alt={alt}
         loading="lazy"
+        draggable="false"
+        onContextMenu={(e) => e.preventDefault()}
         onLoad={() => setLoaded(true)}
         onError={() => setLoaded(true)}
-        className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} absolute inset-0 w-full h-full object-cover transition-opacity duration-500`}
+        className={`${className} ${loaded ? 'opacity-100' : 'opacity-0'} absolute inset-0 w-full h-full object-cover transition-opacity duration-500 pointer-events-none select-none`}
+      />
+      {/* Invisible Transparent Anti-Theft Pointer Shield */}
+      <div 
+        className="absolute inset-0 z-[5] bg-transparent select-none cursor-pointer"
+        onContextMenu={(e) => e.preventDefault()}
+        aria-hidden="true"
       />
     </div>
   );

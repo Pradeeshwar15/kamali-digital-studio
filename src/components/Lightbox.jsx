@@ -66,12 +66,32 @@ export default function Lightbox({
           </button>
         )}
 
-        {/* Large Image View */}
-        <div className="flex-1 bg-black flex items-center justify-center relative p-3 min-h-[320px] md:min-h-[520px]">
+        {/* Large Image View with Multi-Layer Anti-Theft Protection */}
+        <div className="flex-1 bg-black flex items-center justify-center relative p-3 min-h-[320px] md:min-h-[520px] select-none overflow-hidden">
           <img
             src={item.image}
             alt={item.title}
-            className="max-h-[75vh] w-auto object-contain rounded-xl shadow-2xl transition-all duration-300"
+            draggable="false"
+            onContextMenu={(e) => e.preventDefault()}
+            className="max-h-[75vh] w-auto object-contain rounded-xl shadow-2xl transition-all duration-300 pointer-events-none select-none"
+          />
+
+          {/* Diagonal Semi-Transparent Studio Security Watermark Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-10">
+            <div className="transform -rotate-25 text-white/15 font-serif font-black text-xl sm:text-3xl md:text-4xl tracking-[0.25em] uppercase border-y border-white/10 py-3 sm:py-4 px-6 sm:px-12 text-center whitespace-nowrap shadow-sm backdrop-blur-[0.5px]">
+              Kamali Studio & Digital Lab
+            </div>
+          </div>
+
+          {/* Bottom Right Studio Copyright Badge */}
+          <div className="absolute bottom-4 right-4 z-10 px-2.5 py-1 rounded-md bg-black/60 border border-white/10 backdrop-blur-md pointer-events-none text-[10px] text-gray-300 font-medium tracking-wide">
+            © Protected Portfolio
+          </div>
+
+          {/* Transparent Pointer-Shield Overlay */}
+          <div
+            className="absolute inset-0 z-20 bg-transparent cursor-default select-none"
+            onContextMenu={(e) => e.preventDefault()}
           />
         </div>
 

@@ -11,11 +11,17 @@ export default function About() {
           
           {/* Left Column: Image Collage */}
           <div className="relative">
-            <div className="relative z-10 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl">
+            <div className="relative z-10 rounded-2xl overflow-hidden border-2 border-white/10 shadow-2xl select-none">
               <img
                 src="/images/gallery/candid/candid-06.webp"
                 alt="Kamali Studio Craftsmanship"
-                className="w-full h-auto object-cover"
+                draggable="false"
+                onContextMenu={(e) => e.preventDefault()}
+                className="w-full h-auto object-cover pointer-events-none select-none"
+              />
+              <div 
+                className="absolute inset-0 z-10 bg-transparent select-none cursor-default"
+                onContextMenu={(e) => e.preventDefault()}
               />
             </div>
             
