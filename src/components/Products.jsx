@@ -16,7 +16,7 @@ export default function Products({ onOpenDesigner, onOpenProductInquiry, onOpenV
   };
 
   return (
-    <section id="products" className="py-16 sm:py-24 bg-[#0a0a0c] border-t border-white/10 relative overflow-hidden">
+    <section id="products" className="py-10 sm:py-16 md:py-20 bg-[#0a0a0c] border-t border-white/10 relative overflow-hidden">
       
       {/* Background Decorative Blur */}
       <div className="absolute top-1/4 right-0 w-72 sm:w-96 h-72 sm:h-96 bg-studio-orange/10 rounded-full blur-[140px] pointer-events-none" />
@@ -24,7 +24,7 @@ export default function Products({ onOpenDesigner, onOpenProductInquiry, onOpenV
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header (No Filter Tabs) */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-studio-orange/10 border border-studio-orange/30 text-studio-orange text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2.5">
             <Package className="w-3.5 h-3.5 text-studio-orange" />
             <span>STUDIO DIGITAL & PRINT PRODUCTS</span>

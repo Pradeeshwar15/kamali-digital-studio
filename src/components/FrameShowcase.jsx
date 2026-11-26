@@ -12,11 +12,11 @@ const showcasePreviewImages = {
 export default function FrameShowcase({ onCustomizeFrame }) {
   return (
     // STRICTLY HIDDEN ON MOBILE AS REQUESTED BY CLIENT (hidden md:block)
-    <section className="hidden md:block py-16 sm:py-20 bg-[#0a0a0c] relative border-t border-white/5">
+    <section className="hidden md:block py-10 sm:py-16 bg-[#0a0a0c] relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest mb-2.5">
             <Sparkles className="w-3.5 h-3.5" />
             <span>CRAFTSMANSHIP & MATERIALS</span>

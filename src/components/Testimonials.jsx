@@ -5,11 +5,11 @@ import { Star, Quote, Heart, CheckCircle2, ExternalLink, MessageSquare } from 'l
 
 export default function Testimonials() {
   return (
-    <section id="reviews" className="py-16 sm:py-24 bg-[#0c0c0f] border-t border-white/5 relative">
+    <section id="reviews" className="py-10 sm:py-16 md:py-20 bg-[#0c0c0f] border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-studio-orange/10 border border-studio-orange/20 text-studio-orange text-[10px] sm:text-xs font-bold uppercase tracking-widest mb-2.5">
             <Heart className="w-3.5 h-3.5 text-studio-orange" />
             <span>REAL CLIENT EXPERIENCES</span>

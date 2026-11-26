@@ -7,7 +7,10 @@ const HERO_IMAGES = [
   '/images/hero/hero-2.webp',
   '/images/hero/hero-3.webp',
   '/images/hero/hero-4.webp',
-  '/images/hero/hero-5.webp'
+  '/images/hero/hero-5.webp',
+  '/images/hero/hero-6.webp',
+  '/images/hero/hero-7.webp',
+  '/images/hero/hero-8.webp'
 ];
 
 export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExploreWork }) {
@@ -72,56 +75,56 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/15 rounded-full blur-[140px] pointer-events-none z-10" />
 
       {/* Main Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20 pt-20">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20 pt-16 sm:pt-20">
         
         {/* Brand Tagline Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-studio-orange/30 text-studio-orange backdrop-blur-md mb-8 animate-float">
-          <Sparkles className="w-4 h-4 text-amber-400 animate-spin-slow" />
-          <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-studio-orange/30 text-studio-orange backdrop-blur-md mb-4 sm:mb-6 animate-float">
+          <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 animate-spin-slow" />
+          <span className="text-[11px] sm:text-xs md:text-sm font-semibold tracking-widest uppercase">
             {studioConfig.tagline || 'Capture Beyond Imagination'}
           </span>
         </div>
 
         {/* Official Client Logo Emblem in Hero */}
-        <div className="mb-4 flex justify-center">
+        <div className="mb-3 sm:mb-4 flex justify-center">
           <img 
             src="/images/branding/logo-transparent.png" 
             alt="Kamali Studio & Digital Lab" 
-            className="h-20 sm:h-28 md:h-36 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)] filter brightness-105" 
+            className="h-16 sm:h-24 md:h-32 w-auto object-contain drop-shadow-[0_10px_25px_rgba(0,0,0,0.9)] filter brightness-105" 
           />
         </div>
 
-        {/* Main Title Typography (Mobile Optimized) */}
-        <h1 className="font-serif text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight mb-3 drop-shadow-2xl">
+        {/* Main Title Typography (Mobile & Desktop Optimized) */}
+        <h1 className="font-serif text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight mb-2 sm:mb-3 drop-shadow-2xl">
           KAMALI <span className="text-transparent bg-clip-text bg-gradient-to-r from-studio-orange via-amber-400 to-amber-200">STUDIO & DIGITAL LAB</span>
         </h1>
 
-        <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-200 max-w-3xl mx-auto mb-10 font-serif italic drop-shadow-md">
+        <p className="text-base sm:text-xl md:text-2xl font-light text-gray-200 max-w-3xl mx-auto mb-6 sm:mb-8 font-serif italic drop-shadow-md">
           Capture Beyond Imagination
         </p>
 
         {/* Hero CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
           <button
             onClick={onExploreWork}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3"
+            className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2.5 sm:gap-3"
           >
-            <ImageIcon className="w-5 h-5 text-gray-300" />
+            <ImageIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-300" />
             <span>View Our Work</span>
           </button>
 
           <button
             onClick={onOpenPhotographyInquiry}
-            className="w-full sm:w-auto px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group/btn"
+            className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-sm sm:text-base font-bold text-white bg-gradient-to-r from-studio-orange to-amber-600 hover:from-studio-orangeHover hover:to-amber-700 shadow-glow-orange transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2.5 sm:gap-3 group/btn"
           >
-            <Camera className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
+            <Camera className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:rotate-12 transition-transform" />
             <span>Book a Photography Service</span>
-            <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-1 transition-transform" />
           </button>
         </div>
 
         {/* Studio Highlights Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto pt-8 border-t border-white/10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-5xl mx-auto pt-6 sm:pt-8 border-t border-white/10">
           {studioConfig.stats.map((stat, idx) => (
             <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm hover:border-studio-orange/30 transition-all">
               <div className="font-serif text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">

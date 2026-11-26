@@ -28,11 +28,11 @@ export default function BeforeAfter() {
   const fallbackAfter = "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop";
 
   return (
-    <section className="py-20 bg-[#0c0c0f] border-t border-white/5 relative overflow-hidden">
+    <section className="py-10 sm:py-16 bg-[#0c0c0f] border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>PHOTO RESTORATION & RETOUCHING</span>

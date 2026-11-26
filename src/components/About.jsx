@@ -4,7 +4,7 @@ import { Award, ShieldCheck, Sparkles, Clock, HeartHandshake, Layers } from 'luc
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-[#0a0a0c] border-t border-white/5 relative">
+    <section id="about" className="py-10 sm:py-16 bg-[#0a0a0c] border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

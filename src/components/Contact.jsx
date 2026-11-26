@@ -18,11 +18,11 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#0c0c0f] border-t border-white/5 relative">
+    <section id="contact" className="py-10 sm:py-16 bg-[#0c0c0f] border-t border-white/5 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-studio-orange/10 border border-studio-orange/20 text-studio-orange text-xs font-bold uppercase tracking-widest mb-3">
             <Phone className="w-3.5 h-3.5" />
             <span>VISIT OR CALL US</span>

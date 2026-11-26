@@ -190,7 +190,7 @@ export default function Packages({ onOpenPhotographyInquiry }) {
   ];
 
   return (
-    <section id="packages" className="py-16 sm:py-24 bg-[#08080a] relative border-t border-white/10 overflow-hidden">
+    <section id="packages" className="py-10 sm:py-16 md:py-20 bg-[#08080a] relative border-t border-white/10 overflow-hidden">
       
       {/* Background Decorative Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/10 rounded-full blur-[140px] pointer-events-none" />
@@ -198,8 +198,8 @@ export default function Packages({ onOpenPhotographyInquiry }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-widest mb-2.5">
             <Award className="w-4 h-4 text-amber-400" />
             <span>PHOTOGRAPHY & CINEMATOGRAPHY PACKAGES</span>
           </div>
@@ -211,7 +211,7 @@ export default function Packages({ onOpenPhotographyInquiry }) {
           </p>
 
           {/* Zero-Scrollbar Segmented Category Control */}
-          <div className="mt-6 sm:mt-8 max-w-md mx-auto p-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xl grid grid-cols-2 gap-1.5">
+          <div className="mt-5 sm:mt-7 max-w-md mx-auto p-1.5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md shadow-xl grid grid-cols-2 gap-1.5">
             <button
               type="button"
               onClick={() => setActiveCategory('wedding')}
