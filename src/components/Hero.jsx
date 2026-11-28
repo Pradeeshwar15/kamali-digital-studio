@@ -2,15 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { studioConfig } from '../data/studioConfig.js';
 import { Sparkles, ArrowRight, Camera, Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const HERO_IMAGES = [
-  '/images/hero/hero-1.webp',
-  '/images/hero/hero-2.webp',
-  '/images/hero/hero-3.webp',
-  '/images/hero/hero-4.webp',
-  '/images/hero/hero-5.webp',
-  '/images/hero/hero-6.webp',
-  '/images/hero/hero-7.webp',
-  '/images/hero/hero-8.webp'
+const HERO_SLIDES = [
+  {
+    desktop: '/images/hero/desktop/hero-2.webp',
+    mobile: '/images/hero/mobile/hero-2.webp',
+    alt: 'Kamali Studio Wedding Stage Photography'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-3.webp',
+    mobile: '/images/hero/mobile/hero-3.webp',
+    alt: 'Kamali Studio Traditional Wedding Coverage'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-4.webp',
+    mobile: '/images/hero/mobile/hero-4.webp',
+    alt: 'Kamali Studio Candid Couple Photography'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-1.webp',
+    mobile: '/images/hero/mobile/hero-5.webp',
+    alt: 'Kamali Studio Reception & Portrait Shoot'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-8.webp',
+    mobile: '/images/hero/mobile/hero-6.webp',
+    alt: 'Kamali Studio Grand Wedding Celebrations'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-7.webp',
+    mobile: '/images/hero/mobile/hero-7.webp',
+    alt: 'Kamali Studio Couple Special Moments'
+  }
 ];
 
 export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExploreWork }) {
@@ -22,18 +44,18 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
     if (isHovered) return;
     
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev === HERO_IMAGES.length - 1 ? 0 : prev + 1));
+      setCurrentSlide((prev) => (prev === HERO_SLIDES.length - 1 ? 0 : prev + 1));
     }, 5000);
     
     return () => clearInterval(timer);
   }, [isHovered]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === HERO_IMAGES.length - 1 ? 0 : prev + 1));
+    setCurrentSlide((prev) => (prev === HERO_SLIDES.length - 1 ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? HERO_IMAGES.length - 1 : prev - 1));
+    setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1));
   };
 
   const goToSlide = (index) => {
@@ -43,35 +65,41 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden group"
+      className="relative min-h-[580px] h-[100dvh] flex items-center justify-center overflow-hidden group select-none"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       
-      {/* Slideshow Backgrounds */}
-      {HERO_IMAGES.map((img, idx) => (
+      {/* Responsive Slideshow Backgrounds with Art Direction */}
+      {HERO_SLIDES.map((slide, idx) => (
         <div
           key={idx}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out pointer-events-none ${
             idx === currentSlide ? 'opacity-100 z-0' : 'opacity-0 -z-10'
           }`}
         >
-          {/* Subtle cinematic zoom effect for active slide */}
-          <div 
-            className={`absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear ${
-              idx === currentSlide ? 'scale-100' : 'scale-110'
-            }`}
-            style={{ backgroundImage: `url('${img}')` }}
-            loading="lazy"
-          />
+          <picture className="w-full h-full block">
+            <source media="(max-width: 767px)" srcSet={slide.mobile} type="image/webp" />
+            <source media="(min-width: 768px)" srcSet={slide.desktop} type="image/webp" />
+            <img
+              src={slide.desktop}
+              alt={slide.alt}
+              className={`w-full h-full object-cover object-center transition-transform duration-[10000ms] ease-linear pointer-events-none select-none ${
+                idx === currentSlide ? 'scale-100' : 'scale-105'
+              }`}
+              loading={idx === 0 ? "eager" : "lazy"}
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          </picture>
         </div>
       ))}
 
       {/* Dark Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/60 z-10" />
+      <div className="absolute inset-0 bg-black/50 md:bg-black/60 z-10 pointer-events-none" />
       
-      {/* Radial Vignette & Lens Glow */}
-      <div className="absolute inset-0 bg-radial-vignette from-transparent via-[#0a0a0c]/50 to-[#0a0a0c]/90 z-10 pointer-events-none" />
+      {/* Mobile-tailored bottom-up vignette & Desktop radial glow */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-black/30 to-[#0a0a0c]/60 md:bg-radial-vignette md:from-transparent md:via-[#0a0a0c]/50 md:to-[#0a0a0c]/90 z-10 pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/15 rounded-full blur-[140px] pointer-events-none z-10" />
 
       {/* Main Content */}
@@ -158,7 +186,7 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
 
       {/* Pagination Dots */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
-        {HERO_IMAGES.map((_, idx) => (
+        {HERO_SLIDES.map((_, idx) => (
           <button
             key={idx}
             onClick={() => goToSlide(idx)}

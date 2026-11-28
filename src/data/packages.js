@@ -15,11 +15,11 @@ export const weddingPackages = [
       "Stage & Crowd Coverage",
       "Single Wedding Album (200 Photos)",
       "Full Edited Videos in Pendrive (1)",
-      "Complimentary Premium Frame - 1"
+      "Complimentary 3 Frame"
     ],
     complimentary: [
       "Pendrive - 1",
-      "Premium Frame - 1"
+      "3 Frame"
     ],
     terms: "Album delivery within 45 days after client selection."
   },
