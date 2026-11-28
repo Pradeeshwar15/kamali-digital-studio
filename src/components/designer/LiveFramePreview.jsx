@@ -104,9 +104,9 @@ export default function LiveFramePreview({
       {/* Main Centered 3D Realistic Frame Visualizer */}
       <div className="relative z-10 my-auto py-6 sm:py-10 flex flex-col items-center justify-center">
         
-        {/* Frame Outer Structure */}
+        {/* Frame Outer Structure with Real 9-Slice Photographic Moulding */}
         <div 
-          className={`relative transition-all duration-500 ${selectedFrame.borderClass} max-w-full shadow-2xl flex items-center justify-center overflow-hidden`}
+          className={`relative transition-all duration-500 ${selectedFrame.borderClass} max-w-full shadow-2xl flex items-center justify-center`}
           style={{
             maxWidth: selectedSize.id === '24x36' ? '92%' : selectedSize.id === '6x8' ? '65%' : '80%'
           }}

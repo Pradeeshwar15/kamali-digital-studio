@@ -32,10 +32,12 @@ export default function StepFrameSelect({ selectedFrameId, onSelectFrame }) {
                 </div>
               )}
 
-              <div 
-                className={`w-full h-12 rounded-lg mb-2 shadow-inner border border-white/10 ${frame.borderClass}`}
-                style={{ backgroundColor: frame.previewColor }}
-              />
+              <div className="w-full h-12 rounded-lg mb-2 overflow-hidden bg-black/40 border border-white/10 relative flex items-center justify-center p-1">
+                <div 
+                  className={`w-full h-full rounded shadow-sm ${frame.borderClass}`}
+                  style={{ borderWidth: '6px' }}
+                />
+              </div>
 
               <div>
                 <span className="font-serif text-sm font-bold text-white block truncate">

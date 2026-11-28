@@ -23,39 +23,73 @@
   background: #FF6B00;
 }
 
-/* Frame Textures & Realism Classes (Based on Kamali Digital Studio Frame Poster) */
+/* Real Studio Photographic Mouldings (9-Slice Scalable Border Images) */
 .frame-classic-wood,
 .frame-natural-wood,
 .frame-luxury-brown {
-  border: 22px solid #4a2912;
-  border-image: linear-gradient(135deg, #6a3c1a 0%, #341c0c 50%, #522e14 100%) 1;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.8), 0 15px 35px rgba(0, 0, 0, 0.7);
+  border-style: solid;
+  border-width: 18px;
+  border-image-source: url('/images/frames/border-classic-wood.png');
+  border-image-slice: 32 fill;
+  border-image-repeat: round;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8);
+}
+@media (min-width: 640px) {
+  .frame-classic-wood,
+  .frame-natural-wood,
+  .frame-luxury-brown {
+    border-width: 28px;
+  }
 }
 
 .frame-royal-gold,
 .frame-premium-gold {
-  border: 22px solid #c5a059;
-  border-image: linear-gradient(135deg, #fef1bf 0%, #b8860b 35%, #e6c687 70%, #996515 100%) 1;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.75), 0 15px 35px rgba(212, 175, 55, 0.35);
+  border-style: solid;
+  border-width: 16px;
+  border-image-source: url('/images/frames/border-royal-gold.png');
+  border-image-slice: 21 fill;
+  border-image-repeat: round;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.25);
+}
+@media (min-width: 640px) {
+  .frame-royal-gold,
+  .frame-premium-gold {
+    border-width: 24px;
+  }
 }
 
 .frame-premium-textured {
-  border: 22px solid #1c1c22;
-  border-image: repeating-linear-gradient(45deg, #2b2b36, #2b2b36 4px, #16161c 4px, #16161c 8px) 1;
-  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.9), 0 14px 35px rgba(0, 0, 0, 0.85);
+  border-style: solid;
+  border-width: 18px;
+  border-image-source: url('/images/frames/border-premium-textured.png');
+  border-image-slice: 44 fill;
+  border-image-repeat: round;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.85);
+}
+@media (min-width: 640px) {
+  .frame-premium-textured {
+    border-width: 30px;
+  }
 }
 
 .frame-modern-matte,
-.frame-classic-black {
-  border: 18px solid #111115;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.9), 0 10px 30px rgba(0, 0, 0, 0.8);
-  border-image: linear-gradient(135deg, #1f1f26 0%, #0d0d10 50%, #1a1a22 100%) 1;
-}
-
+.frame-modern-minimal,
+.frame-classic-black,
 .frame-elegant-white {
-  border: 20px solid #f8fafc;
-  border-image: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #f1f5f9 100%) 1;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.15), 0 12px 30px rgba(0, 0, 0, 0.4);
+  border-style: solid;
+  border-width: 12px;
+  border-image-source: url('/images/frames/border-modern-minimal.png');
+  border-image-slice: 10 fill;
+  border-image-repeat: round;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+}
+@media (min-width: 640px) {
+  .frame-modern-matte,
+  .frame-modern-minimal,
+  .frame-classic-black,
+  .frame-elegant-white {
+    border-width: 18px;
+  }
 }
 
 .frame-brushed-silver {
