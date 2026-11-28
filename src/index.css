@@ -31,7 +31,7 @@
   border-color: transparent;
   border-width: 18px;
   border-image-source: url('/images/frames/border-classic-wood.png');
-  border-image-slice: 32 fill;
+  border-image-slice: 71 70 70 70 fill;
   border-image-repeat: round;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8);
 }
@@ -49,7 +49,7 @@
   border-color: transparent;
   border-width: 16px;
   border-image-source: url('/images/frames/border-royal-gold.png');
-  border-image-slice: 21 fill;
+  border-image-slice: 16 20 16 20 fill;
   border-image-repeat: round;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.25);
 }
