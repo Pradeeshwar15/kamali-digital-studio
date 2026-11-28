@@ -106,53 +106,46 @@ export default function LiveFramePreview({
         
         {/* Frame Outer Structure */}
         <div 
-          className={`relative transition-all duration-500 ${selectedFrame.borderClass} max-w-full shadow-2xl flex items-center justify-center`}
+          className={`relative transition-all duration-500 ${selectedFrame.borderClass} max-w-full shadow-2xl flex items-center justify-center overflow-hidden`}
           style={{
             maxWidth: selectedSize.id === '24x36' ? '92%' : selectedSize.id === '6x8' ? '65%' : '80%'
           }}
         >
-          {/* Optional Passepartout Matting */}
+          {/* The Photo Container with Dynamic Aspect Ratio */}
           <div 
-            className="w-full h-full p-2 sm:p-5 transition-all duration-300 flex items-center justify-center overflow-hidden"
-            style={{ backgroundColor: selectedMatting.color }}
+            className="relative overflow-hidden shadow-inner w-full max-h-[280px] sm:max-h-[460px] flex items-center justify-center"
+            style={{
+              aspectRatio: selectedSize.aspectRatio || '4/5'
+            }}
           >
-            {/* The Photo Container with Dynamic Aspect Ratio */}
-            <div 
-              className="relative overflow-hidden shadow-inner max-w-full max-h-[280px] sm:max-h-[460px] flex items-center justify-center"
-              style={{
-                aspectRatio: selectedSize.aspectRatio || '4/5'
-              }}
-            >
-              <img
-                src={displayPhoto}
-                alt="Framed Photograph"
-                draggable="false"
-                onContextMenu={(e) => e.preventDefault()}
-                className="w-full h-full object-cover transition-all duration-300 pointer-events-none select-none"
-                style={{ filter: filterCss }}
+            <img
+              src={displayPhoto}
+              alt="Framed Photograph"
+              draggable="false"
+              onContextMenu={(e) => e.preventDefault()}
+              className="w-full h-full object-cover transition-all duration-300 pointer-events-none select-none"
+              style={{ filter: filterCss }}
+            />
+
+            {/* Anti-Reflective Subtle Glass Glare */}
+            {showGlare && (
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-25 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
               />
+            )}
 
-              {/* Anti-Reflective Subtle Glass Glare */}
-              {showGlare && (
-                <div 
-                  className="absolute inset-0 pointer-events-none opacity-25 bg-gradient-to-tr from-transparent via-white/20 to-transparent"
-                />
-              )}
-
-              {/* Custom Text Inscription Overlay */}
-              {customText && customText.trim() && (
-                <div 
-                  className={`absolute bottom-3 left-0 right-0 px-4 text-center font-bold tracking-wider drop-shadow-md ${textFont}`}
-                  style={{ color: textColor }}
-                >
-                  <span className="text-xs sm:text-sm bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 inline-block">
-                    {customText}
-                  </span>
-                </div>
-              )}
-            </div>
+            {/* Custom Text Inscription Overlay */}
+            {customText && customText.trim() && (
+              <div 
+                className={`absolute bottom-3 left-0 right-0 px-4 text-center font-bold tracking-wider drop-shadow-md ${textFont}`}
+                style={{ color: textColor }}
+              >
+                <span className="text-xs sm:text-sm bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/10 inline-block">
+                  {customText}
+                </span>
+              </div>
+            )}
           </div>
-
         </div>
 
         {/* Realistic Wall Shadow under frame */}

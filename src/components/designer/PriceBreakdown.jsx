@@ -40,12 +40,6 @@ export default function PriceBreakdown({
           <span className="text-gray-400">Size & Base Amount ({selectedSize.label}):</span>
           <span className="font-bold text-white">₹{selectedSize.price.toLocaleString('en-IN')}</span>
         </div>
-        {selectedMatting.id !== 'none' && (
-          <div className="flex items-center justify-between">
-            <span className="text-gray-400">Mat Board ({selectedMatting.label}):</span>
-            <span className="font-bold text-white">Included</span>
-          </div>
-        )}
       </div>
 
       <div className="pt-3 border-t border-white/10 flex items-center justify-between">

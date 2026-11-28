@@ -102,8 +102,6 @@ export default function FrameDesigner({
               <StepCustomization
                 selectedSizeId={selectedSizeId}
                 onSelectSize={setSelectedSizeId}
-                selectedMattingId={selectedMattingId}
-                onSelectMatting={setSelectedMattingId}
                 customText={customText}
                 onCustomTextChange={setCustomText}
                 textFont={textFont}

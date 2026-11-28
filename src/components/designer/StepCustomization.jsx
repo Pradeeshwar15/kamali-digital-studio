@@ -1,12 +1,10 @@
 import React from 'react';
-import { frameSizes, mattingOptions } from '../../data/pricing.js';
+import { frameSizes } from '../../data/pricing.js';
 import { Check, Type, Sparkles } from 'lucide-react';
 
 export default function StepCustomization({
   selectedSizeId,
   onSelectSize,
-  selectedMattingId,
-  onSelectMatting,
   customText,
   onCustomTextChange,
   textFont,
@@ -48,29 +46,6 @@ export default function StepCustomization({
                 <span className="text-xs font-extrabold text-studio-orange block mt-1.5">
                   ₹{size.price.toLocaleString('en-IN')}
                 </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* INNER MAT BOARD (PASSEPARTOUT) */}
-      <div>
-        <label className="block text-xs font-bold text-gray-300 uppercase mb-2">Inner Border / Mat Board</label>
-        <div className="grid grid-cols-3 gap-2">
-          {mattingOptions.map((mat) => {
-            const isSelected = selectedMattingId === mat.id;
-            return (
-              <button
-                key={mat.id}
-                onClick={() => onSelectMatting(mat.id)}
-                className={`p-2.5 rounded-xl border text-center transition-all text-xs font-semibold ${
-                  isSelected
-                    ? 'bg-studio-orange/20 border-studio-orange text-white'
-                    : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'
-                }`}
-              >
-                <span>{mat.label}</span>
               </button>
             );
           })}
