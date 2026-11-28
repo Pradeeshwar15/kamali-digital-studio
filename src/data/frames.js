@@ -34,13 +34,13 @@ export const frameStyles = [
   },
   {
     id: "modern-matte",
-    name: "Modern Minimal Frame",
+    name: "Modern Matte Frame",
     category: "Modern Minimal",
     basePrice: 300,
-    borderClass: "frame-modern-minimal",
+    borderClass: "frame-modern-matte",
     badge: "Contemporary",
-    description: "Clean, crisp minimalist profile offering timeless simplicity and high contrast for modern interiors.",
-    previewColor: "#f8fafc",
+    description: "Clean, crisp matte black profile offering timeless minimalism and high contrast for modern interiors.",
+    previewColor: "#1a1a20",
     popular: true
   }
 ];

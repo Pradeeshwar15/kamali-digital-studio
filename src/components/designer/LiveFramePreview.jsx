@@ -113,7 +113,7 @@ export default function LiveFramePreview({
         >
           {/* The Photo Container with Dynamic Aspect Ratio */}
           <div 
-            className="relative overflow-hidden shadow-inner w-full max-h-[280px] sm:max-h-[460px] flex items-center justify-center"
+            className="relative overflow-hidden shadow-inner w-full max-h-[280px] sm:max-h-[460px] flex items-center justify-center bg-black"
             style={{
               aspectRatio: selectedSize.aspectRatio || '4/5'
             }}
