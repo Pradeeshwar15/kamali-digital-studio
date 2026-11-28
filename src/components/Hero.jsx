@@ -5,33 +5,43 @@ import { Sparkles, ArrowRight, Camera, Image as ImageIcon, ChevronLeft, ChevronR
 const HERO_SLIDES = [
   {
     desktop: '/images/hero/desktop/hero-2.webp',
-    mobile: '/images/hero/mobile/hero-2.webp',
+    mobile: '/images/hero/mobile/hero-1.webp',
     alt: 'Kamali Studio Wedding Stage Photography'
   },
   {
     desktop: '/images/hero/desktop/hero-3.webp',
-    mobile: '/images/hero/mobile/hero-3.webp',
+    mobile: '/images/hero/mobile/hero-2.webp',
     alt: 'Kamali Studio Traditional Wedding Coverage'
   },
   {
     desktop: '/images/hero/desktop/hero-4.webp',
-    mobile: '/images/hero/mobile/hero-4.webp',
+    mobile: '/images/hero/mobile/hero-3.webp',
     alt: 'Kamali Studio Candid Couple Photography'
   },
   {
     desktop: '/images/hero/desktop/hero-1.webp',
-    mobile: '/images/hero/mobile/hero-5.webp',
+    mobile: '/images/hero/mobile/hero-4.webp',
     alt: 'Kamali Studio Reception & Portrait Shoot'
   },
   {
     desktop: '/images/hero/desktop/hero-8.webp',
-    mobile: '/images/hero/mobile/hero-6.webp',
-    alt: 'Kamali Studio Grand Wedding Celebrations'
+    mobile: '/images/hero/mobile/hero-5.webp',
+    alt: 'Kamali Studio Grand Wedding Moments'
   },
   {
     desktop: '/images/hero/desktop/hero-7.webp',
+    mobile: '/images/hero/mobile/hero-6.webp',
+    alt: 'Kamali Studio Couple Special Portraits'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-6.webp',
     mobile: '/images/hero/mobile/hero-7.webp',
-    alt: 'Kamali Studio Couple Special Moments'
+    alt: 'Kamali Studio Bridal Portrait Shoot'
+  },
+  {
+    desktop: '/images/hero/desktop/hero-5.webp',
+    mobile: '/images/hero/mobile/hero-8.webp',
+    alt: 'Kamali Studio Sacred Rituals'
   }
 ];
 
@@ -95,15 +105,15 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
         </div>
       ))}
 
-      {/* Dark Overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/50 md:bg-black/60 z-10 pointer-events-none" />
+      {/* Dark Overlay for better text readability (Lightened on mobile so photo shines through) */}
+      <div className="absolute inset-0 bg-black/30 sm:bg-black/55 md:bg-black/60 z-10 pointer-events-none" />
       
       {/* Mobile-tailored bottom-up vignette & Desktop radial glow */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0c] via-black/30 to-[#0a0a0c]/60 md:bg-radial-vignette md:from-transparent md:via-[#0a0a0c]/50 md:to-[#0a0a0c]/90 z-10 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/15 rounded-full blur-[140px] pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30 md:bg-radial-vignette md:from-transparent md:via-[#0a0a0c]/50 md:to-[#0a0a0c]/90 z-10 pointer-events-none" />
+      <div className="hidden sm:block absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-studio-orange/15 rounded-full blur-[140px] pointer-events-none z-10" />
 
       {/* Main Content (Safely positioned below fixed navbar on all screen sizes) */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20 pt-28 sm:pt-32 md:pt-36 pb-20 sm:pb-24">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-20 pt-24 sm:pt-32 md:pt-36 pb-14 sm:pb-24">
         
         {/* Brand Tagline Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-studio-orange/30 text-studio-orange backdrop-blur-md mb-3 sm:mb-4 animate-float">
@@ -151,8 +161,8 @@ export default function Hero({ onOpenPhotographyInquiry, onOpenDesigner, onExplo
           </button>
         </div>
 
-        {/* Studio Highlights Bar (Fully visible and never clipped) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-5xl mx-auto pt-5 sm:pt-6 border-t border-white/10">
+        {/* Studio Highlights Bar (Hidden on mobile to keep photo visible and clean, shown on sm+) */}
+        <div className="hidden sm:grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 max-w-5xl mx-auto pt-5 sm:pt-6 border-t border-white/10">
           {studioConfig.stats.map((stat, idx) => (
             <div key={idx} className="p-3 sm:p-4 rounded-2xl bg-white/[0.04] border border-white/5 backdrop-blur-sm hover:border-studio-orange/30 transition-all">
               <div className="font-serif text-xl sm:text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-200">
